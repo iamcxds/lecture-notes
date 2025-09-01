@@ -1,0 +1,127 @@
+\documentclass[12pt]{book}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tikz-cd}
+\usepackage{stmaryrd}
+\usepackage{hyperref}
+\setlength{\evensidemargin}{0.25in}
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6in}
+\parskip0.2em
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conj}[theorem]{Conjecture}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{property}[theorem]{Property}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\numberwithin{equation}{section}
+\allowdisplaybreaks[1]
+
+%Peng's command
+\newcommand{\MW}{Milnor-Witt\ }
+\newcommand{\rMW}{\mathrm{MW}}
+\newcommand{\KMW}{\mathrm{K}^\mathrm{MW}}
+\newcommand{\KM}{\mathrm{K}^\mathrm{M}}
+\newcommand{\sKMW}{\mathscr{K}^\mathrm{MW}}
+\newcommand{\tbb}[1]{\widetilde{\mathbb{#1}}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\Spec}{\mathrm{Spec}\ }
+\newcommand{\af}{\mathbb{A}}
+\newcommand{\afnz}[1]{\mathbb{A}^{#1}\setminus \{0\}}
+\newcommand{\nonZero}{\setminus \{0\}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bfZ}{\mathbf{Z}}
+\newcommand{\tbZ}{\tbb{Z}}
+\newcommand{\inv}{^{-1}}%
+\newcommand{\Gm}{\mathbb{G}_m}
+\newcommand{\tGm}{\tbb{G}_m}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\MSp}{\mathrm{MSp}}
+\newcommand{\BSp}{\mathrm{BSp}}
+\newcommand{\SH}{\mathcal{SH}}
+\newcommand{\Da}{D_{\af^1}}
+\newcommand{\Daba}[1]{D(Ab_{\af^1}(#1))}
+\newcommand{\DM}{\mathrm{DM}}
+\newcommand{\DMt}{\widetilde{\mathrm{DM}}}
+\newcommand{\M}{\mathrm{M}}
+\newcommand{\Mt}{\wt{\mathrm{M}}}
+\newcommand{\Meta}{\wt{\mathrm{M}}_{\eta}}
+\newcommand{\HH}{\mathrm{H}_{\rMW}}
+\newcommand{\Heta}{\mathrm{H}_{\eta}}
+\newcommand{\sBra}[1]{\left[#1\right]}
+\newcommand{\aBra}[1]{\left<#1\right>}
+\newcommand{\llBra}[1]{\llbracket #1 \rrbracket
+}
+\newcommand{\rHom}{\mathrm{Hom}}
+\newcommand{\Ker}{\mathrm{Ker}}
+\newcommand{\rFun}{\mathrm{Fun}}
+\newcommand{\Spc}{\mathcal{S}pc}
+\newcommand{\gy}{\rm{Gysin}}
+\newcommand{\xr}[1]{\xrightarrow{#1}}
+
+\newcommand{\AZ}{\mathbb{A}\mathcal{Z}}
+\newcommand{\bfZa}{\mathbf{Z}_{\mathbb{A}^1}}
+\newcommand{\tauO}{\tau^{\odot}}
+
+\raggedbottom
+
+\title{Seeing the Mountains}
+\author{Keyao Peng}
+
+
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+{\huge\bfseries Seeing the Mountains \\}
+{\Large Lectures on Post-Modern Geometry \\}
+ % ----------------------------------------------------------------
+ \vspace{1.5cm}
+ {\Large\bfseries Keyao Peng}\\[5pt]
+ keyao.peng@ube.fr\\[14pt]
+  % ----------------------------------------------------------------
+ \vspace{2cm}
+ % ----------------------------------------------------------------
+\includegraphics[width=0.19\textwidth]{example-image-a}\\[5pt]
+ \vfill
+{Sep 2025}
+\end{center}
+\end{titlepage}
+\clearpage
+
+\thispagestyle{empty}
+\newlength{\longest}
+\settowidth\longest{\huge\itshape Seeing the mountain still as a mountain.}
+\null\vfill
+
+\centering
+\parbox{\longest}{%
+  \raggedright{\huge\itshape%
+  Seeing the mountain as the mountain; \\ 
+  Seeing the mountain not as a mountain; \\ 
+  Seeing the mountain still as a mountain. \par\bigskip
+  }   
+  \raggedleft\Large\MakeUppercase{Qingyuan Xingsi}\par%
+}
+
+\vfill\vfill
+
+\clearpage
+
+\tableofcontents
+
+\input{lectures/intro}
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
