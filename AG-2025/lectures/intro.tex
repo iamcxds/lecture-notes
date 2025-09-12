@@ -1,34 +1,44 @@
 \chapter{Introduction}\label{chap:introduction}
 
 
-\section{What's Algebraic Geometry?}
+\section{What is Algebraic Geometry?}
 
-Algebraic geometry is the study of geometry which locally are solutions of polynomials. There are two levels of study:
+Algebraic geometry is the study of geometric spaces that locally arise as solutions to polynomial equations. This study can be approached at two levels:
 
 \begin{itemize}
-  \item (Local) The study of geometry that solutions of polynomials have. This is not evident, since we are not just working over $\bR$ or $\bC$ but potentially all fields (rings). So we need to build a more essential geometry that associated with algebra (the spectrum), and then we can translate between algebra and geometry. This is study of affine variety (scheme).
-  \item (Synthetic) Just like from opens of $\bR^n$ to the manifolds, we study the space that locally isomorphic to affine variety, and this can be done in several ways. This is study of variety (scheme).
+  \item \textbf{Local:} This involves studying the geometric properties of solution sets to polynomial equations. Since we work not only over $\mathbb{R}$ or $\mathbb{C}$ but potentially over arbitrary fields or rings, we must construct a more intrinsic notion of geometry associated with algebra—namely, the spectrum of a ring. This leads to the study of affine varieties and affine schemes, allowing a translation between algebra and geometry.
+
+  \item \textbf{Synthetic:} Analogous to how manifolds generalize open subsets of $\mathbb{R}^n$, we study spaces that are locally isomorphic to affine varieties. This broader perspective leads to the study of varieties and schemes through various formal frameworks.
 \end{itemize}
 
-This lecture is supposed to be part of an algebraic geometry course which will more focus on the second level. And this level of ideas are not rest only in algebraic geometry, the question of "How to construct and classify generalized spaces from certain building block" can be asked in all kinds of geometry. So this part can stand alone as "(post-modern\footnote{A well accepted definition is "after World War II"}) synthetic geometry".
+This lecture is part of an algebraic geometry course that emphasizes the second, synthetic level. However, the underlying question—“How can we construct and classify generalized spaces from certain building blocks?”—is relevant across many branches of geometry. Thus, this part can stand alone as a form of \emph{post-modern}\footnote{A commonly accepted definition is “after World War II.”} synthetic geometry.
 
 \section{Essentialism vs. Structuralism}
-Synthetic geometry is about formalization of geometry by axioms that directly speak about the fundamental concepts of geometry – such as points and lines – instead of about a backdrop for such objects – such as Cartesian spaces. In contract to analytic way of thinking every geometry object consists of points, in synthetic geometry lines and curves (or even strings) are also a priori entities. Instead, we focus on the \textbf{relationship} between those geometry objects, such as "a point is on a line", "two lines intersect". This is a structuralism point of view, we don't know what an object is but its relationship with others.
 
-We are using \textbf{ category theory } and \textbf{ sheaf theory }to deal with the relationship between basic spaces, and moreover, if we think category as some sort of space, the "geometry of category" can reveal more structure about the geometry. This formalism of synthetic geometry is developed via study algebraic geometry, nowadays, depending on the input building blocks, it plays an important role in all kinds of geometry : differential geometry, topology, quantum field theory, etc.
+Synthetic geometry formalizes geometric concepts through axioms that directly address fundamental entities—such as points and lines—rather than relying on a background space like Cartesian coordinates. In contrast to the analytic viewpoint, where every geometric object is composed of points, synthetic geometry treats lines, curves, and other entities as primitive. The focus shifts to the \textbf{relationships} between these objects, such as “a point lies on a line” or “two lines intersect.”
 
+This structuralism perspective emphasizes understanding objects through their interactions. To formalize these relationships, we use \textbf{category theory} and \textbf{sheaf theory}. Moreover, by viewing categories themselves as spaces, we uncover deeper geometric structures. This formalism, developed through algebraic geometry, now plays a central role in various fields: differential geometry, topology, quantum field theory, and beyond.
 
-\section{What's Geometry in Physics?}
-Actually quantum physics are related both local and synthetic levels of algebraic geometry.
+\section{What is Geometry in Physics?}
+
+Quantum physics connects to both the local and synthetic levels of algebraic geometry:
+
 \begin{itemize}
-  \item (Local) The idea of spectrum of commutative ring come from $C^*$ algebra, and also spectrum of operator, which are essential in quantum physics. The duality between algebra and geometry already appear in Heisenberg / Schrödinger pictures.
-  \item (Synthetic) In quantum field theory we need to study with space of field configuration (history), it is infinite dimensional and weird behaved, but we want to view it as a "manifold", to define metric, (path) integration, differential form on it. Synthetic geometry can be used to define those mathematically (i.e. smooth set). Nevertheless, gauge theory, super geometry, etc., can be put into the same framework \cite{nlab:geometry_of_physics}.
+  \item \textbf{Local:} The concept of the spectrum of a commutative ring originates from $C^*$-algebras and operator theory, both fundamental in quantum physics. The duality between algebra and geometry is already present in the Heisenberg and Schrödinger formulations.
+
+  \item \textbf{Synthetic:} In quantum field theory, we study the space of field configurations (histories), which is infinite-dimensional and behaves irregularly. Nevertheless, we aim to treat it as a “manifold” to define metrics, path integrals, and differential forms. Synthetic geometry provides a rigorous framework for these constructions (e.g., via smooth sets). Gauge theory, supergeometry, and related topics can also be unified within this framework \cite{nlab:geometry_of_physics}.
 \end{itemize}
-In more concrete case, we have the mirror symmetry which create a link between Gromov-Witten invariant and Hodge theory.
-\section{Plan of Course}
-We will focus on three sort of geometry and study they comparatively with synthetic method. 
+
+A concrete example is mirror symmetry, which links Gromov–Witten invariants with Hodge theory.
+
+\section{Course Plan}
+
+We will focus on three types of geometry and study them comparatively using synthetic methods:
+
 \begin{itemize}
-  \item (Smooth Set/Manifold) The building blocks are opens of $\bR^n$, very geometric examples, can be used as bridge toward usual geometry.
-  \item (Simplical Set) The building blocks are simplexes $ \Delta $, simplest abstract examples.
-  \item (Scheme) The building blocks are spectrum of commutative rings, main objective of the course.
+  \item \textbf{Smooth Sets / Manifolds:} Built from open subsets of $\mathbb{R}^n$, these provide intuitive and geometric examples, serving as a bridge to classical geometry.
+
+  \item \textbf{Simplicial Sets:} Constructed from simplices $\Delta$, these offer the simplest and most abstract examples.
+
+  \item \textbf{Schemes:} Built from spectra of commutative rings, these are the central objects of study in this course.
 \end{itemize}
