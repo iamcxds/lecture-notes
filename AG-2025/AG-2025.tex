@@ -37,6 +37,8 @@
 \newcommand{\afnz}[1]{\mathbb{A}^{#1}\setminus \{0\}}
 \newcommand{\nonZero}{\setminus \{0\}}
 \newcommand{\cO}{\mathcal{O}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bC}{\mathbb{C}}
 \newcommand{\bZ}{\mathbb{Z}}
 \newcommand{\bfZ}{\mathbf{Z}}
 \newcommand{\tbZ}{\tbb{Z}}
@@ -97,7 +99,8 @@
 {Sep 2025}
 \end{center}
 \end{titlepage}
-\clearpage
+
+{\clearpage
 
 \thispagestyle{empty}
 \newlength{\longest}
@@ -116,11 +119,12 @@
 
 \vfill\vfill
 
-\clearpage
+\clearpage}
 
 \tableofcontents
-
+\setcounter{chapter}{-1}
 \input{lectures/intro}
+\input{lectures/category}
 
 \bibliographystyle{plain}
 \bibliography{references}
