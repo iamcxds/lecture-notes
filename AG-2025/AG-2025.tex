@@ -1,7 +1,9 @@
 \documentclass[12pt]{book}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{amsfonts}
+\usepackage{mdframed}
 \usepackage{tikz-cd}
 \usepackage{stmaryrd}
 \usepackage{hyperref}
@@ -10,17 +12,19 @@
 \setlength{\textwidth}{6in}
 \parskip0.2em
 
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{conj}[theorem]{Conjecture}
+\newmdtheoremenv{theorem}{Theorem}[section]
+\newmdtheoremenv{lemma}[theorem]{Lemma}
+\newmdtheoremenv{proposition}[theorem]{Proposition}
+\newmdtheoremenv{corollary}[theorem]{Corollary}
+\newmdtheoremenv{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
 \newtheorem{assumption}[theorem]{Assumption}
 \newtheorem{property}[theorem]{Property}
-\newtheorem{remark}[theorem]{Remark}
+\newmdtheoremenv{remark}[theorem]{Remark}
+\theoremstyle{definition}
+\newmdtheoremenv{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Example}
-\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{exercise}{Exercise}[section]
 \numberwithin{equation}{section}
 \allowdisplaybreaks[1]
 
@@ -37,6 +41,10 @@
 \newcommand{\afnz}[1]{\mathbb{A}^{#1}\setminus \{0\}}
 \newcommand{\nonZero}{\setminus \{0\}}
 \newcommand{\cO}{\mathcal{O}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
 \newcommand{\bR}{\mathbb{R}}
 \newcommand{\bC}{\mathbb{C}}
 \newcommand{\bZ}{\mathbb{Z}}
@@ -64,16 +72,17 @@
 \newcommand{\aBra}[1]{\left<#1\right>}
 \newcommand{\llBra}[1]{\llbracket #1 \rrbracket
 }
-\newcommand{\rHom}{\mathrm{Hom}}
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\Top}{\mathbf{Top}}
+\newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\Ker}{\mathrm{Ker}}
-\newcommand{\rFun}{\mathrm{Fun}}
+\newcommand{\Fun}{\mathrm{Fun}}
 \newcommand{\Spc}{\mathcal{S}pc}
 \newcommand{\gy}{\rm{Gysin}}
 \newcommand{\xr}[1]{\xrightarrow{#1}}
 
 \newcommand{\AZ}{\mathbb{A}\mathcal{Z}}
 \newcommand{\bfZa}{\mathbf{Z}_{\mathbb{A}^1}}
-\newcommand{\tauO}{\tau^{\odot}}
 
 \raggedbottom
 
