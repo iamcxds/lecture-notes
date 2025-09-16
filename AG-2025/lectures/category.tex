@@ -1,6 +1,6 @@
 \chapter{Category}\label{chap:category} 
 
-There are a lot of references for category theory, we follow the \cite{nlab:geometry_of_physics_--_categories_and_toposes}
+There are many references available for category theory; in this course, we follow \cite{nlab:geometry_of_physics_--_categories_and_toposes}
 \section{Definition and Examples}
 \begin{definition}[Category]
 A \textbf{category} $\mathcal{C}$ consists of:
@@ -18,26 +18,25 @@ Subject to:
  
 \end{definition}
 
-For simplicity, we just use $A  \in \mathcal{C}$ to refer objects, and $f:A\to B$ to refer morphisms. There are varies way to think about what is a category, let's discuss by examples:
+For simplicity, we denote objects in a category $\mathcal{C}$ by $A \in \mathcal{C}$ and morphisms by $f: A \to B$. There are various ways to understand what a category is; let us explore this through examples:
 
-\begin{example}[{Concrete Category}]
- We can view it as a container of math structures and morphisms is the map perserve the structures.
- \begin{itemize}
-    \item \textbf{Set:} Objects are sets, morphisms are maps between sets.
-    \item \textbf{Grp:} Objects are groups, morphisms are group homomorphisms.
-    \item \textbf{Vect:} Objects are vector spaces, morphisms are linear homomorphisms.
-    \item \textbf{Top:} Objects are topological spaces, morphisms are continuous maps.
-\end{itemize}   
-You can create infinite many of examples from the math structures you know.
+\begin{example}[Concrete Category]
+A concrete category can be viewed as a collection of mathematical structures, where morphisms are maps that preserve those structures.
+\begin{itemize}
+    \item \textbf{Set:} Objects are sets; morphisms are functions between sets.
+    \item \textbf{Grp:} Objects are groups; morphisms are group homomorphisms.
+    \item \textbf{Vect:} Objects are vector spaces; morphisms are linear maps.
+    \item \textbf{Top:} Objects are topological spaces; morphisms are continuous maps.
+\end{itemize}
+You can construct infinitely many examples from the mathematical structures you are familiar with.
 \end{example}
 
-
-At this point it seems useless to definition such abstraction. But we can try to genealize the notion from set theory. For example, let $f: A \to B$ be a morphism in $\mathcal{C}$.
+At first glance, this abstraction may seem unnecessary. However, we can generalize familiar notions from set theory. For instance, consider a morphism $f: A \to B$ in a category $\mathcal{C}$:
 
 \begin{itemize}
     \item \textbf{Isomorphism:} $f$ is an \emph{isomorphism} if there exists a morphism $g: B \to A$ such that:
     \[
-    g \circ f = \mathrm{id}_A \quad \text{and} \quad f \circ g = \mathrm{id}_B
+      g \circ f = \mathrm{id}_A \quad \text{and} \quad f \circ g = \mathrm{id}_B (\text{i.e.} g=f^{-1})
     \]
     In this case, $A$ and $B$ are said to be \emph{isomorphic}.
 
@@ -55,37 +54,44 @@ At this point it seems useless to definition such abstraction. But we can try to
 
 \end{itemize}
 \begin{exercise}
- Verify in $\Set$ these definitions give bijection, injection and surjection. 
+Verify that in the category $\Set$, these definitions correspond to bijections, injections, and surjections, respectively.
 \end{exercise}
 
-\begin{example}[{ classifying category }]
-  The category can be viewed as an algebra structure which generalize "monoid", something like a group but not to ask elements to have inverse. In fact, for all $A\in \cC$ endmorphism $\Hom_\cC(A,A)$ is a monoid, and a monoid $M$ can be associated with a \textbf{ classifying category } $BM$ with only one object $\bullet$ and the morphisms $\Hom_{BM}(\bullet, \bullet)= M$. In particular, for any group $G$, we have a \textbf{ classifying space } $BG$, such that all morphisms are isomorphisms.
+\begin{example}[Classifying Category]
+  A category can be viewed as an algebraic structure generalizing a monoid\footnote{An algebraic structure similar to a group, but without requiring inverses}. Indeed, for any object $A \in \mathcal{C}$, the set of endomorphisms $\mathrm{Hom}_{\mathcal{C}}(A, A)$ forms a monoid. Conversely, any monoid $M$ can be associated with a \textbf{classifying category} $BM$, which has a single object $\bullet$ and morphisms $\mathrm{Hom}_{BM}(\bullet, \bullet) = M$. In particular, for any group $G$, we obtain a \textbf{classifying space} $BG$, where all morphisms are isomorphisms.
 \end{example}
 
-The reason we call $BG$ is that we can view it as a space, we can regard the isomorphisms as paths in certin space:
+We refer to $BG$ as a space because we can interpret its isomorphisms as paths in a certain topological space:
 
-\begin{example}[{ Groupoid }]
-  A \textbf{ groupoid } is a category such that all morphisms are isomorphisms. For groupoid $\cX$, we can build a space \textbf{geometric realization} $|\cX|$ as following: 
-  \begin{itemize}
-    \item take the objects of $x\in \cX$ as points;
-    \item for each morphism $f:x \to y$, attach a segment from point $x$ to point $y$;
-    \item for each possible relation $f\circ g =h $, attach a triangle with edge $f,g,h$;
-    \item for the higher dimensional cells$\ldots$ 
-  \end{itemize}
-  We will make this process more precise when we introduce simplicial sets.
-  \begin{exercise}
-  First show that the connection component $\pi_0(|\cX|,x)$ is bijective to the isomorphic class of $\cX$. Notice that $\Hom_\cX(x,x)$ is a group, show that the fundamental group $\pi_1(|\cX|,x)\cong \Hom_\cX(x,x)$
-  \end{exercise}
-  Conversely, for a topological space $S$, we can define the \textbf{fundamental groupoid} $\Pi_1(S)$: the objects are points of $S$, morphisms $\Hom_{\Pi_1(S)}(a,b)$ are homotopy class of path from $a$ to $b$.
-  \begin{exercise}
-    What is the composition for $\Pi_1(S)$ ? Verify this is indeed a groupoid.
-  \end{exercise}
+\begin{example}[Groupoid]
+A \textbf{groupoid} is a category in which every morphism is an isomorphism. Given a groupoid $\mathcal{X}$, we can construct its \textbf{geometric realization} $|\mathcal{X}|$ as follows:
+\begin{itemize}
+    \item Take the objects $x \in \mathcal{X}$ as points.
+    \item For each morphism $f: x \to y$, attach a segment from point $x$ to point $y$.
+    \item For each relation $f \circ g = h$, attach a triangle with edges labeled by $f$, $g$, and $h$.
+    \item Continue this process for higher-dimensional cells $\ldots$
+\end{itemize}
+We will formalize this construction when we introduce simplicial sets.
+
+\begin{exercise}
+Show that the set of connected components $\pi_0(|\mathcal{X}|, x)$ corresponds bijectively to the isomorphism class of $x$ in $\mathcal{X}$. Furthermore, observe that $\mathrm{Hom}_{\mathcal{X}}(x, x)$ is a group, and prove that the fundamental group $\pi_1(|\mathcal{X}|, x) \cong \mathrm{Hom}_{\mathcal{X}}(x, x)$.
+\end{exercise}
+
+Conversely, for a topological space $S$, we can define the \textbf{fundamental groupoid} $\Pi_1(S)$, where:
+\begin{itemize}
+    \item Objects are points of $S$.
+    \item Morphisms $\mathrm{Hom}_{\Pi_1(S)}(a, b)$ are homotopy classes of paths from $a$ to $b$.
+\end{itemize}
+
+\begin{exercise}
+Describe the composition law in $\Pi_1(S)$ and verify that it satisfies the axioms of a groupoid.
+\end{exercise}
 \end{example}
 
-The examples above we see for a category, the morphisms can have a lot of structures. On other hand if we let the morphism be trivial, then we get the partial order set:
-\begin{example}[{Poset}]
-  Let $(P, \leq)$ be a partially ordered set. We can regard $P$ as a category as follows:
+The examples above illustrate that morphisms in a category can carry rich structure. On the other hand, if morphisms are trivial (i.e., at most one between any two objects), we obtain a partially ordered set:
 
+\begin{example}[Poset]
+Let $(P, \leq)$ be a partially ordered set. We can regard $P$ as a category as follows:
 \begin{itemize}
     \item \textbf{Objects:} Elements of $P$.
     \item \textbf{Morphisms:} For $x, y \in P$, there exists a unique morphism $f: x \to y$ if and only if $x \leq y$.
@@ -93,17 +99,17 @@ The examples above we see for a category, the morphisms can have a lot of struct
     \item \textbf{Identity:} For each $x \in P$, the identity morphism $\mathrm{id}_x: x \to x$ corresponds to the reflexivity $x \leq x$.
 \end{itemize}
 
-This category is \emph{thin}, meaning there is at most one morphism between any two objects.
+This category is called \emph{thin}, meaning there is at most one morphism between any two objects.
 
-An example we will use a lot is for a topological space $S$, let $(Op(S),\subseteq)$ be the poset of open subsets of $S$.
-
+A frequently used example is the poset of open subsets of a topological space $S$, denoted $(\mathrm{Op}(S), \subseteq)$.
 \end{example}
-Notice that a set $A$ can be viewed as a category in both way: as a trivial groupoid or a trivial poset.
+
+Note that a set $A$ can be viewed as a category in two distinct ways: either as a trivial groupoid or as a trivial poset. And a category can be viewed as a combination of this two case\footnote{It is useful to think category as an oriented graph}.
 % https://q.uiver.app/#q=WzAsNCxbMSwyLCJTZXQiXSxbMCwxLCJHcm91cG9pZCJdLFsyLDEsIlBvc2V0Il0sWzEsMCwiQ2F0ZW9ncnkiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFswLDIsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dXQ==
 \[\begin{tikzcd}[ampersand replacement=\&,cramped]
-	\& Cateogry \\
-	Groupoid \&\& Poset \\
-	\& Set
+\& \textbf{Category} \\
+	\textbf{Groupoid} \&\& \textbf{Poset} \\
+	\& \textbf{Set}
 	\arrow[hook, from=2-1, to=1-2]
 	\arrow[hook', from=2-3, to=1-2]
 	\arrow[hook', from=3-2, to=2-1]
@@ -111,9 +117,12 @@ Notice that a set $A$ can be viewed as a category in both way: as a trivial grou
 \end{tikzcd}\]
 
 \begin{remark}
-  In the definition of category, if we allow the morphism $\Hom_\cC(A,B)$ to be something more that a set (e.g. Abelian group, vector space, groupoid/topological space, category etc.) we get the \textbf{enriched category}. In fact, it is more natural to think $\Hom_\cC(A,B)$ as the connected components of some space $ \pi_0\mathrm{Map}_{\cC}(A,B)$. 
+In the definition of a category, if we allow the morphism set $\mathrm{Hom}_{\mathcal{C}}(A, B)$ to carry additional structure—such as an Abelian group, vector space, groupoid, topological space, or even another category—we obtain an \textbf{enriched category}. In fact, it is often more natural to think of $\mathrm{Hom}_{\mathcal{C}}(A, B)$ as the set of connected components of a space:
+\[
+\mathrm{Hom}_{\mathcal{C}}(A, B) \cong \pi_0 \mathrm{Map}_{\mathcal{C}}(A, B).
+\]
 
-  This is a general principle of \textbf{ Univalence Foundation }, The math structures should be a priori "space"(type), and we can recover the set version by taking the connected components. We will discuss how to recognize the a priori geometric structure later.
+This reflects a general principle of the \textbf{Univalence Foundation}: mathematical structures should be treated as spaces (or types) from the outset, and the classical set-theoretic version can be recovered by taking the set of connected components. We will explore how to identify and work with these underlying geometric structures later in the course.
 \end{remark} 
 
 \section{Functor and Presheaf}
@@ -136,6 +145,7 @@ Such that:
     \]
 \end{itemize}
 \end{definition}
+We denote the set (later will be category) of functor $\Fun(\mathcal{C} , \mathcal{D})$
 
 \begin{example}
   For concrete categories, we can have the functor with respect their structures
@@ -175,7 +185,7 @@ Such that:
 \end{example}
 
 \begin{exercise}
- For groups (more general monoids) $G,H$, show that there is a bijection between functors $F:BG\to BH$ and group(monoid) homomorphism $f:G\to H$.    
+ For groups (more general monoids) $G,H$, show that there is a bijection between functors $F:BG\to BH$ and group (monoid) homomorphism $f:G\to H$.    
 \end{exercise}
 
 \begin{exercise}
@@ -187,7 +197,43 @@ Such that:
    
 \end{exercise}
 
+\begin{exercise}
+For posets $P,Q$, show that a functor $F:P\to Q$ is the same thing as an order preserving function.  
+\end{exercise}
+
+\begin{example}[Ring-Space Correspondence]
+  Given a topological space $X$, assign to its ring of (real or complex) continuous function $C(X)$ seems to be a functor, but there is an issue: the map $p:X\to Y$ induce a pullback of function $p^*:C(Y)\to C(X), f \mapsto f(p(\cdot))$. For this reason, we introduce the notion of \textbf{Opposite Category} $\cC^{\op}$: it has the same objects as $\cC$, but reverse direction of all morphism, i.e. $ \Hom_{\cC^\op}(A,B)= \Hom_\cC(B,A)$. Then $C(\cdot):\mathbf{Top}^\op \to \mathbf{Ring}$ is a functor.
+\end{example}
+\begin{remark}
+ The core of algebraic geometric is how to reverse this functor, to construct a space out of a commutative ring. That to say, to define a functor $\Spec :\mathbf{Ring}^\op \to \mathbf{Top}$, and we have
+ \[
+   \Hom_{\mathbf{Ring}}(R, C(X)) \cong \Hom_{\mathbf{Top}}( X,\Spec R)
+ \]
+ But in reality we need to add some restriction in category to make this well define:
+\begin{itemize}
+  \item between $C^*$-algbra and locally compact Hausdorff space, which is Gelfand representation theorem, and where the name $\Spec$ spectrum origin from;
+  \item between commutative ring and locally ringed space, which is a fundamental theorem in algebraic geometry.
+\end{itemize}
+\end{remark}
+
+Here is another important example:
+
+\begin{example}[Hom Functor]
+  For a fixed object $A$ in a category $\mathcal{C}$, the functor
+    \[
+    h^A:=\mathrm{Hom}_{\mathcal{C}}(A, -): \mathcal{C} \to \mathbf{Set}
+    \]
+    assigns to each object $B$ the set of morphisms $\mathrm{Hom}_{\mathcal{C}}(A, B)$, and to each morphism $f: B \to C$ the function:
+    \[
+    \mathrm{Hom}_{\mathcal{C}}(A, f): \mathrm{Hom}_{\mathcal{C}}(A, B) \to \mathrm{Hom}_{\mathcal{C}}(A, C), \quad g \mapsto f \circ g
+    \]
+\end{example}
+
+\begin{remark}[Opposite category]
   
+\end{remark}
+  
+Now we introduce the central object of the course
 
 \begin{itemize}
 
