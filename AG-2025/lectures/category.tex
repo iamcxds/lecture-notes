@@ -23,7 +23,7 @@ For simplicity, we denote objects in a category $\mathcal{C}$ by $A \in \mathcal
 \begin{example}[Concrete Category]
 A concrete category can be viewed as a collection of mathematical structures, where morphisms are maps that preserve those structures.
 \begin{itemize}
-    \item \textbf{Set:} Objects are sets; morphisms are functions between sets.
+  \item \textbf{Set:} Objects are sets\footnote{Since the collection of all sets does not itself form a set, we refer instead to a \emph{class} of objects. However, if we restrict our attention to \emph{small} sets, then the collection of objects can be treated as a set. In this course, we will ignore set-theoretic subtleties and proceed informally.}; morphisms are functions between sets.
     \item \textbf{Grp:} Objects are groups; morphisms are group homomorphisms.
     \item \textbf{Vect:} Objects are vector spaces; morphisms are linear maps.
     \item \textbf{Top:} Objects are topological spaces; morphisms are continuous maps.
@@ -209,14 +209,17 @@ For posets $P,Q$, show that a functor $F:P\to Q$ is the same thing as an order p
  \[
    \Hom_{\mathbf{Ring}}(R, C(X)) \cong \Hom_{\mathbf{Top}}( X,\Spec R)
  \]
- But in reality we need to add some restriction in category to make this well define:
+ \begin{exercise}*
+   Show that in this case the underlying set $$ U(\Spec R) = \Hom_{\Ring}(R, \bR \text{ or } \bC). $$ What topology should give to $\Spec R$ ?
+ \end{exercise}
+ But in reality we need to add some restriction in category to make this well-behaved:
 \begin{itemize}
   \item between $C^*$-algbra and locally compact Hausdorff space, which is Gelfand representation theorem, and where the name $\Spec$ spectrum origin from;
   \item between commutative ring and locally ringed space, which is a fundamental theorem in algebraic geometry.
 \end{itemize}
 \end{remark}
 
-Here is another important example:
+Here is another important examples:
 
 \begin{example}[Hom Functor]
   For a fixed object $A$ in a category $\mathcal{C}$, the functor
@@ -225,36 +228,81 @@ Here is another important example:
     \]
     assigns to each object $B$ the set of morphisms $\mathrm{Hom}_{\mathcal{C}}(A, B)$, and to each morphism $f: B \to C$ the function:
     \[
-    \mathrm{Hom}_{\mathcal{C}}(A, f): \mathrm{Hom}_{\mathcal{C}}(A, B) \to \mathrm{Hom}_{\mathcal{C}}(A, C), \quad g \mapsto f \circ g
+    h^A(f):=\mathrm{Hom}_{\mathcal{C}}(A, f): \mathrm{Hom}_{\mathcal{C}}(A, B) \to \mathrm{Hom}_{\mathcal{C}}(A, C), \quad g \mapsto f \circ g
+    \]
+    Similarly we can also define
+    \[
+    h_A:=\mathrm{Hom}_{\mathcal{C}}(-, A): \mathcal{C}^\op \to \mathbf{Set}
     \]
 \end{example}
-
-\begin{remark}[Opposite category]
-  
+\begin{exercise}
+ Show that $f$ is monomorphism iff $h^A(f)$ is injective for all $A$; $f$ is epimorphism iff $h_A(f)$ is injective for all $A$; $f$ is isomorphism iff both $h^A(f)$ and $h_A(f)$ are bijective for all $A$.
+\end{exercise}
+\begin{remark}
+ We should think of objects of $\cC$ as some test objects, and a functor is like data of testing. For example, consider a sigma model of target space $M$, then let $\cC$ be category of space-time, for given space-time $\Sigma$, the collection of fields $ \Map(\Sigma, M)$ form such a functor. The question is: given such functor, can you recover "space" from it?
 \end{remark}
   
-Now we introduce the central object of the course
+Now we introduce the central conception for "generalized space" of the course
 
+\begin{definition}[Presheaf]
+  Let $\mathcal{C}$ be a category. A \textbf{presheaf} on $\mathcal{C}$ is a functor:
+\[
+F: \mathcal{C}^{\mathrm{op}} \to \mathbf{Set}
+\]
+
+That is, $F$ assigns:
 \begin{itemize}
-
-    \item \textbf{Power Set Functor:}
+    \item To each object $U$ in $\mathcal{C}$, a set $F(U)$.
+    \item To each morphism $f: V \to U$ in $\mathcal{C}$, a function:
     \[
-    \mathcal{P}: \mathbf{Set} \to \mathbf{Set}
-    \]
-    assigns to each set $X$ its power set $\mathcal{P}(X)$, and to each function $f: X \to Y$ the function $\mathcal{P}(f): \mathcal{P}(X) \to \mathcal{P}(Y)$ defined by:
-    \[
-    \mathcal{P}(f)(A) = f(A) = \{ f(a) \mid a \in A \}
-    \]
-
-    \item \textbf{Hom Functor:} For a fixed object $A$ in a category $\mathcal{C}$, the functor
-    \[
-    \mathrm{Hom}_{\mathcal{C}}(A, -): \mathcal{C} \to \mathbf{Set}
-    \]
-    assigns to each object $B$ the set of morphisms $\mathrm{Hom}_{\mathcal{C}}(A, B)$, and to each morphism $f: B \to C$ the function:
-    \[
-    \mathrm{Hom}_{\mathcal{C}}(A, f): \mathrm{Hom}_{\mathcal{C}}(A, B) \to \mathrm{Hom}_{\mathcal{C}}(A, C), \quad g \mapsto f \circ g
+    F(f): F(U) \to F(V)
     \]
 \end{itemize}
+
+such that:
+\begin{itemize}
+    \item $F(\mathrm{id}_U) = \mathrm{id}_{F(U)}$
+    \item $F(g \circ f) = F(f) \circ F(g)$ for composable morphisms $f$ and $g$ in $\mathcal{C}$
+\end{itemize}
+\end{definition}
+\begin{remark}
+  
+To understand why is notion of generalized space, let us compare to how do we define distribution as generalized function: 
+\begin{itemize}
+  \item We begin with some test function, Let $\mathcal{D}(\Omega)$ denotes the space of test functions, i.e., smooth functions with compact support in $\Omega$, notice that we have a pairing 
+    $$ <-,->:\mathcal{D}(\Omega)\times \mathcal{D}(\Omega)\to \bR, (f,g) \mapsto \int_\Omega fg $$
+    By which we can send a test function $f\in \mathcal{D}(\Omega)$ be a functional $ T_f :\mathcal{D}'(\Omega):=\mathcal{D}(\Omega)\to \bR, \phi \mapsto \int_\Omega f\phi $. Then the we define the \emph{distribution} as $ \mathcal{D}'(\Omega)$, which are generalized functions.
+  \item Now we begin with category of test spaces $\cC$, we have the hom functor 
+    \[
+      \Hom_\cC(-,-):\cC^\op \times \cC \to \Set
+    \]
+    For each object $A\in \cC$ we can define presheaf $h_A: \cC^\op  \to \Set$, then we think presheaf as generalized spaces. Just like case of distribution, we have more presheaf than $h_A$.
+\end{itemize}
+
+\end{remark}
+Now we give more concrete examples of presheaves
+\begin{example}
+  
+\end{example}
+
+Let $\PSh(\cC)=\Fun(\cC,\Set)$ be the collection of presheaf, as we indiced, this should be a category, let us found out what morphism they should have: Since $h_A,h_B$ is thought as generalized space, it should inherent the morphism in $\cC$. We can check that for $f:A\to B$, we have the map of set $ f\circ -: h_A(C)\to h_B(C)$ for each $C$. Nevertheless, those map should be compactable for the chose of $C$. This lead to our definition:
+\begin{definition}
+  
+A \emph{morphism of presheaves} $\varphi : \mathcal{F} \to \mathcal{G}$ is a natural transformation between the functors $\mathcal{F}$ and $\mathcal{G}$; that is, for each object $U$ in $\mathcal{C}$, there is a function $\varphi_U : \mathcal{F}(U) \to \mathcal{G}(U)$ such that for every morphism $f : V \to U$ in $\mathcal{C}$, the following diagram commutes:
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGJ1bGxldCJdLFsxLDAsIlxcYnVsbGV0Il0sWzAsMSwiXFxidWxsZXQiXSxbMSwxLCJcXGJ1bGxldCJdLFswLDEsIlxcdmFycGhpX1UiXSxbMCwyLCJcXG1hdGhjYWx7Rn0oZikiLDJdLFsyLDMsIlxcdmFycGhpX1YiXSxbMSwzLCJcXG1hdGhjYWx7R30oZikiXV0=
+\[\begin{tikzcd}[ampersand replacement=\&,cramped]
+  \mathcal{F}(U) \&  \mathcal{G}(U) \\
+\mathcal{F}(V)   \& \mathcal{G}(V)
+	\arrow["{\varphi_U}", from=1-1, to=1-2]
+	\arrow["{\mathcal{F}(f)}"', from=1-1, to=2-1]
+	\arrow["{\mathcal{G}(f)}", from=1-2, to=2-2]
+	\arrow["{\varphi_V}", from=2-1, to=2-2]
+\end{tikzcd}\]
+
+\end{definition}
+\begin{exercise}
+  Show that a morphism $f:A\to B$ induce a morphism of presheaf $Y(f):h_A\to h_B$. This means we have in fact a functor $ Y: \cC \to \PSh(\cC), A\mapsto h_A $. This is called \emph{Yoneda Embedding}.
+\end{exercise}
 \section{Yoneda Lemma}
 
 \section{Universal Property and (Co)limit}
