@@ -126,121 +126,172 @@ This reflects a general principle of the \textbf{Univalence Foundation}: mathema
 \end{remark} 
 
 \section{Functor and Presheaf}
-If we want to define map between to category, it is natural to ask respect the morphism:
+\subsection{Functor}
+
+To define a map between two categories, it is natural to require that such a map respects the structure of morphisms.
 
 \begin{definition}[Functor]
-  Let $\mathcal{C}$ and $\mathcal{D}$ be categories. A \textbf{functor} $F: \mathcal{C} \to \mathcal{D}$ consists of:
-
+Let $\mathcal{C}$ and $\mathcal{D}$ be categories. A \textbf{functor} $F: \mathcal{C} \to \mathcal{D}$ consists of:
 \begin{itemize}
     \item A function that assigns to each object $A \in \mathcal{C}$ an object $F(A) \in \mathcal{D}$.
     \item A function that assigns to each morphism $f: A \to B$ in $\mathcal{C}$ a morphism $F(f): F(A) \to F(B)$ in $\mathcal{D}$.
 \end{itemize}
-
-Such that:
+such that:
 \begin{itemize}
-    \item \textbf{Preservation of identities:} $F(\mathrm{id}_A) = \mathrm{id}_{F(A)}$
-    \item \textbf{Preservation of composition:} For all $f: A \to B$ and $g: B \to C$ in $\mathcal{C}$,
+    \item \textbf{Identity preservation:} $F(\mathrm{id}_A) = \mathrm{id}_{F(A)}$.
+    \item \textbf{Composition preservation:} For all $f: A \to B$ and $g: B \to C$ in $\mathcal{C}$,
     \[
-    F(g \circ f) = F(g) \circ F(f)
+    F(g \circ f) = F(g) \circ F(f).
     \]
 \end{itemize}
 \end{definition}
-We denote the set (later will be category) of functor $\Fun(\mathcal{C} , \mathcal{D})$
 
-\begin{example}
-  For concrete categories, we can have the functor with respect their structures
- \begin{itemize}
+We denote the set (later, the category) of functors from $\mathcal{C}$ to $\mathcal{D}$ by $\mathrm{Fun}(\mathcal{C}, \mathcal{D})$.
 
-    \item \textbf{Forgetful Functor:} 
+\begin{example}[Functors Between Concrete Categories]
+Functors between concrete categories respect the underlying structures:
+\begin{itemize}
+    \item \textbf{Forgetful Functor:}
     \[
     U: \mathbf{Grp} \to \mathbf{Set}
     \]
-    assigns to each group its underlying set, and to each group homomorphism the same map viewed as a map of sets. Same for $\mathbf{Vect},\mathbf{Top}$, etc.
-  \item \textbf{Free Functor:} 
+    assigns to each group its underlying set, and to each group homomorphism the same function viewed as a map of sets. Similar forgetful functors exist for $\mathbf{Vect}$, $\mathbf{Top}$, etc.
+
+    \item \textbf{Free Functor:}
     \[
-    Free: \mathbf{Set} \to \mathbf{Grp}
+    \mathrm{Free}: \mathbf{Set} \to \mathbf{Grp}
     \]
-    assigns to each set the free group it generates, and to each map of sets the free group homomorphism it generates.
+    assigns to each set the free group it generates, and to each function between sets the induced group homomorphism.
 
     \begin{exercise}
-      Verify $Free$ is indeed a functor, then show that \\ 
-      $\Hom_{\mathbf{Grp}}(Free(A),G)\cong \Hom_{\mathbf{Set}}(A,U(G))$. Then how to define $Free$ for $\mathbf{Vect}$?
-    \end{exercise}
-  \item \textbf{Discrete Functor:}
+    Verify that $\mathrm{Free}$ is indeed a functor. Then show:
     \[
-    Disc: \mathbf{Set} \to \mathbf{Top}
+    \mathrm{Hom}_{\mathbf{Grp}}(\mathrm{Free}(A), G) \cong \mathrm{Hom}_{\mathbf{Set}}(A, U(G)).
     \]
-    assigns to each set the discrete topological space, and to each map of sets the same map viewed as a continuous map.
-  \item \textbf{Connected components:}
+    How would you define $\mathrm{Free}$ for $\mathbf{Vect}$?
+    \end{exercise}
+
+    \item \textbf{Discrete Functor:}
+    \[
+    \mathrm{Disc}: \mathbf{Set} \to \mathbf{Top}
+    \]
+    assigns to each set the discrete topological space, and to each function the same map viewed as continuous.
+
+    \item \textbf{Connected Components:}
     \[
     \pi_0: \mathbf{Top} \to \mathbf{Set}
     \]
-    assigns to each topological space its set of connected component.
+    assigns to each topological space its set of connected components.
+
     \begin{exercise}
-     Show that $\Hom_{\mathbf{Top}}(Disc(A),S)\cong \Hom_{\mathbf{Set}}(A,U(S))$ and \\
-     $\Hom_{\mathbf{Top}}(S, Disc(A))\cong \Hom_{\mathbf{Set}}(\pi_0S,A)$
+    Show:
+    \[
+    \mathrm{Hom}_{\mathbf{Top}}(\mathrm{Disc}(A), S) \cong \mathrm{Hom}_{\mathbf{Set}}(A, U(S)), \quad
+    \mathrm{Hom}_{\mathbf{Top}}(S, \mathrm{Disc}(A)) \cong \mathrm{Hom}_{\mathbf{Set}}(\pi_0(S), A).
+    \]
     \end{exercise}
- \end{itemize} 
-
+\end{itemize}
 \end{example}
 
 \begin{exercise}
- For groups (more general monoids) $G,H$, show that there is a bijection between functors $F:BG\to BH$ and group (monoid) homomorphism $f:G\to H$.    
+Let $G, H$ be groups (or more generally, monoids). Show that functors $F: BG \to BH$ correspond bijectively to group (monoid) homomorphisms $f: G \to H$.
 \end{exercise}
 
 \begin{exercise}
-  \begin{enumerate}
-    \item For groupoid $\cX,\cY$, show that a functor $F: \cX \to \cY$ induce a continuous map of geometric realization $|F|:|\cX| \to |\cY|$. Now let $\mathbf{Grpd}$ be  the category of groupoid, with functor as morphism, then show that geometric realization $|\cdot|: \mathbf{Grpd}\to \mathbf{Top}$ is actually a functor. 
-    \item Similarly, show that $\Pi_1: \mathbf{Top}\to \mathbf{Grpd}$ is also a functor.
-    \item* Moreover, show that $ \Hom_{\mathbf{Top}}(S, |\cX|)\cong \Hom_{\mathbf{Grpd}}(\Pi_1(S),\cX)$
-  \end{enumerate}
-   
+\begin{enumerate}
+    \item Let $\mathcal{X}, \mathcal{Y}$ be groupoids. Show that a functor $F: \mathcal{X} \to \mathcal{Y}$ induces a continuous map between their geometric realizations:
+    \[
+    |F|: |\mathcal{X}| \to |\mathcal{Y}|.
+    \]
+    Let $\mathbf{Grpd}$ be the category of groupoids with functors as morphisms. Show that geometric realization defines a functor:
+    \[
+    |\cdot|: \mathbf{Grpd} \to \mathbf{Top}.
+    \]
+    \item Similarly, show that the fundamental groupoid construction defines a functor:
+    \[
+    \Pi_1: \mathbf{Top} \to \mathbf{Grpd}.
+    \]
+    \item* Show the adjunction:
+    \[
+    \mathrm{Hom}_{\mathbf{Top}}(S, |\mathcal{X}|) \cong \mathrm{Hom}_{\mathbf{Grpd}}(\Pi_1(S), \mathcal{X}).
+    \]
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-For posets $P,Q$, show that a functor $F:P\to Q$ is the same thing as an order preserving function.  
+Let $P, Q$ be posets. Show that a functor $F: P \to Q$ is equivalent to an order-preserving function.
 \end{exercise}
 
-\begin{example}[Ring-Space Correspondence]
-  Given a topological space $X$, assign to its ring of (real or complex) continuous function $C(X)$ seems to be a functor, but there is an issue: the map $p:X\to Y$ induce a pullback of function $p^*:C(Y)\to C(X), f \mapsto f(p(\cdot))$. For this reason, we introduce the notion of \textbf{Opposite Category} $\cC^{\op}$: it has the same objects as $\cC$, but reverse direction of all morphism, i.e. $ \Hom_{\cC^\op}(A,B)= \Hom_\cC(B,A)$. Then $C(\cdot):\mathbf{Top}^\op \to \mathbf{Ring}$ is a functor.
+\begin{example}[Ring–Space Correspondence]
+Given a topological space $X$, its ring of real continuous functions $C(X)$ defines a contravariant functor. A map $p: X \to Y$ induces a pullback:
+\[
+p^*: C(Y) \to C(X), \quad f \mapsto f \circ p.
+\]
+To formalize this, we introduce the \textbf{opposite category} $\mathcal{C}^{\mathrm{op}}$, which has the same objects as $\mathcal{C}$ but reverses the direction of morphisms:
+\[
+\mathrm{Hom}_{\mathcal{C}^{\mathrm{op}}}(A, B) = \mathrm{Hom}_{\mathcal{C}}(B, A).
+\]
+Then,
+\[
+C(-): \mathbf{Top}^{\mathrm{op}} \to \mathbf{Ring}
+\]
+is a functor.
 \end{example}
+
 \begin{remark}
- The core of algebraic geometric is how to reverse this functor, to construct a space out of a commutative ring. That to say, to define a functor $\Spec :\mathbf{Ring}^\op \to \mathbf{Top}$, and we have
- \[
-   \Hom_{\mathbf{Ring}}(R, C(X)) \cong \Hom_{\mathbf{Top}}( X,\Spec R)
- \]
- \begin{exercise}*
-   Show that in this case the underlying set $$ U(\Spec R) = \Hom_{\Ring}(R, \bR \text{ or } \bC). $$ What topology should give to $\Spec R$ ?
- \end{exercise}
- But in reality we need to add some restriction in category to make this well-behaved:
+A central theme in algebraic geometry is reversing this functor: constructing a space from a commutative ring. That is, defining a functor:
+\[
+\mathrm{Spec}: \mathbf{Ring}^{\mathrm{op}} \to \mathbf{Top},
+\]
+such that:
+\[
+\mathrm{Hom}_{\mathbf{Ring}}(R, C(X)) \cong \mathrm{Hom}_{\mathbf{Top}}(X, \mathrm{Spec}(R)).
+\]
+
+\begin{exercise}*
+Show that the underlying set of $\mathrm{Spec}(R)$ is:
+\[
+U(\mathrm{Spec}(R)) = \mathrm{Hom}_{\mathbf{Ring}}(R, \mathbb{R} ).
+\]
+What topology should be given to $\mathrm{Spec}(R)$?
+\end{exercise}
+
+In practice, we impose additional structure to make this correspondence well-behaved:
 \begin{itemize}
-  \item between $C^*$-algbra and locally compact Hausdorff space, which is Gelfand representation theorem, and where the name $\Spec$ spectrum origin from;
-  \item between commutative ring and locally ringed space, which is a fundamental theorem in algebraic geometry.
+    \item Between $C^*$-algebras and locally compact Hausdorff spaces, via the Gelfand representation theorem—where the term “spectrum” originates.
+    \item Between commutative rings and locally ringed spaces, which is foundational in algebraic geometry.
 \end{itemize}
 \end{remark}
 
-Here is another important examples:
-
 \begin{example}[Hom Functor]
-  For a fixed object $A$ in a category $\mathcal{C}$, the functor
-    \[
-    h^A:=\mathrm{Hom}_{\mathcal{C}}(A, -): \mathcal{C} \to \mathbf{Set}
-    \]
-    assigns to each object $B$ the set of morphisms $\mathrm{Hom}_{\mathcal{C}}(A, B)$, and to each morphism $f: B \to C$ the function:
-    \[
-    h^A(f):=\mathrm{Hom}_{\mathcal{C}}(A, f): \mathrm{Hom}_{\mathcal{C}}(A, B) \to \mathrm{Hom}_{\mathcal{C}}(A, C), \quad g \mapsto f \circ g
-    \]
-    Similarly we can also define
-    \[
-    h_A:=\mathrm{Hom}_{\mathcal{C}}(-, A): \mathcal{C}^\op \to \mathbf{Set}
-    \]
+For a fixed object $A$ in a category $\mathcal{C}$, the \textbf{Hom functor} is defined as:
+\[
+h^A := \mathrm{Hom}_{\mathcal{C}}(A, -): \mathcal{C} \to \mathbf{Set},
+\]
+which assigns to each object $B$ the set $\mathrm{Hom}_{\mathcal{C}}(A, B)$, and to each morphism $f: B \to C$ the function:
+\[
+h^A(f): \mathrm{Hom}_{\mathcal{C}}(A, B) \to \mathrm{Hom}_{\mathcal{C}}(A, C), \quad g \mapsto f \circ g.
+\]
+Similarly, we define the contravariant version:
+\[
+h_A := \mathrm{Hom}_{\mathcal{C}}(-, A): \mathcal{C}^{\mathrm{op}} \to \mathbf{Set}.
+\]
 \end{example}
+
 \begin{exercise}
- Show that $f$ is monomorphism iff $h^A(f)$ is injective for all $A$; $f$ is epimorphism iff $h_A(f)$ is injective for all $A$; $f$ is isomorphism iff both $h^A(f)$ and $h_A(f)$ are bijective for all $A$.
+Show that:
+\begin{itemize}
+    \item $f$ is a monomorphism if and only if $h^A(f)$ is injective for all $A$.
+    \item $f$ is an epimorphism if and only if $h_A(f)$ is injective for all $A$.
+    \item $f$ is an isomorphism if and only if both $h^A(f)$ and $h_A(f)$ are bijective for all $A$.
+\end{itemize}
 \end{exercise}
+
 \begin{remark}
- We should think of objects of $\cC$ as some test objects, and a functor is like data of testing. For example, consider a sigma model of target space $M$, then let $\cC$ be category of space-time, for given space-time $\Sigma$, the collection of fields $ \Map(\Sigma, M)$ form such a functor. The question is: given such functor, can you recover "space" from it?
+We can think of objects in $\mathcal{C}$ as “test objects,” and a functor as a way of encoding data about how these tests behave. For example, in a sigma model with target space $M$, let $\mathcal{C}$ be the category of space-times. For each space-time $\Sigma$, the collection of fields $\mathrm{Map}(\Sigma, M)$ defines such a functor. The fundamental question is: given such a functor, can we reconstruct the underlying “space”?
 \end{remark}
+
+\subsection{Presheaf}
   
 Now we introduce the central conception for "generalized space" of the course
 
@@ -266,7 +317,8 @@ such that:
 \end{itemize}
 \end{definition}
 \begin{remark}
-  
+ Let $\PSh(\cC)=\Fun(\cC,\Set)$ be the collection of presheaf.
+
 To understand why is notion of generalized space, let us compare to how do we define distribution as generalized function: 
 \begin{itemize}
   \item We begin with some test function, Let $\mathcal{D}(\Omega)$ denotes the space of test functions, i.e., smooth functions with compact support in $\Omega$, notice that we have a pairing 
@@ -277,15 +329,57 @@ To understand why is notion of generalized space, let us compare to how do we de
       \Hom_\cC(-,-):\cC^\op \times \cC \to \Set
     \]
     For each object $A\in \cC$ we can define presheaf $h_A: \cC^\op  \to \Set$, then we think presheaf as generalized spaces. Just like case of distribution, we have more presheaf than $h_A$.
+  \item When we solve differntial equation, we first get a distribution solution, then we discuss the \emph{regularity} of distribution, i.e. locally how closed is it to test functions, to conclude the solution is an actual function.
+  \item When we solve some geometric problem, for example moduli problem, we need to construct a space $M$, we can first define a (pre)sheaf, then we can discuss the \emph{repsentablity} of this (pre)sheaf, i.e. locally the sheaf is look like the test spaces, we can conclude we construct an actual space.
 \end{itemize}
 
 \end{remark}
-Now we give more concrete examples of presheaves
-\begin{example}
-  
+As we have seen, for any $A\in \cC$, $h_A$ is a presheaf, such presheaf we called \emph{representable}. Just like there are non-smooth distribution, we have more presheaf than representable ones. Aside from $h_A$, now we give more concrete examples of presheaves.
+\begin{example}[(Pre)sheaf of function]
+  Let $X$ be a topological space, for each open set $U\in \Op(X)$, the set of continuous function $C(U)$ define a presheaf $C \in \PSh(\Op(X))$: for $U\subseteq V$, we have the restriction $C(V)\to C(U)$. In general, for any other topological space $Y$ we can have a presheaf  $C(-,Y) \in \PSh(\Op(X))$. Similarly, you can define presheaf of all kinds of function: smooth, analytic, locally constant, etc.
+\end{example}
+\begin{example}[(Pre)sheaf of section]
+  Let $E \to X$ be a vector bundle over a topological space $X$. Define a presheaf $\mathcal{F}$ by assigning to each open set $U \subseteq X$ the set of continuous (or smooth) sections of $E$ over $U$:
+    \[
+    \mathcal{F}(U) = \{ s : U \to E \mid s \text{ is a section of } E \text{ over } U \}.
+    \]
+\end{example}
+The following is one of the main example 
+\begin{example}[Smooth Set]
+  Let category \textbf{Cartesian space} $\Cart$ have the objects $\bR^n, n\in \mathbb{N}$, morphism $\Hom_\Cart(\bR^n,\bR^m)$ are smooth functions. We call (pre)sheaf of Cartesian space as smooth set.
+\begin{itemize}
+  \item \textbf{Manifold.} For any smooth manifold $M$ define a presheaf $M(\bR^n)= \Map_{\mathrm{sm}}(\bR^n, M)$ defined by smooth map. So all manifold are smooth set.
+  \item \textbf{Differential forms.} Consider differential from $ \Omega^k(\bR^n)$ and its pullback along smooth functions, we have a smooth set $\Omega^k$. Show that $\Omega^k$ is not a manifold.
+\end{itemize}
+
 \end{example}
 
-Let $\PSh(\cC)=\Fun(\cC,\Set)$ be the collection of presheaf, as we indiced, this should be a category, let us found out what morphism they should have: Since $h_A,h_B$ is thought as generalized space, it should inherent the morphism in $\cC$. We can check that for $f:A\to B$, we have the map of set $ f\circ -: h_A(C)\to h_B(C)$ for each $C$. Nevertheless, those map should be compactable for the chose of $C$. This lead to our definition:
+\begin{example}[Algebraic Set]
+As we mention before, in algebraic geometry, we should think $\Ring^\op$ as "test spaces", Then presheaf $\mathcal{F}\in \PSh(\Ring^\op) = \Fun(\Ring,\Set)$ is nothing but a functor from $\Ring$ to $\Set$. Let us call such functor algebraic set.
+  \begin{itemize}
+
+    \item \textbf{Affine Variety}
+  As we pointed out, we should study the geometry of zero set of polynomials. Let $P_i \in \bZ[x_1,\ldots,x_n] $ for $i=1,\ldots,m$ be some polynomails, now we define functor $V_P: \Ring \to \Set$
+
+    \[
+      V_{P}(R) = \{ (r_1,\ldots,r_n) \in R^n \mid \forall i, P_i(r_1,\ldots,r_n) =0 \}.
+    \]
+  \begin{exercise}
+    Let $R_P= \bZ[x_1,\ldots,x_n]/(P_1,\ldots,P_m)$, show that $V_P= h^{R_P}$, i.e. $ V_P(R)= \Hom_\Ring(R_P, R)$. 
+  \end{exercise}
+\item \textbf{Projective Space}
+  Let us consider a non-representable alebraic set: let functor $\mathbb{P}^n : \Ring \to \Set$ to be
+    \[
+      \mathbb{P}^n(R) = \{ (r_0,\ldots,r_n) \in R^{n+1} \mid \exists  (u_0,\ldots,u_n) \in R^{n+1} \text{ s.t. } \sum_{i=0}^n u_ir_i =1 \}/ \sim 
+    \]
+    where $\sim$ is $[\forall a\in R^{\times}, (r_0,\ldots,r_n)\sim (ar_0,\ldots,ar_n)]$.
+  \begin{exercise}
+    Show that this defines a functor. And compare this to projective space in differential geometry when take $R=\bR$.
+  \end{exercise}
+  \end{itemize}
+\end{example}
+
+As we indicated, $\PSh(\cC)$ should be a category, let us found out what morphism they should have: Since $h_A,h_B$ is thought as generalized space, it should be inherent the morphism in $\cC$. We can check that for $f:A\to B$, we have the map of set $ f\circ -: h_A(C)\to h_B(C)$ for each $C$. Nevertheless, those map should be compactible for the chose of $C$. This lead to our definition:
 \begin{definition}
   
 A \emph{morphism of presheaves} $\varphi : \mathcal{F} \to \mathcal{G}$ is a natural transformation between the functors $\mathcal{F}$ and $\mathcal{G}$; that is, for each object $U$ in $\mathcal{C}$, there is a function $\varphi_U : \mathcal{F}(U) \to \mathcal{G}(U)$ such that for every morphism $f : V \to U$ in $\mathcal{C}$, the following diagram commutes:
@@ -302,6 +396,9 @@ A \emph{morphism of presheaves} $\varphi : \mathcal{F} \to \mathcal{G}$ is a nat
 \end{definition}
 \begin{exercise}
   Show that a morphism $f:A\to B$ induce a morphism of presheaf $Y(f):h_A\to h_B$. This means we have in fact a functor $ Y: \cC \to \PSh(\cC), A\mapsto h_A $. This is called \emph{Yoneda Embedding}.
+\end{exercise}
+\begin{exercise}*
+  Let $M$ be a smooth manifold and seen as smooth set, Show that every differential form $\Omega^k(M)$ on $M$ induce a morphism of smooth sets $\Hom_{sm}(M,\Omega^k)$. Then show that is a bijection $ \Omega^k(M)\to \Hom_{sm}(M,\Omega^k)$.
 \end{exercise}
 \section{Yoneda Lemma}
 
