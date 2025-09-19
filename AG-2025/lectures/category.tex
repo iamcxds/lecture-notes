@@ -292,15 +292,14 @@ We can think of objects in $\mathcal{C}$ as “test objects,” and a functor as
 \end{remark}
 
 \subsection{Presheaf}
-  
-Now we introduce the central conception for "generalized space" of the course
+
+We now introduce a central concept for understanding "generalized spaces" in this course.
 
 \begin{definition}[Presheaf]
-  Let $\mathcal{C}$ be a category. A \textbf{presheaf} on $\mathcal{C}$ is a functor:
+Let $\mathcal{C}$ be a category. A \textbf{presheaf} on $\mathcal{C}$ is a functor:
 \[
 F: \mathcal{C}^{\mathrm{op}} \to \mathbf{Set}
 \]
-
 That is, $F$ assigns:
 \begin{itemize}
     \item To each object $U$ in $\mathcal{C}$, a set $F(U)$.
@@ -309,80 +308,96 @@ That is, $F$ assigns:
     F(f): F(U) \to F(V)
     \]
 \end{itemize}
-
 such that:
 \begin{itemize}
     \item $F(\mathrm{id}_U) = \mathrm{id}_{F(U)}$
     \item $F(g \circ f) = F(f) \circ F(g)$ for composable morphisms $f$ and $g$ in $\mathcal{C}$
 \end{itemize}
 \end{definition}
+
+Let $\PSh(\mathcal{C}) = \mathrm{Fun}(\mathcal{C}^{\mathrm{op}}, \mathbf{Set})$ denote the category of presheaves on $\mathcal{C}$.
+
 \begin{remark}
- Let $\PSh(\cC)=\Fun(\cC,\Set)$ be the collection of presheaf.
-
-To understand why is notion of generalized space, let us compare to how do we define distribution as generalized function: 
+To understand why presheaves represent generalized spaces, consider the analogy with distributions as generalized functions:
 \begin{itemize}
-  \item We begin with some test function, Let $\mathcal{D}(\Omega)$ denotes the space of test functions, i.e., smooth functions with compact support in $\Omega$, notice that we have a pairing 
-    $$ <-,->:\mathcal{D}(\Omega)\times \mathcal{D}(\Omega)\to \bR, (f,g) \mapsto \int_\Omega fg $$
-    By which we can send a test function $f\in \mathcal{D}(\Omega)$ be a functional $ T_f :\mathcal{D}'(\Omega):=\mathcal{D}(\Omega)\to \bR, \phi \mapsto \int_\Omega f\phi $. Then the we define the \emph{distribution} as $ \mathcal{D}'(\Omega)$, which are generalized functions.
-  \item Now we begin with category of test spaces $\cC$, we have the hom functor 
+    \item We begin with a space of test functions. Let $\mathcal{D}(\Omega)$ denote the space of smooth functions with compact support in $\Omega$. There is a natural pairing:
     \[
-      \Hom_\cC(-,-):\cC^\op \times \cC \to \Set
+    \langle f, g \rangle := \int_\Omega f g
     \]
-    For each object $A\in \cC$ we can define presheaf $h_A: \cC^\op  \to \Set$, then we think presheaf as generalized spaces. Just like case of distribution, we have more presheaf than $h_A$.
-  \item When we solve differntial equation, we first get a distribution solution, then we discuss the \emph{regularity} of distribution, i.e. locally how closed is it to test functions, to conclude the solution is an actual function.
-  \item When we solve some geometric problem, for example moduli problem, we need to construct a space $M$, we can first define a (pre)sheaf, then we can discuss the \emph{repsentablity} of this (pre)sheaf, i.e. locally the sheaf is look like the test spaces, we can conclude we construct an actual space.
-\end{itemize}
+    This allows us to associate to each test function $f \in \mathcal{D}(\Omega)$ a functional $T_f \in \mathcal{D}'(\Omega)$ defined by:
+    \[
+    T_f(\phi) := \int_\Omega f \phi.
+    \]
+    The space $\mathcal{D}'(\Omega)$ of distributions is thus a space of generalized functions.
 
+    \item Similarly, starting from a category of test spaces $\mathcal{C}$, we consider the Hom functor:
+    \[
+    \mathrm{Hom}_{\mathcal{C}}(-, -): \mathcal{C}^{\mathrm{op}} \times \mathcal{C} \to \mathbf{Set}.
+    \]
+    For each object $A \in \mathcal{C}$, the presheaf $h_A := \mathrm{Hom}_{\mathcal{C}}(-, A)$ is \emph{representable}. Presheaves generalize these representable ones, just as distributions generalize smooth functions.
+
+    \item In solving differential equations, we often first obtain a distributional solution, and then study its \emph{regularity}—how closely it resembles a smooth function locally—allowing us to conclude that the distribution is an actual function.
+
+    \item In geometry, for example in moduli problems, we may first define a (pre)sheaf and then study its \emph{representability}—whether it locally resembles a test space—allowing us to conclude that we have constructed an actual space.
+\end{itemize}
 \end{remark}
-As we have seen, for any $A\in \cC$, $h_A$ is a presheaf, such presheaf we called \emph{representable}. Just like there are non-smooth distribution, we have more presheaf than representable ones. Aside from $h_A$, now we give more concrete examples of presheaves.
-\begin{example}[(Pre)sheaf of function]
-  Let $X$ be a topological space, for each open set $U\in \Op(X)$, the set of continuous function $C(U)$ define a presheaf $C \in \PSh(\Op(X))$: for $U\subseteq V$, we have the restriction $C(V)\to C(U)$. In general, for any other topological space $Y$ we can have a presheaf  $C(-,Y) \in \PSh(\Op(X))$. Similarly, you can define presheaf of all kinds of function: smooth, analytic, locally constant, etc.
-\end{example}
-\begin{example}[(Pre)sheaf of section]
-  Let $E \to X$ be a vector bundle over a topological space $X$. Define a presheaf $\mathcal{F}$ by assigning to each open set $U \subseteq X$ the set of continuous (or smooth) sections of $E$ over $U$:
-    \[
-    \mathcal{F}(U) = \{ s : U \to E \mid s \text{ is a section of } E \text{ over } U \}.
-    \]
-\end{example}
-The following is one of the main example 
-\begin{example}[Smooth Set]
-  Let category \textbf{Cartesian space} $\Cart$ have the objects $\bR^n, n\in \mathbb{N}$, morphism $\Hom_\Cart(\bR^n,\bR^m)$ are smooth functions. We call (pre)sheaf of Cartesian space as smooth set.
-\begin{itemize}
-  \item \textbf{Manifold.} For any smooth manifold $M$ define a presheaf $M(\bR^n)= \Map_{\mathrm{sm}}(\bR^n, M)$ defined by smooth map. So all manifold are smooth set.
-  \item \textbf{Differential forms.} Consider differential from $ \Omega^k(\bR^n)$ and its pullback along smooth functions, we have a smooth set $\Omega^k$. Show that $\Omega^k$ is not a manifold.
-\end{itemize}
 
+As we've seen, for any $A \in \mathcal{C}$, the presheaf $h_A$ is called representable. Just as there are distributions that are not smooth functions, there are presheaves that are not representable. Here are some concrete examples:
+
+\begin{example}[Presheaf of Functions]
+Let $X$ be a topological space. For each open set $U \in \mathrm{Op}(X)$, the set of continuous functions $C(U)$ defines a presheaf $C \in \PSh(\mathrm{Op}(X))$. For $U \subseteq V$, we have a restriction map $C(V) \to C(U)$. More generally, for any topological space $Y$, we can define a presheaf $C(-, Y) \in \PSh(\mathrm{Op}(X))$. Similarly, one can define presheaves of smooth, analytic, or locally constant functions.
+\end{example}
+
+\begin{example}[Presheaf of Sections]
+Let $E \to X$ be a vector bundle over a topological space $X$. Define a presheaf $\mathcal{F}$ by assigning to each open set $U \subseteq X$ the set of continuous (or smooth) sections of $E$ over $U$:
+\[
+\mathcal{F}(U) = \{ s : U \to E \mid s \text{ is a section of } E \text{ over } U \}.
+\]
+\end{example}
+
+\begin{example}[Smooth Set]
+Let $\Cart$ be the category of Cartesian spaces, with objects $\mathbb{R}^n$ and morphisms given by smooth maps. A presheaf on $\Cart$ is called a \textbf{smooth set}.
+\begin{itemize}
+  \item \textbf{Manifolds:} For any smooth manifold $M$, define a presheaf $M(\mathbb{R}^n) := \{f: \mathbb{R}^n\to M \mid f \text{ is smooth.}\}$. Thus, every manifold defines a smooth set.
+    \item \textbf{Differential Forms:} Consider the presheaf $\Omega^k$ assigning to each $\mathbb{R}^n$ the space of $k$-forms $\Omega^k(\mathbb{R}^n)$, with pullbacks along smooth maps. Show that $\Omega^k$ is not representable by a manifold.
+\end{itemize}
 \end{example}
 
 \begin{example}[Algebraic Set]
-As we mention before, in algebraic geometry, we should think $\Ring^\op$ as "test spaces", Then presheaf $\mathcal{F}\in \PSh(\Ring^\op) = \Fun(\Ring,\Set)$ is nothing but a functor from $\Ring$ to $\Set$. Let us call such functor algebraic set.
-  \begin{itemize}
-
-    \item \textbf{Affine Variety}
-  As we pointed out, we should study the geometry of zero set of polynomials. Let $P_i \in \bZ[x_1,\ldots,x_n] $ for $i=1,\ldots,m$ be some polynomails, now we define functor $V_P: \Ring \to \Set$
-
+In algebraic geometry, we treat $\mathbf{Ring}^{\mathrm{op}}$ as the category of test spaces. A presheaf $\mathcal{F} \in \PSh(\mathbf{Ring}^{\mathrm{op}}) = \mathrm{Fun}(\mathbf{Ring}, \mathbf{Set})$ is then a functor from rings to sets, which we call an \textbf{algebraic set}.
+\begin{itemize}
+    \item \textbf{Affine Variety:} We begin with the geometry of zero set of polynomials. Let $P_1, \ldots, P_m \in \mathbb{Z}[x_1, \ldots, x_n]$ be polynomials. Define a functor $V_P: \mathbf{Ring} \to \mathbf{Set}$ by:
     \[
-      V_{P}(R) = \{ (r_1,\ldots,r_n) \in R^n \mid \forall i, P_i(r_1,\ldots,r_n) =0 \}.
+    V_P(R) = \{ (r_1, \ldots, r_n) \in R^n \mid P_i(r_1, \ldots, r_n) = 0 \text{ for all } i \}.
     \]
-  \begin{exercise}
-    Let $R_P= \bZ[x_1,\ldots,x_n]/(P_1,\ldots,P_m)$, show that $V_P= h^{R_P}$, i.e. $ V_P(R)= \Hom_\Ring(R_P, R)$. 
-  \end{exercise}
-\item \textbf{Projective Space}
-  Let us consider a non-representable alebraic set: let functor $\mathbb{P}^n : \Ring \to \Set$ to be
+    \begin{exercise}
+    Let $R_P = \mathbb{Z}[x_1, \ldots, x_n]/(P_1, \ldots, P_m)$. Show that $V_P = h^{R_P}$, i.e., $V_P(R) = \mathrm{Hom}_{\mathbf{Ring}}(R_P, R)$.
+    \end{exercise}
+
+    \item \textbf{Projective Space:} Then we consider a non-representable example. Define a functor $\mathbb{P}^n: \mathbf{Ring} \to \mathbf{Set}$ by:
     \[
-      \mathbb{P}^n(R) = \{ (r_0,\ldots,r_n) \in R^{n+1} \mid \exists  (u_0,\ldots,u_n) \in R^{n+1} \text{ s.t. } \sum_{i=0}^n u_ir_i =1 \}/ \sim 
+    \mathbb{P}^n(R) = \{ (r_0, \ldots, r_n) \in R^{n+1} \mid \exists (u_0, \ldots, u_n) \in R^{n+1} \text{ s.t. } \sum u_i r_i = 1 \}/\sim,
     \]
-    where $\sim$ is $[\forall a\in R^{\times}, (r_0,\ldots,r_n)\sim (ar_0,\ldots,ar_n)]$.
-  \begin{exercise}
-    Show that this defines a functor. And compare this to projective space in differential geometry when take $R=\bR$.
-  \end{exercise}
-  \end{itemize}
+    where $\sim$ identifies tuples under scalar multiplication by units in $R$.
+
+    \begin{exercise}
+    Show that this defines a functor. Compare this with the definition of projective space in differential geometry when $R = \mathbb{R}$.
+    \end{exercise}
+\end{itemize}
 \end{example}
 
-As we indicated, $\PSh(\cC)$ should be a category, let us found out what morphism they should have: Since $h_A,h_B$ is thought as generalized space, it should be inherent the morphism in $\cC$. We can check that for $f:A\to B$, we have the map of set $ f\circ -: h_A(C)\to h_B(C)$ for each $C$. Nevertheless, those map should be compactible for the chose of $C$. This lead to our definition:
-\begin{definition}
-  
-A \emph{morphism of presheaves} $\varphi : \mathcal{F} \to \mathcal{G}$ is a natural transformation between the functors $\mathcal{F}$ and $\mathcal{G}$; that is, for each object $U$ in $\mathcal{C}$, there is a function $\varphi_U : \mathcal{F}(U) \to \mathcal{G}(U)$ such that for every morphism $f : V \to U$ in $\mathcal{C}$, the following diagram commutes:
+As we indicated earlier, $\PSh(\mathcal{C})$ should itself form a category. Let us now determine what the morphisms between presheaves ought to be.
+
+Since representable presheaves $h_A$ and $h_B$ are thought of as generalized spaces, it is natural to expect that morphisms between them should reflect the morphisms in the original category $\mathcal{C}$. Indeed, given a morphism $f: A \to B$ in $\mathcal{C}$, we can define a map of sets:
+\[
+f \circ - : h_A(C) \to h_B(C), \quad \text{for each } C \in \mathcal{C},
+\]
+However, for this to define a morphism of presheaves, these maps must be compatible with the structure of the presheaves—i.e., they must commute with the restriction maps for all choices of $C$ and morphisms between them.
+
+This leads us naturally to the definition of morphisms between presheaves as \emph{natural transformations}, which ensure such compatibility across the entire category.
+
+\begin{definition}[Morphisms of Presheaves]
+A \emph{morphism of presheaves} $\varphi: \mathcal{F} \to \mathcal{G}$ is a natural transformation between the functors $\mathcal{F}$ and $\mathcal{G}$. That is, for each object $U$ in $\mathcal{C}$, there is a function $\varphi_U: \mathcal{F}(U) \to \mathcal{G}(U)$ such that for every morphism $f: V \to U$ in $\mathcal{C}$, the following diagram commutes:
 % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGJ1bGxldCJdLFsxLDAsIlxcYnVsbGV0Il0sWzAsMSwiXFxidWxsZXQiXSxbMSwxLCJcXGJ1bGxldCJdLFswLDEsIlxcdmFycGhpX1UiXSxbMCwyLCJcXG1hdGhjYWx7Rn0oZikiLDJdLFsyLDMsIlxcdmFycGhpX1YiXSxbMSwzLCJcXG1hdGhjYWx7R30oZikiXV0=
 \[\begin{tikzcd}[ampersand replacement=\&,cramped]
   \mathcal{F}(U) \&  \mathcal{G}(U) \\
@@ -395,11 +410,32 @@ A \emph{morphism of presheaves} $\varphi : \mathcal{F} \to \mathcal{G}$ is a nat
 
 \end{definition}
 \begin{exercise}
-  Show that a morphism $f:A\to B$ induce a morphism of presheaf $Y(f):h_A\to h_B$. This means we have in fact a functor $ Y: \cC \to \PSh(\cC), A\mapsto h_A $. This is called \emph{Yoneda Embedding}.
+\begin{enumerate}
+    \item Show that a morphism $f: A \to B$ in $\mathcal{C}$ induces a morphism of presheaves $Y(f): h_A \to h_B$. This defines a functor:
+    \[
+    Y: \mathcal{C} \to \PSh(\mathcal{C}), \quad A \mapsto h_A,
+    \]
+    called the \emph{Yoneda embedding}.
+    \item* (Yoneda Lemma) Show that, for any $A,B\in \cC$ this is a bijection:
+    \[
+    Y(-): \mathrm{Hom}_{\mathcal{C}}(A, B) \cong \mathrm{Hom}_{\PSh(\mathcal{C})}(h_A, h_B).
+    \]
+\end{enumerate}
 \end{exercise}
-\begin{exercise}*
-  Let $M$ be a smooth manifold and seen as smooth set, Show that every differential form $\Omega^k(M)$ on $M$ induce a morphism of smooth sets $\Hom_{sm}(M,\Omega^k)$. Then show that is a bijection $ \Omega^k(M)\to \Hom_{sm}(M,\Omega^k)$.
+
+This lemma is extremely important. It justifies embedding the category $\mathcal{C}$ into the category of presheaves $\PSh(\mathcal{C})$ in a way that fully preserves its morphism structure. In other words, $\mathcal{C}$ can be faithfully represented inside $\PSh(\mathcal{C})$ via the Yoneda embedding.
+\begin{exercise}
+  \begin{enumerate}
+    \item 
+Let $M$ be a smooth manifold viewed as a smooth set. Show that every differential form $\omega \in \Omega^k(M)$ induces a morphism of smooth sets:
+\[
+\omega: M \to \Omega^k.
+\]
+\item* Then prove that this defines a bijection:
+\[
+\Omega^k(M) \cong \mathrm{Hom}_{\mathrm{sm}}(M, \Omega^k).
+\]
+  \end{enumerate}
 \end{exercise}
-\section{Yoneda Lemma}
 
 \section{Universal Property and (Co)limit}
