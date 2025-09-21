@@ -125,8 +125,7 @@ In the definition of a category, if we allow the morphism set $\mathrm{Hom}_{\ma
 This reflects a general principle of the \textbf{Univalence Foundation}: mathematical structures should be treated as spaces (or types) from the outset, and the classical set-theoretic version can be recovered by taking the set of connected components. We will explore how to identify and work with these underlying geometric structures later in the course.
 \end{remark} 
 
-\section{Functor and Presheaf}
-\subsection{Functor}
+\section{Functor}
 
 To define a map between two categories, it is natural to require that such a map respects the structure of morphisms.
 
@@ -291,7 +290,7 @@ Show that:
 We can think of objects in $\mathcal{C}$ as “test objects,” and a functor as a way of encoding data about how these tests behave. For example, in a sigma model with target space $M$, let $\mathcal{C}$ be the category of space-times. For each space-time $\Sigma$, the collection of fields $\mathrm{Map}(\Sigma, M)$ defines such a functor. The fundamental question is: given such a functor, can we reconstruct the underlying “space”?
 \end{remark}
 
-\subsection{Presheaf}
+\section{Presheaf}
 
 We now introduce a central concept for understanding "generalized spaces" in this course.
 
@@ -324,7 +323,7 @@ To understand why presheaves represent generalized spaces, consider the analogy 
     \[
     \langle f, g \rangle := \int_\Omega f g
     \]
-    This allows us to associate to each test function $f \in \mathcal{D}(\Omega)$ a functional $T_f \in \mathcal{D}'(\Omega)$ defined by:
+    This allows us to associate to each test function $f \in \mathcal{D}(\Omega)$ a continuous functional $T_f \in \mathcal{D}'(\Omega)$ defined by:
     \[
     T_f(\phi) := \int_\Omega f \phi.
     \]
@@ -338,7 +337,7 @@ To understand why presheaves represent generalized spaces, consider the analogy 
 
     \item In solving differential equations, we often first obtain a distributional solution, and then study its \emph{regularity}—how closely it resembles a smooth function locally—allowing us to conclude that the distribution is an actual function.
 
-    \item In geometry, for example in moduli problems, we may first define a (pre)sheaf and then study its \emph{representability}—whether it locally resembles a test space—allowing us to conclude that we have constructed an actual space.
+    \item In geometry, for example in moduli problems, we may first define a (pre)sheaf\footnote{sheaf to presheaf, is like continuous functional to functional, we ask some continuous condition on presheaf} and then study its \emph{representability}—whether it locally resembles a test space—allowing us to conclude that we have constructed an actual space.
 \end{itemize}
 \end{remark}
 
@@ -361,6 +360,10 @@ Let $\Cart$ be the category of Cartesian spaces, with objects $\mathbb{R}^n$ and
   \item \textbf{Manifolds:} For any smooth manifold $M$, define a presheaf $M(\mathbb{R}^n) := \{f: \mathbb{R}^n\to M \mid f \text{ is smooth.}\}$. Thus, every manifold defines a smooth set.
     \item \textbf{Differential Forms:} Consider the presheaf $\Omega^k$ assigning to each $\mathbb{R}^n$ the space of $k$-forms $\Omega^k(\mathbb{R}^n)$, with pullbacks along smooth maps. Show that $\Omega^k$ is not representable by a manifold.
 \end{itemize}
+\end{example}
+
+\begin{example}[Simplicial Set]
+  example
 \end{example}
 
 \begin{example}[Algebraic Set]
@@ -438,4 +441,3 @@ Let $M$ be a smooth manifold viewed as a smooth set. Show that every differentia
   \end{enumerate}
 \end{exercise}
 
-\section{Universal Property and (Co)limit}

@@ -36,7 +36,6 @@
 \newcommand{\sKMW}{\mathscr{K}^\mathrm{MW}}
 \newcommand{\tbb}[1]{\widetilde{\mathbb{#1}}}
 \newcommand{\wt}[1]{\widetilde{#1}}
-\newcommand{\Spec}{\mathrm{Spec}\ }
 \newcommand{\af}{\mathbb{A}}
 \newcommand{\afnz}[1]{\mathbb{A}^{#1}\setminus \{0\}}
 \newcommand{\nonZero}{\setminus \{0\}}
@@ -84,8 +83,10 @@
 \newcommand{\Sh}{\mathrm{Sh}}
 \newcommand{\Op}{\mathrm{Op}}
 \newcommand{\op}{\mathrm{op}}
+\DeclareMathOperator{\Spec}{\mathrm{Spec}}
 \newcommand{\Spc}{\mathcal{S}pc}
-\newcommand{\gy}{\rm{Gysin}}
+\DeclareMathOperator*{\Lim}{\mathrm{Lim}}
+\DeclareMathOperator*{\Colim}{\mathrm{Colim}}
 \newcommand{\xr}[1]{\xrightarrow{#1}}
 
 \newcommand{\AZ}{\mathbb{A}\mathcal{Z}}
@@ -141,6 +142,7 @@
 \setcounter{chapter}{-1}
 \input{lectures/intro}
 \input{lectures/category}
+\input{lectures/sheaf}
 
 \bibliographystyle{plain}
 \bibliography{references}
