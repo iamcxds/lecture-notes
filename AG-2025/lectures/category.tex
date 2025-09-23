@@ -193,7 +193,10 @@ Functors between concrete categories respect the underlying structures:
 \end{example}
 
 \begin{exercise}
-Let $G, H$ be groups (or more generally, monoids). Show that functors $F: BG \to BH$ correspond bijectively to group (monoid) homomorphisms $f: G \to H$.
+  \begin{enumerate}
+    \item Let $G, H$ be groups (or more generally, monoids). Show that functors $F: BG \to BH$ correspond bijectively to group (monoid) homomorphisms $f: G \to H$.
+    \item Show that a functor $F: BG\to \mathbf{Vect}$ correspond bijectively to representation of $G$.
+  \end{enumerate}
 \end{exercise}
 
 \begin{exercise}
@@ -414,14 +417,18 @@ A \emph{morphism of presheaves} $\varphi: \mathcal{F} \to \mathcal{G}$ is a natu
 \end{definition}
 \begin{exercise}
 \begin{enumerate}
-    \item Show that a morphism $f: A \to B$ in $\mathcal{C}$ induces a morphism of presheaves $Y(f): h_A \to h_B$. This defines a functor:
+    \item Show that a morphism $f: A \to B$ in $\mathcal{C}$ induces a morphism of presheaves $\yo(f): h_A \to h_B$. This defines a functor:
     \[
-    Y: \mathcal{C} \to \PSh(\mathcal{C}), \quad A \mapsto h_A,
+    \yo: \mathcal{C} \to \PSh(\mathcal{C}), \quad A \mapsto h_A,
     \]
     called the \emph{Yoneda embedding}.
-    \item* (Yoneda Lemma) Show that, for any $A,B\in \cC$ this is a bijection:
+    \item* (Yoneda Lemma) Show that, for $A\in \cC$ and $F\in \PSh(\cC)$ there is a bijection:
     \[
-    Y(-): \mathrm{Hom}_{\mathcal{C}}(A, B) \cong \mathrm{Hom}_{\PSh(\mathcal{C})}(h_A, h_B).
+     F(A) \cong \mathrm{Hom}_{\PSh(\mathcal{C})}(h_A, F).
+    \]
+    As a corollary, for any $A,B\in \cC$ there is a bijection of morphisms:
+    \[
+    \yo(-): \mathrm{Hom}_{\mathcal{C}}(A, B) \cong \mathrm{Hom}_{\PSh(\mathcal{C})}(h_A, h_B).
     \]
 \end{enumerate}
 \end{exercise}

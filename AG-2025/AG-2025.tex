@@ -10,7 +10,14 @@
 \setlength{\evensidemargin}{0.25in}
 \setlength{\oddsidemargin}{0.25in}
 \setlength{\textwidth}{6in}
-\parskip0.2em
+% \parskip0.2em
+\usepackage[utf8]{inputenc}
+
+\DeclareFontFamily{U}{min}{}
+
+\DeclareFontShape{U}{min}{m}{n}{<-> udmj30}{}
+
+\newcommand\yo{\!\text{\usefont{U}{min}{m}{n}\symbol{'207}}\!}
 
 \newmdtheoremenv{theorem}{Theorem}[section]
 \newmdtheoremenv{lemma}[theorem]{Lemma}
@@ -44,6 +51,8 @@
 \newcommand{\cD}{\mathcal{D}}
 \newcommand{\cX}{\mathcal{X}}
 \newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
 \newcommand{\bR}{\mathbb{R}}
 \newcommand{\bC}{\mathbb{C}}
 \newcommand{\bZ}{\mathbb{Z}}
