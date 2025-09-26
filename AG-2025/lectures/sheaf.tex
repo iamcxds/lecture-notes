@@ -137,6 +137,10 @@ Colimit:
 \end{itemize}
 \end{remark}
 
+\begin{remark}[Homotopy (Co)limit]
+  
+\end{remark}
+
 To definite limit and colimit for general category, we can make use of morphism:
 \begin{definition}[Limit and Colimit]
   Let $\mathcal{C}$ be a category, $J$ a small category, and $D : J \to \mathcal{C}$ a functor (called a diagram in $\mathcal{C}$). A \emph{limit} of $D$ is an object $\Lim_J D$ of $\mathcal{C}$ such that 
@@ -148,8 +152,41 @@ A \emph{colimit} of $D$ is an object $\Colim_J D$ of $\mathcal{C}$ such that
   \forall A\in \cC, \Lim_{j\in J^\op} \Hom_\cC(D(j) , A) \cong \Hom_\cC(\Colim_{ J} D, A)
 \]
 \end{definition}
+\begin{example}[Poset and Lattice]
+ In a category come from poset $P$ we have the $\Lim p $ is the meet $\bigwedge p$, and the colimit $\Colim p$ is the joint $ \bigvee p$
+\end{example}
+
+Thanks to Yoneda lemma, to understand stand (co)limit of general category, we only need to understand its presheaf, and thus limit of $\Set$.
 
 
+Then we introduce an important kind of colimit, \emph{filtered colimit}. 
+\begin{definition}[Filtered Category]
+  A small category $J$ is called \emph{filtered} if:
+  \begin{enumerate}
+        \item It is non-empty.
+              \item For every pair of objects $j_1, j_2 \in \mathrm{Ob}(J)$, there exists an object $k \in \mathrm{Ob}(J)$ and morphisms $j_1 \to k$ and $j_2 \to k$.
+                    \item For every pair of parallel morphisms $f, g : j \to j'$ in $J$, there exists an object $k$ and a morphism $h : j' \to k$ such that $h \circ f = h \circ g$.
+  \end{enumerate}
+\end{definition} 
+\begin{example}
+ For the category of open set $\Op(X)$, both $\Op(X)$ and $\Op(X)^\op$ are filtered
+\end{example}
+\begin{exercise}
+ Let $I$ be any finite category, i.e with finite objects and morphisms, then for any functor $F:I\to J$, Show that $J$ is filtered iff there exists a object $j_F \in J$ and a natural transformation $F\to c(j_F)$.
+\end{exercise}
+Intuitively, a filtered category allows us to "coherently glue" data indexed by $J$. The colimit definite from $D: J\to \cC$ is called \emph{filtered colimit}. Filtered colimit can be defined by more explicit quotient instead of that of general colimit.
+\begin{exercise}
+  Show that for $J$ filtered $D:J\to\Set$, the filtered colimit $\Colim_J D = \left( \coprod_{j \in J} F(j)\right) / \sim$, where 
+\[
+    (x, j) \sim (y, k) \quad \text{if there exist morphisms } f : j \to l,\, g : k \to l \text{ in } J \text{ such that } D(f)(x) = D(g)(y).
+    \]
+\end{exercise}
+  \begin{exercise}
+   \begin{enumerate}
+     \item Let $I,J$ be any small categories, consider $D: I \times J \to \cC$. Then show that: $\Lim_I\Lim_J D \cong \Lim_{I\times J} D \cong \Lim_J\Lim_I D$, same for the colimit. (You just need prove it for $\Set$.)
+     \item Let $I$ be finite, and $J$ be filtered category, consider $D:I\times J \to \Set$. Then show that $\Lim_I\Colim_J D \cong \Colim_J\Lim_I D$. That is to say filtered colimit preserve finite limit.
+   \end{enumerate} 
+  \end{exercise}
 Limit and Colimit are not necessarily always existing for all $D:J\to\cC$, but just like for a space $X$ we can define its completion $\hat{X}$ to make limit exist, we can define a (co)completion of a category $\cC$ to make (co)limit exists. An easy observation is limit and colimit are interchanged in $\cC$ and $\cC^\op$, so let us be focus on the case for colimit. Notice that limit and colimit are admitted for $\Set$, then so do presheaf category $\PSh(\cC)$
 
 We first introduce the category of elements for a presheaf, which will be the diagram for a colim to assembly spaces.
@@ -211,9 +248,22 @@ Notice that even if $\cC$ is cocompletion, which dosen't means $ \cC \cong \PSh(
 So if we impose some continuous condition, we can get subcategory of continuous presheaf, which are called sheaf, behaves more close to the test category $\cC$.
 
 \begin{exercise}
-  Show that for $B\in\cC$, $\yo(B)$ are continuous, i.e. $ \yo(B)(\Colim C_j)\cong \Lim \yo(B)(C_j)$. In others words $\yo(B)$ is a sheaf. 
+  Show that for $B\in\cC$, $\yo(B)$ are continuous, i.e. $ \yo(B)(\Colim_{j\in J} C_j)\cong \Lim_{j\in J} \yo(B)(C_j)$. In others words $\yo(B)$ is a sheaf. 
 \end{exercise}
 
 \section{Sheaf and Coverage}
 
-If we ask to presheaf be continuous for all colimit we will get a small familly of sheaf, instead we will consider a kinds of colimit that come from coverage.
+If we ask to presheaf be continuous for all colimit we will get nothing more that representable ones, instead we can restrict which kinds of colimit that it preserve. 
+
+\begin{example}[Ind-Object]
+  Let $\cC$ have all finite colimit (i.e for $C:J\to \cC$ with $J$ finite), Then the ind-object  is the presheaf that preserve finite colimit, i.e. $\cF(\Colim_J C)\cong \Lim_J \cF(C)$ for $J$ finite, this is also called \emph{left exact}. Let $\mathrm{ind}(\cC)\subset \PSh(\cC)$ be the subcategory of ind-object.
+  \begin{exercise}
+   \begin{enumerate}
+    \item For any $J$ filtered and $D:J\to \cC$, show that $\Colim_J \yo(D) \in \PSh(\cC)$ is actually an ind-object. 
+    \item* For any $ \cF \in \mathrm{ind}(\cC)$, show that the category of elements $\int_\cC \cF$ is filtered. This shows that $ \cF\cong \int_\cC \cF\yo$ is a filter colimit, and $\mathrm{ind}(\cC)$ is generated by representable presheaf with filtered colimit. 
+   \end{enumerate} 
+  \end{exercise}
+
+\end{example}
+
+In geometry setting, the colimit we want to preserve are come from coverage.
