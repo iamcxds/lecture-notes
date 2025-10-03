@@ -153,7 +153,7 @@ A \emph{colimit} of $D$ is an object $\Colim_J D$ of $\mathcal{C}$ such that
 \]
 \end{definition}
 \begin{example}[Poset and Lattice]
- In a category come from poset $P$ we have the $\Lim p $ is the meet $\bigwedge p$, and the colimit $\Colim p$ is the joint $ \bigvee p$
+ In a thin category come from poset $P$ we have the $\Lim p $ is the meet $\bigwedge p$, and the colimit $\Colim p$ is the joint $ \bigvee p$. Then the thin category admitted all limit and colimit is a complete lattice.
 \end{example}
 
 Thanks to Yoneda lemma, to understand stand (co)limit of general category, we only need to understand its presheaf, and thus limit of $\Set$.
@@ -242,6 +242,12 @@ Is the assembly of $\cF$ inside $\cD$.
   \end{enumerate}
 \end{exercise}
 
+\begin{example}[Dual Number]
+  Let \emph{dual number}$D \in $ define as $ $ 
+  intuitively 
+Tangent bundle
+\end{example}
+
 Notice that even if $\cC$ is cocompletion, which dosen't means $ \cC \cong \PSh(\cC)$, because $\yo :\cC \cong \PSh(\cC) $ is not cocontinuous, i.e $\yo(\Colim C)\neq \Colim \yo( C)$ in general. This can also been seen from $ \cF \in \PSh$ is not continuous in general: \[
   \cF(\Colim C)=\Hom_{\PSh(\cC)}(\yo(\Colim C), \cF) \neq  \Hom_{\PSh(\cC)}(\Colim \yo(C), \cF)=\Lim \cF(C)
 \] 
@@ -266,4 +272,56 @@ If we ask to presheaf be continuous for all colimit we will get nothing more tha
 
 \end{example}
 
-In geometry setting, the colimit we want to preserve are come from coverage.
+In geometry setting, the colimit we want to preserve are come from coverage. We should first decide a class of open morphism in $\cC$, then we decide which collection of open morphism is a covering. Now for example consider a covering of $j_1: U_1 \to X \leftarrow U_2 :j_2$, intuitively, $X$ should identify to the pushout colimit $|U_{\bullet}|:=U_1 \sqcup_{U_1\cap U_2} U_2$. The presheaf preserve this colimit will satisfy
+\[
+  \cF(X) = \cF(U_1 \sqcup_{U_1\cap U_2} U_2) \cong \cF(U_1) \times_{\cF(U_1\cap U_2)}\cF(U_2)
+\] 
+The reason of consider this sheaf is because of locality, we want the generalized space $Y$ have can be tested locally, that is 
+\[ \Map(X,Y) \cong \Map(U_1,Y)\times_{\Map(U_1\cap U_2,Y)}\Map(U_2,Y)=\left\{\substack{\text{maps from $U_1,U_2$ to $Y$} \\ \text{that coincide on $U_1\cap U_2$}}\right\}\]
+
+Notice that the gluing $|U_{\bullet}|:=U_1 \sqcup_{U_1\cap U_2} U_2$ might not exists in $\cC$, but it always exists in $\PSh(\cC)$.
+
+Let us definite it more formally 
+\begin{definition}[Coverage(Grothendieck Topology)]
+  Let $\mathcal{C}$ be a category. A \emph{coverage} $T$ on $\mathcal{C}$ assigns to each object $X \in \mathcal{C}$ a collection of families of morphisms $\{ U_i \to X \}_{i \in I}$, called \emph{covering families}, satisfying the following condition:
+
+ If $\{ U_i \to X \}_{i \in I}$ is a covering family and $f : Y \to X$ is any morphism in $\mathcal{C}$, then there exists a covering family $\{ V_j \to Y \}_{j \in J}$ such that for each $j$, the morphism $V_j \to Y \xrightarrow{f} X$ factors through some $U_i \to X$.
+
+ A category $\cC$ equip with a coverage $T$ is call a \emph{site} $(\cC,T)$. Given a covering families, $\{ U_i \to X \}_{i \in I}$, let $U_{ij}:= U_i \times_X U_j$, then the \emph{gluing} is the presheaf $|U_{\bullet}|:= \bigsqcup_{i\in I} \yo(U_i) / \sim_{\yo(U_{ij})} \in \PSh(\cC)$.
+\end{definition}
+
+With all these definition, we can finally define sheaf
+\begin{definition}[Sheaf]
+ Let $(\cC,T)$ be a site, then sheaf $\cF\in\Sh_T(\cC)\subset \PSh(\cC)$ is the presheaf preserve gluing, i.e. for any covering families, $\{ U_i \to X \}_{i \in I}$
+   \[
+     \cF(X)\cong \cF(|U_{\bullet}|) =\Hom_{\PSh(\cC)}(|U_{\bullet}|, \cF)= \Lim \Hom_{\PSh(\cC)}(U_{\bullet},\cF)=\Lim \cF(U_{\bullet})
+   \] 
+  Here \[
+    \Lim \cF(U_{\bullet}) := \left\{ (f_i)\in \prod_{i\in I}\cF(U_{i}) \,\middle\vert\, f_i|_{U_{ij}}=f_j|_{U_{ij}}\in \cF(U_{ij})\right\}
+  \] 
+\end{definition}
+When the coverage is clear, we can omit it to just write $ \Sh(\cC)$
+We have a lot of examples.
+\begin{example}[Sheaf on a Space]
+  Let $X$ be a topological space, consider the usual coverage for $\Op(X)$: $\{ U_i \to U \}_{i \in I}$, is a covering family iff $ \bigcup_{i\in I} U_i =U$. Then we have the sheaf category $\Sh(X):= \Sh(\Op(X))$.
+\end{example}
+
+\begin{example}[Smooth Set]
+  
+\end{example}
+
+\begin{example}[Zariski Site]
+  
+\end{example}
+
+\begin{example}[Kan complex]
+  
+\end{example}
+etale space
+
+sheafication
+
+slice category
+
+Locally represent/Scheme
+
