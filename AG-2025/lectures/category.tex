@@ -246,7 +246,7 @@ A central theme in algebraic geometry is reversing this functor: constructing a 
 \[
 \mathrm{Spec}: \mathbf{Ring}^{\mathrm{op}} \to \mathbf{Top},
 \]
-such that:
+such that we have \emph{adjunction}:
 \[
 \mathrm{Hom}_{\mathbf{Ring}}(R, C(X)) \cong \mathrm{Hom}_{\mathbf{Top}}(X, \mathrm{Spec}(R)).
 \]
@@ -352,18 +352,17 @@ Let $X$ be a topological space. For each open set $U \in \mathrm{Op}(X)$, the se
 \end{example}
 
 \begin{example}[Presheaf of Sections]
-Let $E \to X$ be a vector bundle over a topological space $X$. Define a presheaf $\mathcal{F}$ by assigning to each open set $U \subseteq X$ the set of continuous (or smooth) sections of $E$ over $U$:
+Let $E \to X$ be a vector bundle over a topological space $X$. Define the presheaf of sections $\Gamma_E$ by assigning to each open set $U \subseteq X$ the set of continuous (or smooth) sections of $E$ over $U$:
 \[
-\mathcal{F}(U) = \{ s : U \to E \mid s \text{ is a section of } E \text{ over } U \}.
+\Gamma_E(U) = \{ s : U \to E \mid s \text{ is a section of } E \text{ over } U \}.
 \]
 \end{example}
 
 \begin{example}[Smooth Set]
 Let $\Cart$ be the category of Cartesian spaces, with objects $\mathbb{R}^n$ and morphisms given by smooth maps. A presheaf on $\Cart$ is called a \textbf{smooth set}.
 \begin{itemize}
-  \item \textbf{Smooth Algebras: }
   \item \textbf{Manifolds:} For any smooth manifold $M$, define a presheaf $M(\mathbb{R}^n) := \{f: \mathbb{R}^n\to M \mid f \text{ is smooth.}\}$. Thus, every manifold defines a smooth set.
-    \item \textbf{Differential Forms:} Consider the presheaf $\Omega^k$ assigning to each $\mathbb{R}^n$ the space of $k$-forms $\Omega^k(\mathbb{R}^n)$, with pullbacks along smooth maps. Show that $\Omega^k$ is not representable by a manifold.
+  \item \textbf{Differential Forms:} Consider the presheaf $\Omega^k$ assigning to each $\mathbb{R}^n$ the space of $k$-forms $\Omega^k(\mathbb{R}^n)$, with pullbacks along smooth maps. Show that $\Omega^k$ is not representable by a manifold.
 \end{itemize}
 \end{example}
 
@@ -450,3 +449,25 @@ Let $M$ be a smooth manifold viewed as a smooth set. Show that every differentia
   \end{enumerate}
 \end{exercise}
 
+\begin{exercise}[Smooth Algebras]
+  
+   Let smooth algebras $C^{\infty}\mathbf{Alg}$ to be the product preserving functors $A:\Cart \to \Set$. 
+    \begin{enumerate}
+      \item Show that $A(\bR)$ has a ring structure.
+      \item Show that for any smooth manifold $M$ define a smooth algebra $C^\infty(M): \bR^i \mapsto C^\infty(M, \bR^i)$. Thus, every manifold contravariantly defines a smooth algebra.
+
+      \item We have a functor from smooth sets to smooth algebras 
+    \[
+      C^\infty: \PSh(\Cart) \to C^{\infty}\mathbf{Alg}^\op, X \mapsto \left( \bR^i \mapsto \Hom_{\PSh(\Cart)}(X,\yo \bR^i) \right)
+    \]
+    and a functor from smooth algebras to smooth algebras
+
+    \[
+      \Spec:   C^{\infty}\mathbf{Alg}^\op \to \PSh(\Cart), A \mapsto \left( \bR^i \mapsto \Hom_{C^{\infty}\mathbf{Alg}}(A, C^\infty(\bR^i) ) \right)
+    \]
+Then show that we have adjunction:
+\[
+\mathrm{Hom}_{C^{\infty}\mathbf{Alg}}(A, C^\infty(X)) \cong \mathrm{Hom}_{\PSh(\Cart)}(X, \mathrm{Spec}(A)).
+\]
+    \end{enumerate}
+\end{exercise}

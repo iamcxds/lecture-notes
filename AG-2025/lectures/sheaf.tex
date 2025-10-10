@@ -259,7 +259,7 @@ So if we impose some continuous condition, we can get subcategory of continuous 
 
 \section{Sheaf and Coverage}
 
-If we ask to presheaf be continuous for all colimit we will get nothing more that representable ones, instead we can restrict which kinds of colimit that it preserve. 
+If we ask to presheaf be continuous for all colimit we will get nothing more that representable ones (this is an analogue to the Riesz representation theorem), instead we can restrict which kinds of colimit that it preserve. 
 
 \begin{example}[Ind-Object]
   Let $\cC$ have all finite colimit (i.e for $C:J\to \cC$ with $J$ finite), Then the ind-object  is the presheaf that preserve finite colimit, i.e. $\cF(\Colim_J C)\cong \Lim_J \cF(C)$ for $J$ finite, this is also called \emph{left exact}. Let $\mathrm{ind}(\cC)\subset \PSh(\cC)$ be the subcategory of ind-object.
@@ -272,7 +272,7 @@ If we ask to presheaf be continuous for all colimit we will get nothing more tha
 
 \end{example}
 
-In geometry setting, the colimit we want to preserve are come from coverage. We should first decide a class of open morphism in $\cC$, then we decide which collection of open morphism is a covering. Now for example consider a covering of $j_1: U_1 \to X \leftarrow U_2 :j_2$, intuitively, $X$ should identify to the pushout colimit $|U_{\bullet}|:=U_1 \sqcup_{U_1\cap U_2} U_2$. The presheaf preserve this colimit will satisfy
+In geometry setting, the colimit we want to preserve are come from coverage. We should first decide a class of open morphism in $\cC$, then we decide which collection of open morphism is a covering. Now for example consider a covering of $j_1: U_1 \hookrightarrow X \hookleftarrow U_2 :j_2$, intuitively, $X$ should identify to the pushout colimit $|U_{\bullet}|:=U_1 \sqcup_{U_1\cap U_2} U_2$. The presheaf preserve this colimit will satisfy
 \[
   \cF(X) = \cF(U_1 \sqcup_{U_1\cap U_2} U_2) \cong \cF(U_1) \times_{\cF(U_1\cap U_2)}\cF(U_2)
 \] 
@@ -283,11 +283,11 @@ Notice that the gluing $|U_{\bullet}|:=U_1 \sqcup_{U_1\cap U_2} U_2$ might not e
 
 Let us definite it more formally 
 \begin{definition}[Coverage(Grothendieck Topology)]
-  Let $\mathcal{C}$ be a category. A \emph{coverage} $T$ on $\mathcal{C}$ assigns to each object $X \in \mathcal{C}$ a collection of families of morphisms $\{ U_i \to X \}_{i \in I}$, called \emph{covering families}, satisfying the following condition:
+  Let $\mathcal{C}$ be a category. Given a class of \emph{basic open morphisms} of $\cC$, a \emph{coverage} $T$ on $\mathcal{C}$ assigns to each object $X \in \mathcal{C}$ a collection of families of basic open morphisms $\{ U_i \to X \}_{i \in I}$, called \emph{covering families}, satisfying the following condition:
 
  If $\{ U_i \to X \}_{i \in I}$ is a covering family and $f : Y \to X$ is any morphism in $\mathcal{C}$, then there exists a covering family $\{ V_j \to Y \}_{j \in J}$ such that for each $j$, the morphism $V_j \to Y \xrightarrow{f} X$ factors through some $U_i \to X$.
 
- A category $\cC$ equip with a coverage $T$ is call a \emph{site} $(\cC,T)$. Given a covering families, $\{ U_i \to X \}_{i \in I}$, let $U_{ij}:= U_i \times_X U_j$, then the \emph{gluing} is the presheaf $|U_{\bullet}|:= \bigsqcup_{i\in I} \yo(U_i) / \sim_{\yo(U_{ij})} \in \PSh(\cC)$.
+ A category $\cC$ equip with a coverage $T$ is call a \emph{site} $(\cC,T)$. Given a covering families, $\{ U_i \to X \}_{i \in I}$, let $U_{ij}:= U_i \times_X U_j$, then the \emph{Cech Nerve} is the presheaf $|U_{\bullet}|:= \bigsqcup_{i\in I} \yo(U_i) / \sim_{\yo(U_{ij})} \in \PSh(\cC)$.
 \end{definition}
 
 With all these definition, we can finally define sheaf
@@ -299,29 +299,130 @@ With all these definition, we can finally define sheaf
   Here \[
     \Lim \cF(U_{\bullet}) := \left\{ (f_i)\in \prod_{i\in I}\cF(U_{i}) \,\middle\vert\, f_i|_{U_{ij}}=f_j|_{U_{ij}}\in \cF(U_{ij})\right\}
   \] 
+  And the morphisms of sheaves are morphisms of them as presheaves.
 \end{definition}
 When the coverage is clear, we can omit it to just write $ \Sh(\cC)$
 We have a lot of examples.
 \begin{example}[Sheaf on a Space]
   Let $X$ be a topological space, consider the usual coverage for $\Op(X)$: $\{ U_i \to U \}_{i \in I}$, is a covering family iff $ \bigcup_{i\in I} U_i =U$. Then we have the sheaf category $\Sh(X):= \Sh(\Op(X))$.
+  
+  \begin{exercise}
+   \begin{enumerate}
+    \item Show that the continuous functor presheaf $C(U)$ is a sheaf.
+    \item Show that for a vector bundle, the presheaf of section $\Gamma_E$ is a sheaf.
+   \end{enumerate} 
+  \end{exercise}
 \end{example}
 
 \begin{example}[Smooth Set]
-  
+  Let us define the coverage on $\Cart$: The basic open morphism is just open embedding of balls, \emph{good open covers} is $\{ U_i \to \bR^n \}_{i \in I}$ such that for all finite subset $J\subset I $, the intersection $\bigcap_{i\in J}U_i \cong \bR^n$ are also open balls. We always consider the sheaf of this coverage
+  \begin{exercise}
+   \begin{enumerate}
+    \item Show that good open covers gives a coverage. 
+    \item Show that a manifold $M$ is a sheaf.
+    \item Show that the differential form $\Omega^k$ is a sheaf (but not a manifold).
+   \end{enumerate} 
+  \end{exercise}
 \end{example}
 
 \begin{example}[Zariski Site]
-  
+  Let us define the \emph{Zariski Topology} on $\Ring^\op$: Then base open morphism is given by localization, for $ f\in R, R\to R_f $. Now a Zariski cover \emph{good open covers} is $\{ R\to R_{f_i} \}_{i \in I}$ such that $(f_i)_{i\in I}=1$, or more explicitly, there exist some finite subset $j\in J\subset I$ and $ a_j \in R$ such that $\sum_{j\in J} a_jf_j=1$
+   \begin{enumerate}
+    \item Show that Zariski covers gives a coverage. 
+    \item Recall $ \mathbb{A}^1=U : \Ring \to \Set $ send the ring to its underlining set. Show that the functor $\mathbb{A}^1$ is a sheaf. 
+
+   \end{enumerate} 
 \end{example}
 
 \begin{example}[Kan complex]
   
 \end{example}
-etale space
+\section{Sheafification}
 
-sheafication
+We have seen sheaf is a subcategory of presheaf $\iota : \Sh(\cC) \hookrightarrow \PSh(\cC)$, actually for any presheaf we can associate sheaf as the "best approximate". That is the sheafification functor $L:\PSh(\cC) \to \Sh(\cC)$ such that we have the bijection
+\[
+  \Hom_{\PSh(\cC)}(\cF, \iota \cG) \cong \Hom_{\Sh(\cC)}(L\cF, \cG)
+\]
+\begin{remark}
+  Take the analogue of distribution, Let $ P: D\to \bR$ be the space of all linear functional, and we have an inclusion $ \yo:D\to P, f\mapsto <-,f>$. Now consider the subspace $K=\mathrm{Span}<\lim \yo(x_i) - \yo(\lim x_i)>$ generated by all converge sequence $x_i$, then the continuous functional is just $K^\perp$:
+\[
+  \iota: D'=K^\perp=\{f\in P \mid \forall x_i, \lim<x_i,f>-<\lim x_i, f>=0\}  \hookrightarrow P
+\]
+On other hand we can understand $D' \cong P/K$ as a quotient. The is give the projective map $ L: P\to D' $ such that $ <f,\iota(g)>_P = <L(f),g>_{D'} $
+\end{remark}
 
+To definition the sheafification, we want to identify all Cech nerves $|U_{\bullet}|$ of a covering $\{ U_i \to X \}_{i \in I}$ with $X$, i.e. $L|U_{\bullet}|\cong L\yo X= \yo X$, in other words we want to invert the morphism $ |U_{\bullet}| \to \yo X$ in $\PSh(\cC)$. Therefore, abstractly, we have the Bousfield localization
+
+$$L:\PSh(\cC)\to \PSh(\cC)[(|U_{\bullet}| \to \yo X)^{-1}] \cong \Sh(\cC) $$
+
+
+To give more explicit construction of sheafification, let us consider again the simplest example: a covering of space $j_1: U_1 \hookrightarrow X \hookleftarrow U_2 :j_2$, if we compare $\yo X$ and  $|U_{\bullet}|:= \yo U_1 \sqcup_{\yo (U_1\cap U_2)} \yo U_2$, for any space $Y$, we have 
+
+\[|U_{\bullet}|(Y)= \Map(Y,U_1) \sqcup_{\Map(Y,U_1\cap U_2)}\Map(Y,U_1) \subsetneq \Map(Y,X) = \yo X(Y)\]
+This is not equal in general, since we only have the map land in $U_1$ or $U_2$. To solve this problem we consider a cover of $V_1 \hookrightarrow Y \hookleftarrow V_2$, we define
+\begin{align*}
+  &L_0|U_{\bullet}|(Y):=|U_{\bullet}|(V_1) \times_{|U_{\bullet}|(V_1\cap V_2)}|U_{\bullet}|(V_2)\\
+  =& |U_{\bullet}|(Y)\sqcup (\Map(V_1,U_1)' \times_{\Map(V_1\cap V_2, U_1\cap U_2)}\Map(V_2,U_2)')\\
+   &\sqcup (\Map(V_2,U_1)' \times_{\Map(V_1\cap V_2, U_1\cap U_2)}\Map(V_1,U_2)') / \sim \subsetneq \Map(Y,X)\\
+   &\text{where } \Map(V_i,U_j)'=\{f\in \Map(V_i,U_j)\mid f(V_1\cap V_2)\subset U_1\cap U_2\}
+\end{align*}
+This is closer to $ \Map(Y,X)$, in fact for any $ f \in \Map(Y,X)$, we have the cover $f^{-1}(U_i)\hookrightarrow Y$ and $f \in \Map(f^{-1}(U_1),U_1)' \times_{\Map(f^{-1}(U_1\cap U_2), U_1\cap U_2)}\Map(f^{-1}(U_i),U_2)'$. That is to say if we take colimit all possible covering, we can finally recover $\Map(Y,X)$ :
+\[
+  L|U_{\bullet}|(Y):=\Colim_{\{V_i\hookrightarrow Y\}}|U_{\bullet}|(V_1) \times_{|U_{\bullet}|(V_1\cap V_2)}|U_{\bullet}|(V_2) \cong \Map(Y,X)
+\]
+This motivates us to give following definitions
+\begin{definition}[+ construction]
+  
+\end{definition}
+
+In the case of sheaf $\Sh(X)$ on a topological space $X$, we have even more concrete construction: the idea is every sheaf is a sheaf of sections. 
+
+\begin{definition}[Etale Space]
+  
+\end{definition}
+
+\begin{exercise}[(Co)Limit of Sheaf and Presheaf]
+  Recall the (co)limit of presheaf is taking objectwise, i.e. $(\Lim_{\PSh} \cF_i)(X) =\Lim_{\PSh} \cF_i(X), (\Colim_{\PSh} \cF_i)(X) =\Colim_{\PSh} \cF_i(X)$. Let $\cF_{-}:I \to \Sh(\cC)$ be some diagram of sheaves.
+ \begin{enumerate}
+   \item Show that the presheaf limit $ \Lim_{\PSh} \iota \cF_i$ is still a sheaf. Therefore $ \iota(\Lim_{\Sh} \cF_i) \cong \Lim_{\PSh} \iota \cF_i$ we can compute sheaf limit by presheaf limit.
+   \item Use the example above to show $   \iota(\Colim_{\Sh} \cF_i) \not\cong \Colim_{\PSh} \iota \cF_i$ in general but rather we have $ \Lim_{\Sh} \cF_i \cong L(\Lim_{\PSh} \iota \cF_i) $, that is to say the colimit of sheaves is the sheafification of its presheaves colimit.
+ \end{enumerate} 
+ We usually omit $ \iota$ and think $\Sh(\cC) \subset \PSh(\cC)$ as a subcategory.
+\end{exercise}
+  Now we can define searval natural thing. Recall the open subset is define by the union of open base, here we replace union by the sheaf colimit 
+
+\begin{definition}[Open Morphism]
+  For $X\in \cC$ and $\mathcal{U}\in \Sh(\cC)$, a morphism $j: \mathcal{U} \to \yo X$ is open if there is  family of basic open morphism $\{ U_i \to \mathcal{U} \to X \}_{i \in I}$ (not necessarily be a covering) factor through $ \mathcal{U}$ such that $ L|U_{\bullet}| \cong  \mathcal{U}$. 
+
+  More generally, a morphism of sheaf $j:\cF \to \cG $ is open if for all $X \in \cC, f\in \cG(X) \cong \Hom_{\Sh(\cC)}(\yo X, \cG) $ the pullback $ \cF\times_{\cG} \yo X \to \yo X$ are open.
+\end{definition}
+Here we can see a general way of definition in sheaf: define by pullback along all $X \in \cC, f\in \cG(X) \cong \Hom_{\Sh(\cC)}(\yo X, \cG) $.
+
+\begin{definition}[Open Covering]
+  For $X\in \cC$ and a family of open morphisms $\{\mathcal{U}_j \to \yo X\}_{j\in J}$ is an \emph{open covering} if there is cover family of basic open morphism $\{V_{ij} \to U_{ij} \to \mathcal{U}_j \to X \}_{i \in I}$ factor through some $\mathcal{U}_j$. 
+
+  More generally, a family of open morphisms $\{\mathcal{U}_j \to \cF\}_{j\in J} $ is an open covering if for all $X \in \cC, f\in \cF(X) \cong \Hom_{\Sh(\cC)}(\yo X, \cF) $ the pullback $\{\mathcal{U}_j \times_{\cF} \yo X \to \yo X\}_{j\in J} $ are open coverings.
+\end{definition}
+
+
+\begin{remark}
+  The advantage of considering sheaf rather than presheaf is we can reconstruct it via a relative small colimit along open covering. That is to say for an open covering $\{\mathcal{U}_i \to \cF\}_{i\in I} $, we can define the Cech nerve same as before: let $\mathcal{U}_{ij}:= \mathcal{U}_i \times_X \mathcal{U}_j$,  and the presheaf $|\mathcal{U}_{\bullet}|:= \bigsqcup_{i\in I} \mathcal{U}_i / \sim_{\mathcal{U}_{ij}} \in \PSh(\cC)$, the \emph{Cech Nerve} is the sheafification $ L|\mathcal{U}_{\bullet}|$. We can show that $ L|\mathcal{U}_{\bullet}| \cong \cF$ in $\Sh(\cC$. If the open covering is giving by the representable objects $\yo U_i$, this is even simpler.
+\end{remark}
+This motivates us to give following definition
+\begin{definition}[Locally Representable Sheaves]
+  A sheaf $\cF $ is locally reprensentable if there is an open covering of representable sheaves $\{\yo U_i \to \cF\}_{i\in I} $. In other words we can think $\cF \cong L|U_{\bullet}|$ is gluing by test spaces $U_i \in \cC$
+
+  In smooth set $\Sh(\Cart)$ locally reprensentable sheaf are \emph{smooth manifold}. In algebraic set $\Sh_{\mathrm{Zar}}(\Ring^\op)$ locally reprensentable sheaf is \emph{scheme}.
+\end{definition}
+
+
+
+
+\begin{exercise}[$S^1$ as a gluing space]
+  
+\end{exercise}
+The advantage of locally representable sheaves
+
+\section{Geometric morphism of Topos}
 slice category
-
-Locally represent/Scheme
-
+\section{Moduli Sheaves/Spaces}
