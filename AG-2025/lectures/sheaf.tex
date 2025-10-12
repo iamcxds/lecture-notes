@@ -375,6 +375,10 @@ This motivates us to give following definitions
   
 \end{definition}
 
+\begin{remark}
+  We can see the + construction is a filter colimit, thus it commute with finite limit. As a consequce, functor $(-)^+$ and $L$ is left exact, i.e. preserving finite limit.
+\end{remark}
+
 In the case of sheaf $\Sh(X)$ on a topological space $X$, we have even more concrete construction: the idea is every sheaf is a sheaf of sections. 
 
 \begin{definition}[Etale Space]
@@ -385,11 +389,11 @@ In the case of sheaf $\Sh(X)$ on a topological space $X$, we have even more conc
   Recall the (co)limit of presheaf is taking objectwise, i.e. $(\Lim_{\PSh} \cF_i)(X) =\Lim_{\PSh} \cF_i(X), (\Colim_{\PSh} \cF_i)(X) =\Colim_{\PSh} \cF_i(X)$. Let $\cF_{-}:I \to \Sh(\cC)$ be some diagram of sheaves.
  \begin{enumerate}
    \item Show that the presheaf limit $ \Lim_{\PSh} \iota \cF_i$ is still a sheaf. Therefore $ \iota(\Lim_{\Sh} \cF_i) \cong \Lim_{\PSh} \iota \cF_i$ we can compute sheaf limit by presheaf limit.
-   \item Use the example above to show $   \iota(\Colim_{\Sh} \cF_i) \not\cong \Colim_{\PSh} \iota \cF_i$ in general but rather we have $ \Lim_{\Sh} \cF_i \cong L(\Lim_{\PSh} \iota \cF_i) $, that is to say the colimit of sheaves is the sheafification of its presheaves colimit.
+   \item Use the example above to show $   \iota(\Colim_{\Sh} \cF_i) \not\cong \Colim_{\PSh} \iota \cF_i$ in general, but rather we have $ \Lim_{\Sh} \cF_i \cong L(\Lim_{\PSh} \iota \cF_i) $, that is to say the colimit of sheaves is the sheafification of its presheaves colimit.
  \end{enumerate} 
  We usually omit $ \iota$ and think $\Sh(\cC) \subset \PSh(\cC)$ as a subcategory.
 \end{exercise}
-  Now we can define searval natural thing. Recall the open subset is define by the union of open base, here we replace union by the sheaf colimit 
+  Now we can define several natural things. Recall the open subset is define by the union of open base, here we replace union by the sheaf colimit 
 
 \begin{definition}[Open Morphism]
   For $X\in \cC$ and $\mathcal{U}\in \Sh(\cC)$, a morphism $j: \mathcal{U} \to \yo X$ is open if there is  family of basic open morphism $\{ U_i \to \mathcal{U} \to X \}_{i \in I}$ (not necessarily be a covering) factor through $ \mathcal{U}$ such that $ L|U_{\bullet}| \cong  \mathcal{U}$. 
