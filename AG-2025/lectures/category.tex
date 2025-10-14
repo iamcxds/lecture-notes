@@ -106,15 +106,19 @@ A frequently used example is the poset of open subsets of a topological space $S
 \end{example}
 
 Note that a set $A$ can be viewed as a category in two distinct ways: either as a trivial groupoid or as a trivial poset. And a category can be viewed as a combination of this two case\footnote{It is useful to think category as an oriented graph}.
-% https://q.uiver.app/#q=WzAsNCxbMSwyLCJTZXQiXSxbMCwxLCJHcm91cG9pZCJdLFsyLDEsIlBvc2V0Il0sWzEsMCwiQ2F0ZW9ncnkiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFswLDIsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dXQ==
+% https://q.uiver.app/#q=WzAsNixbMSwxLCJcXG1hdGhiZntHcm91cG9pZH0iXSxbMSwwLCJcXG1hdGhiZntDYXRlZ29yeX0iXSxbMiwxLCJcXG1hdGhiZntTZXR9Il0sWzIsMCwiXFxtYXRoYmZ7UG9zZXR9Il0sWzAsMCwiXFxtYXRoYmZ7TW9ub2lkfSJdLFswLDEsIlxcbWF0aGJme0dyb3VwfSJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMCwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMywxLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFsyLDMsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzQsMSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNSw0LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs1LDAsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzUsMSwiIiwyLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV0sWzIsMSwiIiwyLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV1d
 \[\begin{tikzcd}[ampersand replacement=\&,cramped]
-\& \textbf{Category} \\
-	\textbf{Groupoid} \&\& \textbf{Poset} \\
-	\& \textbf{Set}
-	\arrow[hook, from=2-1, to=1-2]
-	\arrow[hook', from=2-3, to=1-2]
-	\arrow[hook', from=3-2, to=2-1]
-	\arrow[hook, from=3-2, to=2-3]
+{\mathbf{Monoid}} \& {\mathbf{Category}} \& {\mathbf{Poset}} \\
+{\mathbf{Group}} \& {\mathbf{Groupoid}} \& {\mathbf{Set}}
+\arrow[hook, from=1-1, to=1-2]
+\arrow[hook', from=1-3, to=1-2]
+\arrow[hook, from=2-1, to=1-1]
+\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=90}, draw=none, from=2-1, to=1-2]
+\arrow[hook, from=2-1, to=2-2]
+\arrow[hook, from=2-2, to=1-2]
+\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-3, to=1-2]
+\arrow[hook, from=2-3, to=1-3]
+\arrow[hook', from=2-3, to=2-2]
 \end{tikzcd}\]
 
 \begin{remark}
@@ -362,12 +366,56 @@ Let $E \to X$ be a vector bundle over a topological space $X$. Define the preshe
 Let $\Cart$ be the category of Cartesian spaces, with objects $\mathbb{R}^n$ and morphisms given by smooth maps. A presheaf on $\Cart$ is called a \textbf{smooth set}.
 \begin{itemize}
   \item \textbf{Manifolds:} For any smooth manifold $M$, define a presheaf $M(\mathbb{R}^n) := \{f: \mathbb{R}^n\to M \mid f \text{ is smooth.}\}$. Thus, every manifold defines a smooth set.
+  \item \textbf{Mapping Spaces:} For any smooth manifolds $M,N$, define a presheaf 
+    $$\mathbf{C}^\infty(M,N)(\mathbb{R}^n) := \{f: M\times \mathbb{R}^n\to N \mid f \text{ is smooth.}\}.$$ 
+    And we have $\Hom_{\PSh(\Cart)}(L,\mathbf{C}^\infty(M,N)) \cong \Hom_{\PSh(\Cart)}(L\times M, N) $.
   \item \textbf{Differential Forms:} Consider the presheaf $\Omega^k$ assigning to each $\mathbb{R}^n$ the space of $k$-forms $\Omega^k(\mathbb{R}^n)$, with pullbacks along smooth maps. Show that $\Omega^k$ is not representable by a manifold.
 \end{itemize}
 \end{example}
 
 \begin{example}[Simplicial Set]
-  example
+
+Let $\Delta$ be the category of simplices, whose objects are the $n$-simplices $[n]$, defined as the subset of $\mathbb{R}^{n+1}$:
+\[
+  [n] = \left\{ (t_0, t_1, \ldots, t_n) \in \mathbb{R}^{n+1} \;\middle|\; t_i \geq 0,\; \sum_{i=0}^n t_i = 1 \right\},
+\]
+with each vertex $(t_i = 1, t_{j \neq i} = 0)$ marked by $i$. The morphisms in $\Delta$ are linear maps that send vertices to vertices while preserving the order of the markings. For example, we have:
+\begin{itemize}
+  \item  Face maps $\delta_i : [n-1] \to [n]$, which are injections corresponding to the face given by $t_i = 0$. 
+ \item Degeneracy maps $\sigma_i : [n+1] \to [n]$, which are surjections corresponding to projections of simplices,
+\end{itemize}
+for $0 \leq i \leq n$.
+
+\begin{exercise}
+  Show that $\Delta$ is equivalent to the category of finite totally ordered sets, whose objects are $[n] = \{ 0 < 1 < \cdots < n \}$, and whose morphisms are order-preserving maps.
+\end{exercise}
+A presheaf on $\Delta$ is called a \textbf{simplicial set}. More explicitly, a simplicial set $X$ is a sequence of sets $\{ X_n = X([n]) \}_{n \geq 0}$ together with:
+\begin{itemize}
+  \item Face maps $d_i = X(\delta_i) : X_n \to X_{n-1}$,
+ \item Degeneracy maps $s_i = X(\sigma_i) : X_n \to X_{n+1}$,
+\end{itemize}
+for $0 \leq i \leq n$.
+
+Intuitively, we can think of $X_n$ as encoding the data of a triangulated space: $X_0$ consists of points, $X_1$ of segments, $X_2$ of triangles, and so on. The face maps $d_i$ describe how these simplices are glued together via their boundaries.
+
+\begin{itemize}
+  \item Let $\Delta^n$ be the underlying topological space of $[n]$. For any topological space $X$, we can define a simplicial set $\mathrm{Sing}(X)$ where:
+  \[
+    \mathrm{Sing}(X)_n := \Hom_{\Top}(\Delta^n, X).
+  \]
+
+  \item For any small category $\cC$, we can define the \emph{nerve} simplicial set $N(\cC)$, where:
+  \[
+    N(\cC)_n := \Fun([n], \cC),
+  \]
+  viewing $[n]$ as a category via its poset structure.
+
+  \item In fact, $\mathrm{Sing} : \Top \to \PSh(\Delta)$ is a functor. We aim to define its adjoint functor $|\cdot| : \PSh(\Delta) \to \Top$, called the \emph{geometric realization}, such that:
+  \[
+    \Hom_{\Top}(|S|, X) \cong \Hom_{\PSh(\Delta)}(S, \mathrm{Sing}(X)).
+  \]
+  Clearly, we have $|h_{[n]}| = \Delta^n$, and the intuition is that we glue together topological simplices according to the data encoded in the simplicial set. A formal definition will be given after we introduce colimits.
+\end{itemize}
 \end{example}
 
 \begin{example}[Algebraic Set]
@@ -450,24 +498,47 @@ Let $M$ be a smooth manifold viewed as a smooth set. Show that every differentia
 \end{exercise}
 
 \begin{exercise}[Smooth Algebras]
-  
-   Let smooth algebras $C^{\infty}\mathbf{Alg}$ to be the product preserving functors $A:\Cart \to \Set$. 
-    \begin{enumerate}
-      \item Show that $A(\bR)$ has a ring structure.
-      \item Show that for any smooth manifold $M$ define a smooth algebra $C^\infty(M): \bR^i \mapsto C^\infty(M, \bR^i)$. Thus, every manifold contravariantly defines a smooth algebra.
+Let $C^{\infty}\mathbf{Alg}$ be the category of product-preserving functors $A : \Cart \to \Set$.
 
-      \item We have a functor from smooth sets to smooth algebras 
-    \[
-      C^\infty: \PSh(\Cart) \to C^{\infty}\mathbf{Alg}^\op, X \mapsto \left( \bR^i \mapsto \Hom_{\PSh(\Cart)}(X,\yo \bR^i) \right)
-    \]
-    and a functor from smooth algebras to smooth algebras
+\begin{enumerate}
+  \item Show that $A(\bR)$ has a ring structure.
 
-    \[
-      \Spec:   C^{\infty}\mathbf{Alg}^\op \to \PSh(\Cart), A \mapsto \left( \bR^i \mapsto \Hom_{C^{\infty}\mathbf{Alg}}(A, C^\infty(\bR^i) ) \right)
-    \]
-Then show that we have adjunction:
-\[
-\mathrm{Hom}_{C^{\infty}\mathbf{Alg}}(A, C^\infty(X)) \cong \mathrm{Hom}_{\PSh(\Cart)}(X, \mathrm{Spec}(A)).
-\]
-    \end{enumerate}
+  \item Show that for any smooth manifold $M$, we can define a smooth algebra:
+  \[
+    C^\infty(M) : \bR^i \mapsto C^\infty(M, \bR^i).
+  \]
+  Thus, every manifold contravariantly defines a smooth algebra.
+
+  \item We have a functor from smooth sets to smooth algebras:
+  \[
+    C^\infty : \PSh(\Cart) \to C^{\infty}\mathbf{Alg}^\op, \quad X \mapsto \left( \bR^i \mapsto \Hom_{\PSh(\Cart)}(X, \yo \bR^i) \right),
+  \]
+  and a functor from smooth algebras to smooth sets:
+  \[
+    \Spec : C^{\infty}\mathbf{Alg}^\op \to \PSh(\Cart), \quad A \mapsto \left( \bR^i \mapsto \Hom_{C^{\infty}\mathbf{Alg}}(A, C^\infty(\bR^i)) \right).
+  \]
+  Show that we have the adjunction:
+  \[
+    \Hom_{C^{\infty}\mathbf{Alg}}(A, C^\infty(X)) \cong \Hom_{\PSh(\Cart)}(X, \Spec(A)).
+  \]
+
+  \item Define the smooth algebra of \emph{dual numbers}:
+  \[
+    C^\infty(\mathbb{D}) = \bR[\epsilon]/(\epsilon^2) = \{ a + b\epsilon \mid \epsilon^2 = 0 \},
+  \]
+  which can be thought of as smooth functions on an \emph{infinitesimal interval}:
+  \[
+    \mathbb{D} = ``\{ x \in \bR \mid x^2 = 0 \}."
+  \]
+  Verify the functor structure of $C^\infty(\mathbb{D})$: For any smooth map $f : \bR^n \to \bR$, we have:
+  \[
+    C^\infty(\mathbb{D})(f) : C^\infty(\mathbb{D})^n \to C^\infty(\mathbb{D}), \quad (\cdots, a_i + b_i \epsilon, \cdots) \mapsto f(\cdots, a_i, \cdots) + \sum_{i=1}^n b_i \frac{\partial f}{\partial x_i} \epsilon.
+  \]
+
+  \item For any smooth set $X$, define the tangent bundle $TX$ to be the smooth set:
+  \[
+    TX(\bR^i) = \Hom_{C^{\infty}\mathbf{Alg}}(C^\infty(X), C^\infty(\mathbb{D}) \otimes_\bR C^\infty(\bR^i)).
+  \]
+  Compare this definition to the usual definition of the tangent bundle of a manifold.
+\end{enumerate}
 \end{exercise}
