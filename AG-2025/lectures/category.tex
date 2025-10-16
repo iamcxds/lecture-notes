@@ -270,6 +270,21 @@ In practice, we impose additional structure to make this correspondence well-beh
 \end{itemize}
 \end{remark}
 
+
+\begin{remark}[Adjoint Functors]
+As we have already seen in several examples, functors $F: \cC \to \cD$ and $G: \cD \to \cC$ are called adjoint functors or an \emph{adjunction}\footnote{We also say $F$ is the left adjoint of $G$, and $G$ is the right adjoint of $F$.} if there is a natural bijection for all $A \in \cC$, $B \in \cD$:
+\[
+  \Hom_\cD(F(A), B) \cong \Hom_\cC(A, G(B)).
+\]
+
+As a simple example, let $X, Y$ be two sets viewed as categories. For a map $f: X \to Y$, the adjoint $g: Y \to X$ is just the inverse of $f$, since for $x \in X$, $y \in Y$:
+\[
+  \Hom_Y(f(x), y) \cong \Hom_X(x, g(y)) \quad \Leftrightarrow \quad (f(x) = y \Leftrightarrow x = g(y)).
+\]
+
+So, adjoint functors can be thought of as a generalization or weakening of the notion of inverse.
+\end{remark}
+
 \begin{example}[Hom Functor]
 For a fixed object $A$ in a category $\mathcal{C}$, the \textbf{Hom functor} is defined as:
 \[
