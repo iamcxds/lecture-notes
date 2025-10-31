@@ -421,9 +421,17 @@ Intuitively, we can think of $X_n$ as encoding the data of a triangulated space:
 
   \item For any small category $\cC$, we can define the \emph{nerve} simplicial set $N(\cC)$, where:
   \[
-    N(\cC)_n := \Fun([n], \cC),
+    N(\cC)_n := \Fun([n], \cC)=\{ C_0 \xrightarrow{f_1} C_1  \xrightarrow{f_2} \cdots \xrightarrow{f_n} C_n\},
   \]
   viewing $[n]$ as a category via its poset structure.
+
+  More concretely we have:
+  \begin{itemize}
+    \item $ N(\cC)_0 = \{C_0\}=\mathrm{Ob}(\cC)$,
+    \item $ N(\cC)_1 = \{C_0\xrightarrow{f_1}C_1\}=\mathrm{Mor}(\cC) $, the face maps $d_0( C_0\xrightarrow{f_1}C_1)= C_0, d_1( C_0\xrightarrow{f_1}C_1)= C_1$, the degeneracy map $s_0(C_0)= [ C_0\xrightarrow{\mathrm{id}}C_0 ]$,
+    \item $ N(\cC)_1 = \{C_0\xrightarrow{f_1}C_1\xrightarrow{f_2}C_2\}$, the face maps $d_0( C_0\xrightarrow{f_1}C_1\xrightarrow{f_2}C_2)= [C_0\xrightarrow{f_1}C_1], d_1( C_0\xrightarrow{f_1}C_1\xrightarrow{f_2}C_2)= [C_1\xrightarrow{f_2}C_2], d_2( C_0\xrightarrow{f_1}C_1\xrightarrow{f_2}C_2)= [C_0\xrightarrow{f_2\circ f_1}C_2]$, the degeneracy map $s_0(C_0\xrightarrow{f_1}C_1)= [ C_0\xrightarrow{\mathrm{id}}C_0 \xrightarrow{f_1}C_1], s_1(C_0\xrightarrow{f_1}C_1)=[C_0\xrightarrow{f_1}C_1\xrightarrow{\mathrm{id}}C_1]$,
+
+  \end{itemize}
 
   \item In fact, $\mathrm{Sing} : \Top \to \PSh(\Delta)$ is a functor. We aim to define its adjoint functor $|\cdot| : \PSh(\Delta) \to \Top$, called the \emph{geometric realization}, such that:
   \[
@@ -500,8 +508,8 @@ A \emph{morphism of presheaves} $\varphi: \mathcal{F} \to \mathcal{G}$ is a natu
 This lemma is extremely important. It justifies embedding the category $\mathcal{C}$ into the category of presheaves $\PSh(\mathcal{C})$ in a way that fully preserves its morphism structure. In other words, $\mathcal{C}$ can be faithfully represented inside $\PSh(\mathcal{C})$ via the Yoneda embedding.
 \begin{exercise}
   \begin{enumerate}
-    \item 
-Let $M$ be a smooth manifold viewed as a smooth set. Show that every differential form $\omega \in \Omega^k(M)$ induces a morphism of smooth sets:
+    \item Let $M,N$ be smooth manifolds viewed as smooth sets. Show that a smooth map of manifold $f:M\to N$ induces a morphism of presheaves.
+    \item  Show that every differential form $\omega \in \Omega^k(M)$ induces a morphism of smooth sets:
 \[
 \omega: M \to \Omega^k.
 \]

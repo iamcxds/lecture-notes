@@ -81,7 +81,7 @@ Show that this is hold in general for all category $J$
 \begin{example}
   \begin{itemize}
     \item \textbf{Product and Coproduct:} \\
-      Consider the set $J$ viewed as a discrete category  and no non-identity morphisms. A functor $D : J \to \mathbf{Set}$ is simply a family of sets $\{A_j\}_{j\in J}$. The limit of $D$ is the product set $\prod_{j\in J} A_j$ and the colimit is the coproduct (disjoint union) $\bigsqcup_{j\in J} A_j$.
+      Consider the set $J$ viewed as a discrete category  and no non-identity morphisms. A functor $A : J \to \mathbf{Set}$ is simply a family of sets $\{A_j\}_{j\in J}$. The limit of $A$ is the product set $\prod_{j\in J} A_j$ and the colimit is the coproduct (disjoint union) $\bigsqcup_{j\in J} A_j$.
 
     \item \textbf{Equalizer and Coequalizer:} \\
     Let $J$ be the category with two objects $\alpha,\beta$ and two parallel morphisms $f, g : \alpha \to \beta$. A functor $D : J \to \mathbf{Set}$ consists of sets $A, B$ and functions $f, g : A \to B$. The limit (equalizer) is:
@@ -311,7 +311,7 @@ With all these definitions, we can finally define sheaf
 \begin{definition}[Sheaf]
  Let $(\cC,T)$ be a site, then sheaf $\cF\in\Sh_T(\cC)\subset \PSh(\cC)$ is the presheaf preserve gluing, i.e. for any covering families, $\{ U_i \to X \}_{i \in I}$
    \[
-     \cF(X)\cong \cF(|U_{\bullet}|) =\Hom_{\PSh(\cC)}(|U_{\bullet}|, \cF)= \Lim \Hom_{\PSh(\cC)}(U_{\bullet},\cF)=\Lim \cF(U_{\bullet})
+     \cF(X)\cong \cF(|U_{\bullet}|) :=\Hom_{\PSh(\cC)}(|U_{\bullet}|, \cF)= \Lim \Hom_{\PSh(\cC)}(U_{\bullet},\cF)=\Lim \cF(U_{\bullet})
    \] 
   Here \[
     \Lim \cF(U_{\bullet}) := \left\{ (f_i)\in \prod_{i\in I}\cF(U_{i}) \,\middle\vert\, f_i|_{U_{ij}}=f_j|_{U_{ij}}\in \cF(U_{ij})\right\}
@@ -344,15 +344,41 @@ We have a lot of examples.
 
 \begin{example}[Zariski Site]
   Let us define the \emph{Zariski Topology} on $\Ring^\op$: Then base open morphism is given by localization, for $ f\in R, R\to R_f $. Now a Zariski cover \emph{good open covers} is $\{ R\to R_{f_i} \}_{i \in I}$ such that $(f_i)_{i\in I}=1$, or more explicitly, there exist some finite subset $j\in J\subset I$ and $ a_j \in R$ such that $\sum_{j\in J} a_jf_j=1$
+  \begin{exercise}
+    
    \begin{enumerate}
     \item Show that Zariski covers gives a coverage. 
     \item Recall $ \mathbb{A}^1=U : \Ring \to \Set $ send the ring to its underlining set. Show that the functor $\mathbb{A}^1$ is a sheaf. 
 
    \end{enumerate} 
+  \end{exercise}
 \end{example}
 
+We give another example which is not exactly a sheaf of set, but very closed.
+
 \begin{example}[Kan complex]
-  
+  For each $k \in \mathbb{N}, 0\leq k\leq n$, let $\{n \setminus k\}= \{i \in \mathbb{N}\mid 0\leq i\leq n, i\neq k\}$. For simplex $[n]$, we consider covering ``up to homotopy" : $ \{\delta_i: [n-1] \to [n] \}_{i\in \{ n \setminus k\} }$, the Cech nerve for the covering is called $(n,k)$-horn $ \Lambda^k_n \in \PSh(\Delta) $. We have a canonical morphism $ \Lambda^k_n \hookrightarrow \yo[n]$.
+
+   Now we define a simplicial set $S \PSh(\Delta) $ is a \emph{Kan Complex}, if for all $k,n$
+   \[
+     S([n]) \twoheadrightarrow S(\Lambda^k_n):= \Hom_{\PSh(\Delta)}(\Lambda^k_n, S)
+   \]
+   is surjective. 
+\begin{exercise}
+  Show that for topological space $X$, $\mathrm{Sing}(X)$ is a Kan complex.
+\end{exercise}
+
+\begin{remark}
+  The reason we only ask a surjection is also because of it is isomorphism up to homotopy. We can define a space version of morphism of simplicial set $\Map_{\PSh(\Delta)}(A,B)$ : we first definite a simplicial set $s\Map_{\PSh(\Delta)}(A,B): [n] \mapsto \Hom_{\PSh(\Delta)}(A\times [n], B)$, and taking the geometric realization $ \Map_{\PSh(\Delta)}(A,B)=|s\Map_{\PSh(\Delta)}(A,B)|$
+
+  Then the condition of Kan complex is equivalent to
+  \[
+    \Map_{\PSh(\Delta)}([n],S) \xrightarrow{\cong} \Map_{\PSh(\Delta)}(\Lambda^k_n, S)
+  \]
+  is a homotopic equivalence.
+\end{remark}
+
+
 \end{example}
 
 \section{Sheafification}
@@ -389,18 +415,65 @@ This is closer to $ \Map(Y,X)$, in fact for any $ f \in \Map(Y,X)$, we have the 
   L|U_{\bullet}|(Y):=\Colim_{\{V_i\hookrightarrow Y\}}|U_{\bullet}|(V_1) \times_{|U_{\bullet}|(V_1\cap V_2)}|U_{\bullet}|(V_2) \cong \Map(Y,X)
 \]
 This motivates us to give following definitions
-\begin{definition}[+ construction]
-  
+\begin{definition}[Plus construction]
+  Let $(\mathcal{C},T)$ be a site, and let $\mathcal{F} : \mathcal{C}^{\mathrm{op}} \to \mathbf{Set}$ be a presheaf. The \emph{plus construction} $\mathcal{F}^+$ is a new presheaf defined as follows:
+
+For each object $X \in \mathcal{C}$, define $\mathcal{F}^+(X)= $ to be the colimit over covering families(c.f.) $\{ U_i \to U \}_{i \in I}$ 
+
+\[
+\mathcal{F}^+(U) := \Colim_{\text{c.f.} \{ U_i \to U \}_{i \in I}} \Hom_{\PSh(\cC)}(|U_{\bullet}|,\cF) \]
+
+ more explicitly it is the set of equivalence classes of \emph{matching families} over covering families $\{ U_i \to U \}_{i \in I}$:
+\[
+  \mathcal{F}^+(U) = \bigsqcup_{\text{c.f.} \{ U_i \to U \}_{i \in I}} \left\{  (s_i) \in \prod_{i\in I}\mathcal{F}(U_i)  \;\middle|\; s_i|_{U_{ij} } = s_j|_{U_{ij} } \right\} \big/ \sim
+\]
+where two such families are equivalent if they agree on a common refinement.
+
+The \emph{sheafification} of a presheaf $\mathcal{F}$ is the sheaf $L\mathcal{F}$ obtained by applying the plus construction twice:
+\[
+L\mathcal{F} = (\mathcal{F}^+)^+.
+\]
 \end{definition}
 
 \begin{remark}
-  We can see the + construction is a filter colimit, thus it commute with finite limit. As a consequce, functor $(-)^+$ and $L$ is left exact, i.e. preserving finite limit.
+  We can see the + construction is a filter colimit, thus it commutes with finite limit. As a consequence, functor $(-)^+$ and $L$ is left exact, i.e. preserving finite limit.
 \end{remark}
 
-In the case of sheaf $\Sh(X)$ on a topological space $X$, we have even more concrete construction: the idea is every sheaf is a sheaf of sections. The category of open subset $\Op(X)$ is actually category of \emph{relative spaces}. 
+In the case of sheaf $\Sh(X)$ on a topological space $X$, we have even more concrete construction: the idea is every sheaf is a sheaf of sections. The category of open subset $\Op(X)$ is actually category of \emph{relative spaces}: Open subsets $ U\subset X$ are actually injective local homeomorphism map. So we can think it can be used to build general local homeomorphism $E\to X$, which is called \emph{étale space}.
 
-\begin{definition}[Etale Space]
-  
+\begin{definition}[Étale Space]
+  Let $\mathrm{Et}/X \subset \Top / X$ be the category of étale space over $X$, whose objects are local homeomorphism $E\to X$. 
+  There is clear a functor $\Gamma_{(-)}: \mathrm{Et}/X \to \Sh(X)$ by taking the continuous sections. Conversely, for any presheaf $\cF$ we can associate an étale space $ \widetilde{\cF}$:
+
+\begin{enumerate}
+    \item \textbf{Étale Space:}  
+    Define the étalé space $\widetilde{\mathcal{F}}$ of $\mathcal{F}$ as the disjoint union
+    \[
+    \widetilde{\mathcal{F}} = \bigsqcup_{x \in X} \mathcal{F}_x,
+    \]
+    where $\mathcal{F}_x$ is the \emph{stalk} of $\mathcal{F}$ at $x$, i.e.,
+    \[
+    \mathcal{F}_x = \Colim_{x \in U \in \Op(X)} \mathcal{F}(U).
+    \]
+
+    \item \textbf{Topology on $\widetilde{\mathcal{F}}$:}  
+    A basis for the topology on $\widetilde{\mathcal{F}}$ is given by sets of the form
+    \[
+    \widetilde{s}(U) = \{ s_x \in \mathcal{F}_x \mid x \in U \},
+    \]
+    where $s \in \mathcal{F}(U)$ and $s_x$ is the germ of $s$ at $x$.
+
+    \item \textbf{Projection Map:}  
+    Define a map $\pi : \widetilde{\mathcal{F}} \to X$ by sending each germ $s_x \in \mathcal{F}_x$ to the point $x$. This map is a local homeomorphism.
+
+    \item \textbf{Sheaf of Sections:}  
+      The sheafification $L\mathcal{F}=\Gamma_{\widetilde{\cF}}$ is defined as the sheaf of continuous sections of $\pi$:
+    \[
+    L\mathcal{F}(U) = \{ \sigma : U \to \widetilde{\mathcal{F}} \mid \pi \circ \sigma = \mathrm{id}_U,\; \sigma \text{ is continuous} \}.
+    \]
+\end{enumerate}
+
+  This actually lead to an equivalence between $\mathrm{Et}/X \cong \Sh(X)$ 
 \end{definition}
 
 \begin{exercise}[(Co)Limit of Sheaf and Presheaf]
@@ -421,20 +494,20 @@ In the case of sheaf $\Sh(X)$ on a topological space $X$, we have even more conc
 Here we can see a general way of definition in sheaf: define by pullback along all $X \in \cC, f\in \cG(X) \cong \Hom_{\Sh(\cC)}(\yo X, \cG) $.
 
 \begin{definition}[Open Covering]
-  For $X\in \cC$ and a family of open morphisms $\{\mathcal{U}_j \to \yo X\}_{j\in J}$ is an \emph{open covering} if there is cover family of basic open morphism $\{V_{ij} \to U_{ij} \to \mathcal{U}_j \to X \}_{i \in I}$ factor through some $\mathcal{U}_j$. 
+  For $X\in \cC$ and a family of open morphisms $\{\mathcal{U}_j \to \yo X\}_{j\in J}$ is an \emph{open covering} if there is cover family of basic open morphism $\{ U_{i} \to \mathcal{U}_{j(i)} \to X \}_{i \in I}$ factor through some $\mathcal{U}_j$. 
 
   More generally, a family of open morphisms $\{\mathcal{U}_j \to \cF\}_{j\in J} $ is an open covering if for all $X \in \cC, f\in \cF(X) \cong \Hom_{\Sh(\cC)}(\yo X, \cF) $ the pullback $\{\mathcal{U}_j \times_{\cF} \yo X \to \yo X\}_{j\in J} $ are open coverings.
 \end{definition}
 
 
 \begin{remark}
-  The advantage of considering sheaf rather than presheaf is we can reconstruct it via a relative small colimit along open covering. That is to say for an open covering $\{\mathcal{U}_i \to \cF\}_{i\in I} $, we can define the Cech nerve same as before: let $\mathcal{U}_{ij}:= \mathcal{U}_i \times_X \mathcal{U}_j$,  and the presheaf $|\mathcal{U}_{\bullet}|:= \bigsqcup_{i\in I} \mathcal{U}_i / \sim_{\mathcal{U}_{ij}} \in \PSh(\cC)$, the \emph{Cech Nerve} is the sheafification $ L|\mathcal{U}_{\bullet}|$. We can show that $ L|\mathcal{U}_{\bullet}| \cong \cF$ in $\Sh(\cC$. If the open covering is giving by the representable objects $\yo U_i$, this is even simpler.
+  The advantage of considering sheaf rather than presheaf is we can reconstruct it via a relative small colimit along open covering. That is to say for an open covering $\{\mathcal{U}_i \to \cF\}_{i\in I} $, we can define the Cech nerve same as before: let $\mathcal{U}_{ij}:= \mathcal{U}_i \times_X \mathcal{U}_j$,  and the presheaf $|\mathcal{U}_{\bullet}|:= \bigsqcup_{i\in I} \mathcal{U}_i / \sim_{\mathcal{U}_{ij}} \in \PSh(\cC)$, the \emph{Cech Nerve} is the sheafification $ L|\mathcal{U}_{\bullet}|$. We can show that $ L|\mathcal{U}_{\bullet}| \cong \cF$ in $\Sh(\cC)$. If the open covering is giving by the representable objects $\yo U_i$, this is even simpler.
 \end{remark}
 This motivates us to give following definition
 \begin{definition}[Locally Representable Sheaves]
-  A sheaf $\cF $ is locally reprensentable if there is an open covering of representable sheaves $\{\yo U_i \to \cF\}_{i\in I} $. In other words we can think $\cF \cong L|U_{\bullet}|$ is gluing by test spaces $U_i \in \cC$
+  A sheaf $\cF $ is locally representable if there is an open covering of representable sheaves $\{\yo U_i \to \cF\}_{i\in I} $. In other words we can think $\cF \cong L|U_{\bullet}|$ is gluing by test spaces $U_i \in \cC$. Let $\Sch(\cC)\subset \Sh(\cC)$ be the subcategory of locally representable sheaves.
 
-  In smooth set $\Sh(\Cart)$ locally reprensentable sheaf are \emph{smooth manifold}. In algebraic set $\Sh_{\mathrm{Zar}}(\Ring^\op)$ locally reprensentable sheaf is \emph{scheme}.
+  In smooth set $\Sh(\Cart)$ locally representable sheaf are \emph{smooth manifold} $\mathbf{Mnfd}$. In algebraic set $\Sh_{\mathrm{Zar}}(\Ring^\op)$ locally representable sheaves are called \emph{scheme} $\Sch_{\bZ}$.
 \end{definition}
 
 
