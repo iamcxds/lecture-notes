@@ -1,6 +1,28 @@
 \chapter{Realization and Invariant}\label{chap:realization} % (fold)
 
+We have seen how to define a generalized space via sheaf, which is data of testing spaces map into it. In this chapter we reconstruct space from the sheaf. That is a (fully) faithful\footnote{Fully means surjective on morphism, faithful means injective on morphism.} functor of \emph{realization} $R: \Sh(\cC) \to \mathcal{S} $ to some concrete category of some kind of spaces.
+
+On the other hand, sometimes it is also useful to construct functor $I: \Sh(\cC) \to \mathcal{V} $ to a simpler category $\mathcal{V}$ (value), even thought we lose some information. This is called \emph{invariant}.
 \section{Ringed Space}
+
+Recall for $\cD$ cocomplete, if we have a realization functor on test objects $R:\cC \to \cD$, we can extend it to all presheaf$R:\PSh(\cC)\to \cD$ by using category of elements 
+
+\[
+  R:\cF \in \PSh(\cC) \mapsto \int_\cC \cF\times R \in \cD
+\]
+This means we only need to consider the realization functor at level of test objects $\cC$.
+
+Recall for the simplicial set, smooth set, algebraic set, we can have realization functor in topological space $\Top$:
+
+\begin{example}
+ \begin{enumerate}
+  \item For simplex category, we can take the underlying space $|-|:\Delta \to \Top$, thus we have $|-|: \PSh(\Delta) \to \Top$
+  \item Similarly for Cartesian spaces, we can take the underlying space $|-|:\Cart \to \Top$, thus we have $|-|: \PSh(\Cart) \to \Top$
+  \item For the category of ring $\Ring$, we can take spectrum $\Spec:\Ring^\op \to \Top$: The spectrum of a ring $A$ is the topological space $\Spec A$ whose points are prime ideals of $A$, topological base is given by $f\in A, D(f):= \{\mathfrak{p}\in \Spec A \mid f\notin \mathfrak{p}\}$. Thus we have $\Spec: \PSh(\Ring^\op) \to \Top$.
+ \end{enumerate} 
+\end{example}
+
+But this is not yet what we want: the realization functor is not fully, that is, for example there are much more continuous morphisms that smooth morphisms for manifold. To solve this problem, we need to update the target category.
 
 \section{Sheaf and Vector Bundle}
 
