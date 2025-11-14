@@ -130,6 +130,20 @@ In the definition of a category, if we allow the morphism set $\mathrm{Hom}_{\ma
 This reflects a general principle of the \textbf{Univalence Foundation}: mathematical structures should be treated as spaces (or types) from the outset, and the classical set-theoretic version can be recovered by taking the set of connected components. We will explore how to identify and work with these underlying geometric structures later in the course.
 \end{remark} 
 
+Give an object $X$ in a category, we can also consider the category of relative objects. In some sense those are ``families parameterized by $X$".
+\begin{definition}[Slice Category]
+  
+ $\mathcal{C}$ be a category and let $X$ be an object of $\mathcal{C}$. The \emph{slice category} $\mathcal{C}/X$ is defined as follows:
+
+\begin{itemize}
+    \item \textbf{Objects:} Morphisms $f : A \to X$ in $\mathcal{C}$.
+    \item \textbf{Morphisms:} A morphism from $f : A \to X$ to $g : B \to X$ is a morphism $h : A \to B$ in $\mathcal{C}$ such that $g \circ h = f$.
+\end{itemize}
+Dually, the \emph{coslice category} $X/\mathcal{C}$ has objects morphisms $f : X \to A$ and morphisms $h : A \to B$ satisfying $h \circ f = g$.
+\end{definition}
+\begin{exercise}
+  Let $X\in \Set$, then $\Set/X$ is isomorphic to the category of $X$ indexed sets: objects are families of set $\{S_x\}_{x\in X}$, morphisms are families of maps $ \{f: S_x \to T_x\}_{x\in X}$.
+\end{exercise}
 \section{Functor}
 
 To define a map between two categories, it is natural to require that such a map respects the structure of morphisms.
