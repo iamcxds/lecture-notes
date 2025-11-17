@@ -305,11 +305,11 @@ Notice that the gluing $|U_{\bullet}|:=U_1 \sqcup_{U_1\cap U_2} U_2$ might not e
 
 Let us define it more formally 
 \begin{definition}[Coverage(Grothendieck Topology)]
-  Let $\mathcal{C}$ be a category. Given a class of \emph{basic open morphisms} of $\cC$, a \emph{coverage} $T$ on $\mathcal{C}$ assigns to each object $X \in \mathcal{C}$ a collection of families of basic open morphisms $\{ U_i \to X \}_{i \in I}$, called \emph{covering families}, satisfying the following condition:
+  Let $\mathcal{C}$ be a category. Given a class of \emph{basic open morphisms} of $\cC$, a \emph{coverage} $\tau$ on $\mathcal{C}$ assigns to each object $X \in \mathcal{C}$ a collection of families of basic open morphisms $\{ U_i \to X \}_{i \in I}$, called \emph{covering families}, satisfying the following condition:
 
  If $\{ U_i \to X \}_{i \in I}$ is a covering family and $f : Y \to X$ is any morphism in $\mathcal{C}$, then there exists a covering family $\{ V_j \to Y \}_{j \in J}$ such that for each $j$, the morphism $V_j \to Y \xrightarrow{f} X$ factors through some $U_i \to X$.
 
- A category $\cC$ equip with a coverage $T$ is call a \emph{site} $(\cC,T)$. Given a covering families, $\{ U_i \to X \}_{i \in I}$, let $U_{ij}:= U_i \times_X U_j$, then the \emph{Cech Nerve} is the presheaf $|U_{\bullet}|:= \bigsqcup_{i\in I} \yo(U_i) / \sim_{\yo(U_{ij})} \in \PSh(\cC)$.
+ A category $\cC$ equip with a coverage $\tau$ is call a \emph{site} $(\cC,\tau)$. Given a covering families, $\{ U_i \to X \}_{i \in I}$, let $U_{ij}:= U_i \times_X U_j$, then the \emph{Cech Nerve} is the presheaf $|U_{\bullet}|:= \bigsqcup_{i\in I} \yo(U_i) / \sim_{\yo(U_{ij})} \in \PSh(\cC)$.
 \end{definition}
 
 With all these definitions, we can finally define sheaf
@@ -331,9 +331,9 @@ We have a lot of examples.
   
   \begin{exercise}
    \begin{enumerate}
-    \item Show that the continuous functor presheaf $C(U)$ is a sheaf. 
+    \item Show that the continuous function presheaf $C(U)$ is a sheaf. 
     \item Show that for a vector bundle, the presheaf of section $\Gamma_E$ is a sheaf.
-    \item Show that for non-compact space $X$, the bound function $C^b(U)$ is just a presheaf but not a sheaf.
+    \item Show that for non-compact space $X$, the bound continuous function $C^b(U)$ is just a presheaf but not a sheaf.
    \end{enumerate} 
   \end{exercise}
 \end{example}
@@ -404,7 +404,7 @@ We have seen sheaf is a subcategory of presheaf $\iota : \Sh(\cC) \hookrightarro
 On other hand we can understand $D' \cong P/K$ as a quotient. The is give the projective map $ L: P\to D' $ such that $ <f,\iota(g)>_P = <L(f),g>_{D'} $
 \end{remark}
 
-To definition the sheafification, we want to identify all Cech nerves $|U_{\bullet}|$ of a covering $\{ U_i \to X \}_{i \in I}$ with $X$, i.e. $L|U_{\bullet}|\cong L\yo X= \yo X$, in other words we want to invert the morphism $ |U_{\bullet}| \to \yo X$ in $\PSh(\cC)$. Therefore, abstractly, we have the Bousfield localization
+To definition the sheafification, we want to identify all Cech nerves $|U_{\bullet}|$ of a covering $\{ U_i \to X \}_{i \in I}$ with $X \in \cC$, i.e. $L|U_{\bullet}|\cong L\yo X= \yo X$, in other words we want to invert the morphism $ |U_{\bullet}| \to \yo X$ in $\PSh(\cC)$. Therefore, abstractly, we have the Bousfield localization
 
 $$L:\PSh(\cC)\to \PSh(\cC)[(|U_{\bullet}| \to \yo X)^{-1}] \cong \Sh(\cC) $$
 
@@ -448,6 +448,18 @@ L\mathcal{F} = (\mathcal{F}^+)^+.
   We can see the + construction is a filter colimit, thus it commutes with finite limit. As a consequence, functor $(-)^+$ and $L$ is left exact, i.e. preserving finite limit.
 \end{remark}
 
+\begin{example}[Sheafification of $C^b$]
+ For the bound continuous function sheaf $C^b$ on $\bR$, we have 
+ \[
+  LC^b(\bR)= (C^b)^+(\bR)=\bigsqcup_{\text{c.f.} \{ U_i \to \bR \}_{i \in I}} \left\{  (s_i) \in \prod_{i\in I} C^b(U_i)  \;\middle|\; s_i|_{U_{ij} } = s_j|_{U_{ij} } \right\} \big/ \sim
+ \]  
+ If we take a specific covering family $ \{ ]n,n+2[\hookrightarrow \bR \}_{n \in \bZ} $. Then
+ \[
+   LC^b(\bR)\supset  \left\{  (s_i) \in \prod_{i\in \bZ} C^b(]i,i+2[)  \;\middle|\; s_i|_{]i,i+1[ } = s_{i-1}|_{]i,i+1[ } \right\} \cong C(\bR)
+ \]
+ Similarly we have $ LC^b(\bR)\supset C(U) $. On other hand we have $ C^b(U)\subset C(U) $, thus $ LC^b(U) \subset LC(U)=C(U)$. This showes we have $LC^b \cong C$.
+\end{example}
+
 In the case of sheaf $\Sh(X)$ on a topological space $X$, we have even more concrete construction: the idea is every sheaf is a sheaf of sections. The category of open subset $\Op(X)$ is actually category of \emph{relative spaces}: Open subsets $ U\subset X$ are actually injective local homeomorphism map. So we can think it can be used to build general local homeomorphism $E\to X$, which is called \emph{étale space}.
 
 \begin{definition}[Étale Space]
@@ -489,7 +501,7 @@ In the case of sheaf $\Sh(X)$ on a topological space $X$, we have even more conc
   Recall the (co)limit of presheaf is taking objectwise, i.e. $(\Lim_{\PSh} \cF_i)(X) =\Lim_{\PSh} \cF_i(X), (\Colim_{\PSh} \cF_i)(X) =\Colim_{\PSh} \cF_i(X)$. Let $\cF_{-}:I \to \Sh(\cC)$ be some diagram of sheaves.
  \begin{enumerate}
    \item Show that the presheaf limit $ \Lim_{\PSh} \iota \cF_i$ is still a sheaf. Therefore $ \iota(\Lim_{\Sh} \cF_i) \cong \Lim_{\PSh} \iota \cF_i$ we can compute sheaf limit by presheaf limit.
-   \item Use the example above to show $   \iota(\Colim_{\Sh} \cF_i) \not\cong \Colim_{\PSh} \iota \cF_i$ in general, but rather we have $ \Lim_{\Sh} \cF_i \cong L(\Lim_{\PSh} \iota \cF_i) $, that is to say the colimit of sheaves is the sheafification of its presheaves colimit.
+   \item Use the example above to show $   \iota(\Colim_{\Sh} \cF_i) \not\cong \Colim_{\PSh} \iota \cF_i$ in general, but rather we have $ \Colim_{\Sh} \cF_i \cong L(\Colim_{\PSh} \iota \cF_i) $, that is to say the colimit of sheaves is the sheafification of its presheaves colimit.
  \end{enumerate} 
  We usually omit $ \iota$ and think $\Sh(\cC) \subset \PSh(\cC)$ as a subcategory.
 \end{exercise}
@@ -503,7 +515,7 @@ In the case of sheaf $\Sh(X)$ on a topological space $X$, we have even more conc
 Here we can see a general way of definition in sheaf: define by pullback along all $X \in \cC, f\in \cG(X) \cong \Hom_{\Sh(\cC)}(\yo X, \cG) $.
 
 \begin{definition}[Open Covering]
-  For $X\in \cC$ and a family of open morphisms $\{\mathcal{U}_j \to \yo X\}_{j\in J}$ is an \emph{open covering} if there is cover family of basic open morphism $\{ U_{i} \to \mathcal{U}_{j(i)} \to X \}_{i \in I}$ factor through some $\mathcal{U}_j$. 
+  For $X\in \cC$ and a family of open morphisms $\{\mathcal{U}_j \to \yo X\}_{j\in J}$ is an \emph{open covering} if there is cover family of basic open morphism $\{ \yo U_{i} \to \mathcal{U}_{j(i)} \to \yo X \}_{i \in I}$ factor through some $\mathcal{U}_j$. 
 
   More generally, a family of open morphisms $\{\mathcal{U}_j \to \cF\}_{j\in J} $ is an open covering if for all $X \in \cC, f\in \cF(X) \cong \Hom_{\Sh(\cC)}(\yo X, \cF) $ the pullback $\{\mathcal{U}_j \times_{\cF} \yo X \to \yo X\}_{j\in J} $ are open coverings.
 \end{definition}
@@ -522,9 +534,37 @@ This motivates us to give following definition
 
 
 
-\begin{exercise}[$S^1$ as a gluing space]
-  
-\end{exercise}
+\begin{example}[$S^1$ as a gluing space]
+ Let $S^1$ is covered by $U_1\cong U_2 \cong \bR$, and $U_1\cap U_2 = V_1\sqcup V_2$ where $V_1\cong V_2 \cong \bR$. Then we have $|U_\bullet| \in \PSh(\Cart)$, where 
+ \[
+   |U_\bullet|(\bR^n)=\Hom_{\Cart}(\bR^n, U_1) \sqcup_{ \Hom_{\Cart}(\bR^n, V_1)\sqcup\Hom_{\Cart}(\bR^n, V_2)}\Hom_{\Cart}(\bR^n, U_2)
+ \]
+ As we have seen before, these are not all smooth map $\Map(\bR^n, S^1)$. But if we sheafify it, we found $ L|U_\bullet|(\bR^n)\cong \Map(\bR^n, S^1)$. Therefore $S^1$ is a manifold.
+\end{example}
+
+
+\begin{example}[$\bP^1$ as a gluing space]
+  Recall We define $\bP^1_{pre}  \in \PSh(\Ring^\op)$ as for $R\in \Ring$:
+ \[
+  \bP^1_{pre}(R)=\{(r_0,r_1)\in R^2 \mid \exists u_i, u_0r_0+u_1r_1=1\}/ \sim_{R^{\times}}
+ \]
+ Recall the representable (pre)sheaves $\af^1=  h^{\bZ[x]}, R\mapsto U(R) $ and  $\Gm= h^{\bZ[x,x^{-1}]}, R\mapsto R^{\times} $.
+ Now we have morphisms $\phi_i : U_i\cong \af^1 \to \bP^1_{pre} $ given by 
+ \[
+  \phi_0: r\in R \mapsto (1,r) / \sim, \phi_1: r\in R \mapsto (r,1) / \sim.
+ \]
+ This is an open covering since $ (r_0,r_1)/\sim \in \bP^1_{pre}(R)$, the pullback $V_i:= h^R \times_{\bP^1_{pre}}U_i :\Ring \to \Set$ is the functor: For $S \in \Ring$
+ \[
+   V_0(S)=\{f:R\to S \mid \exists s\in S, (1,s)\sim (f(r_0),f(r_1))  \}=\{f:R\to S \mid \exists t\in S, f(r_0)t=1  \}
+ \]
+ By the universal property of localization $R_{r_0}$, we find $V_0\cong h^{R_{r_0}}$. Similarly, $ V_1\cong h^{R_{r_1}}$, and by definition we have $ u_0r_0+u_1r_1=1$, then $\{V_i\to h^R\}$ is a Zariski covering family, and thus $\{\phi_i:U_i\to  \bP^1_{pre}\}$ is an open covering.
+
+ And we have that $U_{01}=U_0 \times_{\bP^1_{pre}} U_1 \cong \Gm $. Then the presheaf $|U_\bullet|: \Ring \to \Set$
+\[
+  |U_\bullet|(R)= \{a\in R\} \sqcup \{b \in R\}/u\in R^{\times}, u=a \sim b= u^{-1}
+\]
+ Let $\bP^1=L\bP^1_{pre}$, and we have $\bP^1\cong L|U_\bullet|$ is a scheme.
+\end{example}
 
 \section{Relative Topos/Geometric morphism of Topos}
 We have seen a topos $\mathcal{T}$ (category of sheaf) as a collection of generalized spaces. Sometimes we can seen it as generalized spaces relative certain space $X$, in that case $\mathcal{T}_X$ also reflex the geometry of $X$.
@@ -555,6 +595,10 @@ We have seen a topos $\mathcal{T}$ (category of sheaf) as a collection of genera
 \begin{example}[Slice Category]
   Let $S\in \Sh(\cC)$, then the slice category $ \Sh(\cC)/S $ ($\cong \Sh(\int_\cC S)$ exercise) consists of morphisms $p :X \to S$. For a morphism $f:S\to T$, we can simply define $f^*(p:X\to S):= f^*p: X\times_S T \to T $. In fact $f^*$ has both left and right adjoint functors. 
 \end{example} 
+
+point of topos
+
+points and prime ideals.
 \section{Moduli Sheaves/Spaces}
 
 As we mentioned earlier, we want to give natrual space structure for collection of mathematics objects. Now this goal can be achieved by definite a sheaf which characterize the ``families of objects". 
@@ -569,6 +613,7 @@ As we mentioned earlier, we want to give natrual space structure for collection 
   \[
     \Bun_{\Delta}(M)= \Lim \Bun_\Delta (U_\bullet) =\left\{ (T_i)\in \prod_{i\in I} \Bun_\Delta(U_i) \;\middle|\; T_i|_{U_{ij}}=g_{ij} \cdot T_j|_{U_{ij}}, g_{ij}\in S_3\right\}
   \]
+  Notice that we have global $U(1)$ symmetry.
 
 \end{example}
 
