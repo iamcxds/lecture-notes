@@ -23,7 +23,92 @@ Recall for the simplicial set, smooth set, algebraic set, we can have realizatio
  \end{enumerate} 
 \end{example}
 
+\begin{remark}[Spectral spaces]
+Notice that the spectrum of ring form an unusual space, it is only $T_0$. So not all points are closed. It's helpful to think in following ways: It contains closed points, which is usual points; then for each irreducible algebraic curve $C$, we have a corresponding generic point $\xi_C$. Then for every closed point $x$ on that curve, $\xi_C$ is in the neighborhood of $x$, i.e. $x\in \bar{\{\xi_C\}}$; Similarly, for each irreducible surface $S$, we have a generic point $\xi_S$, such that for the curve it contains, we have $\xi_C\in \bar{\{\xi_S\}}$.
+
+Another interesting fact is the spectrum is a filter limit of finite $T_0$ space: You can consider a finite stratification of space by points, curve, surface, etc., then take the limit by have more and more of them.
+\end{remark}
+
 But this is not yet what we want: the realization functor is not fully, that is, for example there are much more continuous morphisms that smooth morphisms for manifold. To solve this problem, we need to update the target category.
+
+The spaces we consider they all have function ring on it, and the morphisms of function rings will reflect the property of morphisms of space
+
+\begin{exercise}
+Consider a map $f:\bR \to \bR^2$,
+\begin{enumerate}
+\item if $f$ is continuous, this induces a ring homomorphism $f^*:C(\bR^2)\to C(\bR)$.
+\item if $f$ is smooth, this induces a ring homomorphism $f^*:C^\infty(\bR^2)\to C^\infty(\bR)$.
+\item if $f$ is algebraic, this induces a ring homomorphism $f^*:\bR[x,y]\to \bR[t]$.
+\end{enumerate}
+\end{exercise}
+This motivate us of following definition:
+\begin{definition}[Locally Ringed Space]
+A \emph{locally ringed space} is a pair $(X, \mathcal{O}_X)$ where:
+\begin{itemize}
+\item $X$ is a topological space,
+\item $\mathcal{O}_X \in \Sh(X,\Ring)$ is a sheaf of rings on $X$,
+\item for every point $x \in X$, the stalk $\mathcal{O}_{X,x}$ is a local ring (i.e., it has a unique maximal ideal).
+\end{itemize}
+
+A morphism of locally ringed spaces
+\[
+(f, f^\#) : (X, \mathcal{O}_X) \longrightarrow (Y, \mathcal{O}_Y)
+\]
+consists of:
+\begin{itemize}
+\item a continuous map $f : X \to Y$,
+\item a morphism of sheaves of rings
+\[
+    f^\# : \mathcal{O}_Y \longrightarrow f_* \mathcal{O}_X,
+\]
+such that for every $x \in X$, the induced map on stalks
+\[
+f^\#_x : \mathcal{O}_{Y,f(x)} \longrightarrow \mathcal{O}_{X,x}
+\]
+is a local homomorphism (i.e., it sends the maximal ideal of $\mathcal{O}_{Y,f(x)}$ into the maximal ideal of $\mathcal{O}_{X,x}$).
+\end{itemize}
+
+\end{definition}
+
+Even thought we first ask $f$ to be continuous, to define $f^\#$ it turns out $f$ have to be the map preserve some structure.
+
+\begin{example}
+\begin{enumerate}
+\item \textbf{Topological Space with Continuous Functions:}  
+For any topological space $X$, $(X, C_X)$, where $C_X$ is the sheaf of continuous real-valued functions, is a locally ringed space. Each stalk is a local ring of germs of continuous functions.
+
+\item \textbf{Smooth Manifold:}  
+Let $M$ be a smooth manifold. The pair $(M, C^\infty_M)$, where $C^\infty_M$ is the sheaf of smooth real-valued functions on $M$, is a locally ringed space. Each stalk consists of germs of smooth functions at a point, forming a local ring.
+
+For smooth manifolds $M$ and $N$ and a smooth map $f : M \to N$, we have:
+\[
+  (f,f^\#):(M, \mathcal{C}^\infty_M) \longrightarrow (N, \mathcal{C}^\infty_N)
+\]
+where $f^\#$ sends a smooth function $h$ on $N$ to $h \circ f$ on $M$.
+
+\item \textbf{Complex Analytic Space:}  
+For a complex manifold $X$, the pair $(X, \mathcal{O}_X)$, where $\mathcal{O}_X$ is the sheaf of holomorphic functions, is a locally ringed space. Each stalk is a local ring of germs of holomorphic functions.
+
+For complex manifolds $X$ and $Y$ and a holomorphic map $f : X \to Y$, the morphism:
+\[
+(f,f^\#):(X, \mathcal{O}_X) \longrightarrow (Y, \mathcal{O}_Y)
+\]
+where $f^\#$ sends a holomorphic function $h$ on $Y$ to $h \circ f$ on $X$.
+
+\item \textbf{Affine Scheme:}  
+For a commutative ring $A$, the spectrum $\Spec A$ with the Zariski topology and the structure sheaf $\mathcal{O}_{\Spec A}$ is a locally ringed space. Each stalk $\mathcal{O}_{\mathrm{Spec}(A), \mathfrak{p}}$ is the localization $A_{\mathfrak{p}}$, which is a local ring.
+
+For rings $A$ and $B$ and a ring homomorphism $\varphi : A \to B$, we get a morphism of locally ringed spaces:
+\[
+(f,f^\#):(\mathrm{Spec}(B), \mathcal{O}_{\mathrm{Spec}(B)}) \longrightarrow (\mathrm{Spec}(A), \mathcal{O}_{\mathrm{Spec}(A)})
+\]
+given by:
+\begin{itemize}
+\item Continuous map: $f : \mathrm{Spec}(B) \to \mathrm{Spec}(A)$, $f(\mathfrak{q}) = \varphi^{-1}(\mathfrak{q})$.
+\item Sheaf morphism: $f^\#$ induced by $\varphi$ on localizations.
+\end{itemize}
+\end{enumerate}
+\end{example}
 
 
 \section{Sheaf and Vector Bundle}

@@ -579,3 +579,82 @@ Let $C^{\infty}\mathbf{Alg}$ be the category of product-preserving functors $A :
   Compare this definition to the usual definition of the tangent bundle of a manifold.
 \end{enumerate}
 \end{exercise}
+
+\begin{exercise}
+  
+ Let $\Bool$ be the category consisting of two sets: $\bot = \emptyset$ and $\top = \{*\}$, with morphisms given by set maps. For any category $\cC$, define the category of 0-presheaves as:
+\[
+\PSh_0(\cC) := \mathrm{Fun}(\cC^\op, \Bool),
+\]
+i.e., contravariant functors from $\cC$ to $\Bool$.
+
+\begin{enumerate}
+  \item Show that the morphisms of $\Bool$ are:
+    \[
+      \Hom_{\Bool}(\bot,\bot)=\top, \Hom_{\Bool}(\top,\bot)=\bot, \Hom_{\Bool}(\bot,\top)=\top, \Hom_{\Bool}(\top,\top)=\top.
+    \]
+  \item Let $(P, \leq)$ be a thin category defined from a poset. For any object $a \in P$, show that the hom functor $h_a := \Hom_P(-, a) \in \PSh_0(P)$ is a 0-presheaf defined by:
+    \[
+    h_a(b) = 
+    \begin{cases}
+      \top, & \text{if } b \leq a, \\
+      \bot, & \text{otherwise}.
+    \end{cases}
+    \]
+
+  \item Consider the poset of rational numbers $(\bQ, \leq)$. Define a 0-presheaf $\sqrt{2} \in \PSh_0(\bQ)$ by:
+    \[
+    \sqrt{2}(q) = 
+    \begin{cases}
+      \top, & \text{if } q^2 \leq 2, \text{ or } q<0, \\
+      \bot, & \text{otherwise}.
+    \end{cases}
+    \]
+    Verify that $\sqrt{2}$ is indeed a 0-presheaf, and that $\sqrt{2} \neq h_q$ for any $q \in \bQ$.
+
+  \item Show that $\mathrm{Obj}(\PSh_0(\bQ))$ is bijective to the extended real line:
+    \[
+    [-\infty, \infty] = \{-\infty\} \sqcup \bR \sqcup \{\infty\}.
+    \]
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+  
+ Let $X$ be a set, and let $\Sub(X)$ be the poset of subsets of $X$ ordered by inclusion $\subseteq$, viewed as a thin category.
+
+\begin{enumerate}
+  \item Let $(-)^c$ denote taking the complement. Show that:
+    \[
+    (-)^c : \Sub(X)^\op \to \Sub(X)
+    \]
+    is a functor.
+
+  \item For $A, B \in \Sub(X)$, define:
+    \[
+    A \Rightarrow B := A^c \cup B \in \Sub(X).
+    \]
+    Show that for any $A, B, C \in \Sub(X)$, there is a bijection:
+    \[
+    \Hom_{\Sub(X)}(A \cap B, C) \cong \Hom_{\Sub(X)}(A, B \Rightarrow C).
+    \]
+
+  \item Let $f : X \to Y$ be a function between sets. Define:
+    \[
+    f^{-1} : \Sub(Y) \to \Sub(X), \quad f_! : \Sub(X) \to \Sub(Y), \quad f_!(A) := f(A).
+    \]
+    Verify that $f^{-1}$ and $f_!$ are functors, and show that for any $A \in \Sub(X)$, $B \in \Sub(Y)$, we have:
+    \[
+    \Hom_{\Sub(Y)}(f_!(A), B) \cong \Hom_{\Sub(X)}(A, f^{-1}(B)).
+    \]
+
+  \item Define:
+    \[
+    f_* : \Sub(X) \to \Sub(Y), \quad f_*(A) := f(A^c)^c.
+    \]
+    Verify that $f_*$ is a functor, and show that for any $A \in \Sub(Y)$, $B \in \Sub(X)$, we have:
+    \[
+    \Hom_{\Sub(X)}(f^{-1}(A), B) \cong \Hom_{\Sub(Y)}(A, f_*(B)).
+    \]
+\end{enumerate}
+\end{exercise}

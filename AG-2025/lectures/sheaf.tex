@@ -358,7 +358,7 @@ We have a lot of examples.
    \begin{enumerate}
     \item Show that Zariski covers gives a coverage. 
     \item Recall $ \mathbb{A}^1=U : \Ring \to \Set $ send the ring to its underlining set. Show that the functor $\mathbb{A}^1$ is a sheaf. 
-
+    \item More general, for polynomials $P=(f_1,\ldots,f_m)$, $V_P$ is a sheaf.
    \end{enumerate} 
   \end{exercise}
 \end{example}
@@ -604,7 +604,7 @@ points and prime ideals.
 As we mentioned earlier, we want to give natrual space structure for collection of mathematics objects. Now this goal can be achieved by definite a sheaf which characterize the ``families of objects". 
 
 \begin{example}[Moduli Space of Triangles]
-  If we classify triangles up to similarity, then we can define a smooth set $\Bun_{\Delta}: \Cart^\op \to \Set$ as the families of triangles: 
+  If we classify triangles inside a circle, then we can define a smooth set $\Bun_{\Delta}: \Cart^\op \to \Set$ as the families of triangles: 
   \[ \Bun_{\Delta}(\bR^n)=\{a,b,c: \bR^n \to \bC \mid |a|=|b|=|c|=1, a\neq b, b\neq c, c \neq a\} / S_3
   \]
   Where permutation group $S_3$ permute $a,b,c$.
@@ -613,14 +613,24 @@ As we mentioned earlier, we want to give natrual space structure for collection 
   \[
     \Bun_{\Delta}(M)= \Lim \Bun_\Delta (U_\bullet) =\left\{ (T_i)\in \prod_{i\in I} \Bun_\Delta(U_i) \;\middle|\; T_i|_{U_{ij}}=g_{ij} \cdot T_j|_{U_{ij}}, g_{ij}\in S_3\right\}
   \]
-  Notice that we have global $U(1)$ symmetry.
+  Notice that we have global $U(1)(M)$ symmetry.
 
 \end{example}
 
 \begin{example}[Grassmannian/Moduli Space of Linear Subspaces]
-  Give a vector space of dimension $n$,
+  Give a vector space of dimension $n$, let $Gr(k,n)$ be the moduli space of $k$-dimensional linear subspaces. We can define it as a smooth set (manifold):
+  \[ Gr(k,n)(\bR^m)=\{M: \bR^m \to \mathrm{Mat}_{k\times n} \mid \mathrm{rk}(M)=k\} / \GL_k(C^\infty(\bR^m)) \} 
+  \]
+  For general manifold $X$, we find this classifies rank $k$ sub vector bundle of $ X \times \bR^n \to X$
+ 
+  \[
+    Gr(k,n)(X)=\{E \to \bR^m \text{ vector bundle }\mid \mathrm{rk}(E)=k,  E\subset \bR^m \times \bR^n
+  \]
+  Notice that we have global $\GL_n(C^\infty(X))$ symmetry.
+
+  This can also be defined as a scheme
 \end{example}
 
-\begin{example}[Hilbert Scheme]
+\begin{example}[Configuation Space/Hilbert Scheme]
   
 \end{example}
