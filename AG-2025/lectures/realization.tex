@@ -6,7 +6,7 @@ On the other hand, sometimes it is also useful to construct functor $I: \Sh(\cC)
 
 \section{Ringed Space}
 
-Recall for $\cD$ cocomplete, if we have a realization functor on test objects $R:\cC \to \cD$, we can extend it to all presheaf$R:\PSh(\cC)\to \cD$ by using category of elements 
+Recall for $\cD$ cocomplete, if we have a realization functor on test objects $R:\cC \to \cD$, we can extend it to all presheaf $R:\PSh(\cC)\to \cD$ by using category of elements 
 
 \[
   R:\cF \in \PSh(\cC) \mapsto \int_\cC \cF\times R \in \cD
@@ -24,10 +24,20 @@ Recall for the simplicial set, smooth set, algebraic set, we can have realizatio
 \end{example}
 
 \begin{remark}[Spectral spaces]
+The idea of spectrum is to think the ring $A$ as functor ring on $\Spec A$: for $f \in A$ and point $ \mathfrak{p}\in \Spec A$, we should think $f(\mathfrak{p})= p(f) \in A/\mathfrak{p} $, where $p:A\to A/\mathfrak{p}$ is the quotient. 
+
 Notice that the spectrum of ring form an unusual space, it is only $T_0$. So not all points are closed. It's helpful to think in following ways: It contains closed points, which is usual points; then for each irreducible algebraic curve $C$, we have a corresponding generic point $\xi_C$. Then for every closed point $x$ on that curve, $\xi_C$ is in the neighborhood of $x$, i.e. $x\in \bar{\{\xi_C\}}$; Similarly, for each irreducible surface $S$, we have a generic point $\xi_S$, such that for the curve it contains, we have $\xi_C\in \bar{\{\xi_S\}}$.
+
+\begin{example}
+  \begin{itemize}
+    \item \textbf{Spectrum of $\bC[x]$} 
+    \item \textbf{Spectrum of $\bZ$} 
+  \end{itemize}
+\end{example}
 
 Another interesting fact is the spectrum is a filter limit of finite $T_0$ space: You can consider a finite stratification of space by points, curve, surface, etc., then take the limit by have more and more of them.
 \end{remark}
+
 
 But this is not yet what we want: the realization functor is not fully, that is, for example there are much more continuous morphisms that smooth morphisms for manifold. To solve this problem, we need to update the target category.
 
@@ -36,17 +46,17 @@ The spaces we consider they all have function ring on it, and the morphisms of f
 \begin{exercise}
 Consider a map $f:\bR \to \bR^2$,
 \begin{enumerate}
-\item if $f$ is continuous, this induces a ring homomorphism $f^*:C(\bR^2)\to C(\bR)$.
-\item if $f$ is smooth, this induces a ring homomorphism $f^*:C^\infty(\bR^2)\to C^\infty(\bR)$.
-\item if $f$ is algebraic, this induces a ring homomorphism $f^*:\bR[x,y]\to \bR[t]$.
+\item if $f$ is continuous, this induces a ring homomorphism $f^\#:C(\bR^2)\to C(\bR)$.
+\item if $f$ is smooth, this induces a ring homomorphism $f^\#:C^\infty(\bR^2)\to C^\infty(\bR)$.
+\item if $f$ is algebraic, this induces a ring homomorphism $f^\#:\bR[x,y]\to \bR[t]$.
 \end{enumerate}
 \end{exercise}
-This motivate us of following definition:
+This motivates us of following definition:
 \begin{definition}[Locally Ringed Space]
-A \emph{locally ringed space} is a pair $(X, \mathcal{O}_X)$ where:
+A \emph{locally ringed space} is a pair $(X, \mathcal{O}_X) \in LRS$ where:
 \begin{itemize}
 \item $X$ is a topological space,
-\item $\mathcal{O}_X \in \Sh(X,\Ring)$ is a sheaf of rings on $X$,
+\item $\mathcal{O}_X \in \Sh(X,\Ring)$ is a sheaf of rings on $X$, called \emph{structure sheaf},
 \item for every point $x \in X$, the stalk $\mathcal{O}_{X,x}$ is a local ring (i.e., it has a unique maximal ideal).
 \end{itemize}
 
@@ -96,7 +106,7 @@ For complex manifolds $X$ and $Y$ and a holomorphic map $f : X \to Y$, the morph
 where $f^\#$ sends a holomorphic function $h$ on $Y$ to $h \circ f$ on $X$.
 
 \item \textbf{Affine Scheme:}  
-For a commutative ring $A$, the spectrum $\Spec A$ with the Zariski topology and the structure sheaf $\mathcal{O}_{\Spec A}$ is a locally ringed space. Each stalk $\mathcal{O}_{\mathrm{Spec}(A), \mathfrak{p}}$ is the localization $A_{\mathfrak{p}}$, which is a local ring.
+For a commutative ring $A$, the spectrum $\Spec A$ with the Zariski topology and the structure sheaf $\mathcal{O}_{\Spec A}$ is a locally ringed space. Each stalk $\mathcal{O}_{\mathrm{Spec}(A), \mathfrak{p}}$ is the localization $A_{\mathfrak{p}}$, which is a local ring. This locally ringed space is called \emph{affine scheme}, we also use $\Spec A$ to refer the affine scheme. 
 
 For rings $A$ and $B$ and a ring homomorphism $\varphi : A \to B$, we get a morphism of locally ringed spaces:
 \[
@@ -107,10 +117,30 @@ given by:
 \item Continuous map: $f : \mathrm{Spec}(B) \to \mathrm{Spec}(A)$, $f(\mathfrak{q}) = \varphi^{-1}(\mathfrak{q})$.
 \item Sheaf morphism: $f^\#$ induced by $\varphi$ on localizations.
 \end{itemize}
+
+\item \textbf{Point and Double point:}
+  We study more examples for affine scheme: $\Spec \bC$ and $D=\Spec \bC[x]/(x^2)$, they have the same underlying topological space, one point. But they have different structure sheaves:$ \bC $ and $ \bC[x]/(x^2) $. Image $D$ is the limit of two point $ \Spec \bC \sqcup \Spec \bC \cong \Spec \bC[x]/(x(x-c))$ collide together. 
 \end{enumerate}
 \end{example}
 
+Moreover, one can show the realization functors $ R_{sm}: \Cart \to LRS, R_{alg}: \Ring^\op \to LRS $ are fully faithful, which means they extend to a functor on sheaves, in particular a fully faithful functor on locally representable sheaves:
 
-\section{Sheaf and Vector Bundle}
+\[
+  R_{sm}: \Sch(\Cart) \to LRS, R_{alg}: \Sch(\Ring^\op) \to LRS
+\]
 
+Therefore, we can define smooth manifold (scheme) as a locally ringed space which locally isomorphic to Cartesian spaces (affine scheme).
+
+
+\section{Quasi-Coherent Sheaf and Vector Bundle}
+
+We want to define a category of vector bundle or more general other bundle over a space which is defined by a sheaf $\Sch(\cC)$, the nicer way is to define a category-value sheaf. That is to say, we first define functor $\cC^\op \to \mathrm{Cat}$, then extend it to $\Sch(\cC)\to \mathrm{Cat}$. 
+
+\begin{example}[Vector bundle]
+  We first define the category of vector bundle on Cartesian space: $Vect(\bR^n)$, the objects are trivial vector bundles$V_k:= \bR^n \times \bR^k \to \bR^n$, and the morphisms $f:V_k\to V_l$ are smooth map $f:\bR^n \to \mathrm{Mat}(\bR^k,\bR^l)$.
+\end{example}
+
+\begin{example}[Module and Quasi-Coherent Sheaf]
+  For each ring $A$, we can define the category of $\mathrm{Mod}_A$. For $\varphi: A \to B$, we have the functor $\varphi_*: \mathrm{Mod}_A \to \mathrm{Mod}_B, M \mapsto B \otimes_A M$ 
+\end{example}
 % chapter Realization (end)

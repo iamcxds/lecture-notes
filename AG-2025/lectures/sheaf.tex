@@ -566,6 +566,14 @@ This motivates us to give following definition
  Let $\bP^1=L\bP^1_{pre}$, and we have $\bP^1\cong L|U_\bullet|$ is a scheme.
 \end{example}
 
+\begin{remark}
+  Up to now we only considered $\Set$-value sheaves, and we can easily extend to other concrete $1$-category: Abelian group , Ring, Vector space, etc. But the more interesting is to extend to higher category: Groupoid, Category, in that case we need to extend the Cech nerves and replace (co)limit by homotopy (co)limit. For example, to define $\cF\in \Sh(\cC,\mathbf{Grpd}) \subset \Fun(\cC^\op,\mathbf{Grpd})$, for any covering families, $\{ U_i \to X \}_{i \in I}$, we have $\cF(X)=\mathrm{holim} \cF(U_{\bullet})$. Here 
+  \[
+    \mathrm{holim} \cF(U_{\bullet}) := \left\{ (f_i)\in \prod_{i\in I}\cF(U_{i}) \,\middle\vert\, g_{ij}:f_i|_{U_{ij}} \xr{\cong} f_j|_{U_{ij}}\in \cF(U_{ij}), g_{ij}g_{jk}|_{U_{ijk}}=g_{ik}|_{U_{ijk}}\right\}
+  \] 
+ 
+\end{remark}
+
 \section{Relative Topos/Geometric morphism of Topos}
 We have seen a topos $\mathcal{T}$ (category of sheaf) as a collection of generalized spaces. Sometimes we can seen it as generalized spaces relative certain space $X$, in that case $\mathcal{T}_X$ also reflex the geometry of $X$.
 
