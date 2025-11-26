@@ -430,11 +430,11 @@ This motivates us to give following definitions
 For each object $X \in \mathcal{C}$, define $\mathcal{F}^+(X)= $ to be the colimit over covering families(c.f.) $\{ U_i \to U \}_{i \in I}$ 
 
 \[
-\mathcal{F}^+(U) := \Colim_{\text{c.f.} \{ U_i \to U \}_{i \in I}} \Hom_{\PSh(\cC)}(|U_{\bullet}|,\cF) \]
+\mathcal{F}^+(X) := \Colim_{\text{c.f.} \{ U_i \to X \}_{i \in I}} \Hom_{\PSh(\cC)}(|U_{\bullet}|,\cF) \]
 
  more explicitly it is the set of equivalence classes of \emph{matching families} over covering families $\{ U_i \to U \}_{i \in I}$:
 \[
-  \mathcal{F}^+(U) = \bigsqcup_{\text{c.f.} \{ U_i \to U \}_{i \in I}} \left\{  (s_i) \in \prod_{i\in I}\mathcal{F}(U_i)  \;\middle|\; s_i|_{U_{ij} } = s_j|_{U_{ij} } \right\} \big/ \sim
+  \mathcal{F}^+(X) = \bigsqcup_{\text{c.f.} \{ U_i \to X \}_{i \in I}} \left\{  (s_i) \in \prod_{i\in I}\mathcal{F}(U_i)  \;\middle|\; s_i|_{U_{ij} } = s_j|_{U_{ij} } \right\} \big/ \sim
 \]
 where two such families are equivalent if they agree on a common refinement.
 
@@ -632,7 +632,7 @@ As we mentioned earlier, we want to give natrual space structure for collection 
   For general manifold $X$, we find this classifies rank $k$ sub vector bundle of $ X \times \bR^n \to X$
  
   \[
-    Gr(k,n)(X)=\{E \to \bR^m \text{ vector bundle }\mid \mathrm{rk}(E)=k,  E\subset \bR^m \times \bR^n
+    Gr(k,n)(X)=\{E \to \bR^m \text{ vector bundle }\mid \mathrm{rk}(E)=k,  E\subset \bR^m \times \bR^n \}
   \]
   Notice that we have global $\GL_n(C^\infty(X))$ symmetry.
 
@@ -640,5 +640,12 @@ As we mentioned earlier, we want to give natrual space structure for collection 
 \end{example}
 
 \begin{example}[Configuation Space/Hilbert Scheme]
+
+
+  We for simplicity we consider Hilbert scheme of $d$ points in affine $\af^n$ space. We first define presheaf $\mathrm{Hilb}^d_{\af^n, pre}:\Ring \to \Set$ as:
+  \[
+    \mathrm{Hilb}^d_{\af^n, pre}(R)=\{I \subset R[x_1,\ldots,x_n] \text{ ideal} \mid R[x_1,\ldots,x_n]/I \cong R^d\}
+  \]
+  We can prove similarly as $\bP^1$, $ \mathrm{Hilb}^d_{\af^n, pre}$ is covered by representable sheaves (affine scheme), thus it $\mathrm{Hilb}^d_{\af^n}:= L\mathrm{Hilb}^d_{\af^n, pre}$ is scheme. 
   
 \end{example}

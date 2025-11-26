@@ -32,6 +32,7 @@ Notice that the spectrum of ring form an unusual space, it is only $T_0$. So not
   \begin{itemize}
     \item \textbf{Spectrum of $\bC[x]$} 
     \item \textbf{Spectrum of $\bZ$} 
+    \item \textbf{Spectrum of $\bZ[x]$} 
   \end{itemize}
 \end{example}
 
@@ -119,7 +120,7 @@ given by:
 \end{itemize}
 
 \item \textbf{Point and Double point:}
-  We study more examples for affine scheme: $\Spec \bC$ and $D=\Spec \bC[x]/(x^2)$, they have the same underlying topological space, one point. But they have different structure sheaves:$ \bC $ and $ \bC[x]/(x^2) $. Image $D$ is the limit of two point $ \Spec \bC \sqcup \Spec \bC \cong \Spec \bC[x]/(x(x-c))$ collide together. 
+  We study more examples for affine scheme: $\Spec \bC$ and $D=\Spec \bC[x]/(x^2)$, they have the same underlying topological space, one point. But they have different structure sheaves:$ \bC $ and $ \bC[x]/(x^2) $. Image $D$ is the limit of two points $ \Spec \bC \sqcup \Spec \bC \cong \Spec \bC[x]/(x(x-c))$ collide together. 
 \end{enumerate}
 \end{example}
 
@@ -131,13 +132,15 @@ Moreover, one can show the realization functors $ R_{sm}: \Cart \to LRS, R_{alg}
 
 Therefore, we can define smooth manifold (scheme) as a locally ringed space which locally isomorphic to Cartesian spaces (affine scheme).
 
+\section{Geometry of Affine Scheme}
 
 \section{Quasi-Coherent Sheaf and Vector Bundle}
 
 We want to define a category of vector bundle or more general other bundle over a space which is defined by a sheaf $\Sch(\cC)$, the nicer way is to define a category-value sheaf. That is to say, we first define functor $\cC^\op \to \mathrm{Cat}$, then extend it to $\Sch(\cC)\to \mathrm{Cat}$. 
 
 \begin{example}[Vector bundle]
-  We first define the category of vector bundle on Cartesian space: $Vect(\bR^n)$, the objects are trivial vector bundles$V_k:= \bR^n \times \bR^k \to \bR^n$, and the morphisms $f:V_k\to V_l$ are smooth map $f:\bR^n \to \mathrm{Mat}(\bR^k,\bR^l)$.
+  We first define the category of vector bundle on Cartesian space: $VB(\bR^n)$, the objects are trivial vector bundles$V_k:= \bR^n \times \bR^k \to \bR^n$, and the morphisms $f:V_k\to V_l$ are smooth map $f:\bR^n \to \mathrm{Mat}(\bR^k,\bR^l)$. This is indeed a functor $VB:\Cart^\op \to \mathrm{Cat}$. For $g:\bR^n \to \bR^m$, we have the pull back functor $g^* : VB(\bR^m)\to VB(\bR^n)$.
+  Now this can extend to a category for all manifold
 \end{example}
 
 \begin{example}[Module and Quasi-Coherent Sheaf]
