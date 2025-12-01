@@ -39,6 +39,8 @@ n \cdot x = x + n, \quad n \in \mathbb{Z}, x \in \mathbb{R}.
 Objects: points of $\mathbb{R}$.  
 
 Morphisms: $(x \xrightarrow{n} x+n)$ for $n \in \mathbb{Z}$.
+
+In fact we have equivalence of category between $\bR//\bZ \cong U(1)$
 \item $ \bC \sslash \bC^\times$ : $\mathbb{C}^\times$ acting on $\mathbb{C}$ by scaling
 \[
 \lambda \cdot z = \lambda z, \quad \lambda \in \mathbb{C}^\times, z \in \mathbb{C}.
@@ -52,7 +54,11 @@ Morphisms: $(z \xrightarrow{\lambda} \lambda z)$ for $\lambda \in \mathbb{C}^\ti
 Now for a set sheaf $X \in \Sh(\cC)$ and a group sheaf $G \in \Sh(\cC, \mathbf{Grp})$ acts on it. We have a presheaf of groupoid $ X\sslash_{pre} G(C) := X(C)\sslash G(C) $, which reflex global symmetry, but it is not a sheaf in general. We can define the action groupoid sheaf as the sheafification $ X\sslash G = L( X\sslash_{pre} G )$, which reflex local symmetry. Similarly, we can define the quotient sheaf $ X/G = L(X/_{pre} G) $ 
 
 \begin{example}
-  Let $\bR,\bZ \in \Sh(\Cart)$
+  Let $\bR,\bZ \in \Sh(\mathrm{Mnfd})$, where $\bR(U)=C^\infty(U)$ and $\bZ(\bR^m)=\bZ$. Now the presheaf quotient $\bR/_{pre}\bZ(U):= C^\infty(U)/\bZ$. Now we show that this is not a sheaf: consider $ \bR/_{pre}\bZ(S^1):= C^\infty(S^1)/\bZ $, take the standard covering $U_1,U_2 \subset S^1$ and $U_1\cap U_2=V_1 \sqcup V_2$, we have 
+  \[
+    \Lim \bR/_{pre}\bZ(U_\bullet)=\{f_1 \in C^\infty(U_1), f_2 \in C^\infty(U_2) \mid f_1|_{V_1}=n_1+f_2|_{V_1}, f_1|_{V_2}=n_2+f_2|_{V_2} \}/\bZ
+  \]
+  In fact we have $\bR/\bZ(M)= \Map_{sm}(M, U(1))$.
 \end{example}
 
 

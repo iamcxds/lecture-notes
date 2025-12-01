@@ -283,4 +283,30 @@ Let $A$ be any ring.
   \end{enumerate}
    
 \end{exercise}
+
+\section{Quasi-Coherent Sheaf and Vector Bundle}
+
+Over a locally ringed space
+\begin{definition}
+Let $(X, \mathcal{O}_X)$ be a ringed space. A sheaf of $\mathcal{O}_X$-modules $\mathcal{F}$ on $X$ is called \emph{quasi-coherent} if for every point $x \in X$, there exists an open neighborhood $U$ of $x$ and an exact sequence of $\mathcal{O}_X|_U$-modules
+\[
+\mathcal{O}_X|_U^{\oplus I} \longrightarrow \mathcal{O}_X|_U^{\oplus J} \longrightarrow \mathcal{F}|_U \longrightarrow 0,
+\]
+where $I$ and $J$ are (possibly infinite) index sets.
+\end{definition}
+
+To understand what quasi-coherent sheaf looks like, we introduce the support of sheaf:
+\begin{definition}
+  Let $X$ be a topological space and $\mathcal{F}\in \Sh(X,\mathbf{Ab})$ a sheaf of Abelian group. The \emph{support} of $\mathcal{F}$ is the subset
+\[
+\operatorname{Supp}(\mathcal{F}) = \{ x \in X \mid \mathcal{F}_x \neq 0 \},
+\]
+where $\mathcal{F}_x$ denotes the stalk of $\mathcal{F}$ at $x$. It is a closed subset of $X$.
+\end{definition}
+
+We give some example of quasi-coherent sheaf on affine scheme.
+
+\begin{example}[Quasi-Coherent Sheaf]
+  
+\end{example}
 % chapter Realization (end)

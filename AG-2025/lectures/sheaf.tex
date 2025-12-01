@@ -276,7 +276,7 @@ Notice that even if $\cC$ is cocompletion, which dosen't means $ \cC \cong \PSh(
 So if we impose some continuous condition, we can get subcategory of continuous presheaf, which are called sheaf, behaves more close to the test category $\cC$.
 
 \begin{exercise}
-  Show that for $B\in\cC$, $\yo(B)$ are continuous, i.e. $ \yo(B)(\Colim_{j\in J} C_j)\cong \Lim_{j\in J} \yo(B)(C_j)$. In others words $\yo(B)$ is a sheaf. 
+  Show that for $B\in\cC$, $\yo(B)$ are continuous, i.e. $ \yo(B)(\Colim_{j\in J} C_j)\cong \Lim_{j\in J} \yo(B)(C_j)$. In others words if $\cC$ is cocomplete, $\yo(B)$ is a sheaf. 
 \end{exercise}
 
 \section{Sheaf and Coverage}
@@ -301,7 +301,7 @@ In geometry setting, the colimit we want to preserve are come from coverage. We 
 The reason of consider this sheaf is because of locality, we want the generalized space $Y$ have can be tested locally, that is 
 \[ \Map(X,Y) \cong \Map(U_1,Y)\times_{\Map(U_1\cap U_2,Y)}\Map(U_2,Y)=\left\{\substack{\text{maps from $U_1,U_2$ to $Y$} \\ \text{that coincide on $U_1\cap U_2$}}\right\}\]
 
-Notice that the gluing $|U_{\bullet}|:=U_1 \sqcup_{U_1\cap U_2} U_2$ might not exists in $\cC$, but it always exists in $\PSh(\cC)$.
+Notice that the gluing $|U_{\bullet}|:=U_1 \sqcup_{U_1\cap U_2} U_2$ might not exist in $\cC$, but it always exists in $\PSh(\cC)\ni |U_{\bullet}|:= \yo U_1 \sqcup_{\yo U_1\cap \yo U_2} \yo U_2$.
 
 Let us define it more formally 
 \begin{definition}[Coverage(Grothendieck Topology)]
