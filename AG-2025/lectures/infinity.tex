@@ -1,16 +1,108 @@
 \chapter{To Infinity and Beyond}\label{chap:To Infinity and Beyond} % (fold)
 
+  Up to now we only considered $\Set$-value sheaves, and we can easily extend to other concrete $1$-category: Abelian group , Ring, Vector space, etc. But the more interesting is to extend to higher category: Groupoid, Category, in that case we need to extend the Cech nerves and replace (co)limit by homotopy (co)limit. For example, to define $\cF\in \Sh(\cC,\mathbf{Grpd}) \subset \Fun(\cC^\op,\mathbf{Grpd})$, for any covering families, $\{ U_i \to X \}_{i \in I}$, we have $\cF(X)=\mathrm{holim} \cF(U_{\bullet}) \in \mathbf{Grpd}$, where 
+  \[
+    \mathrm{Obj}(\mathrm{holim} \cF(U_{\bullet})) := \left\{ (f_i)\in \prod_{i\in I}\cF(U_{i}),  g_{ij}:f_i|_{U_{ij}} \xr{\cong} f_j|_{U_{ij}}\in \cF(U_{ij}) \,\middle\vert\,g_{ij}g_{jk}|_{U_{ijk}}=g_{ik}|_{U_{ijk}}\right\}
+  \] 
+  \[
+    \Hom_{ \mathrm{holim} \cF(U_{\bullet})}((f_\bullet),(h_\bullet)):= \left\{ \varphi_i \in \prod_{i\in I}\Hom_{\cF(U_{i})}(f_i,h_i)  \,\middle\vert\,
+\begin{tikzcd}[ampersand replacement=\&,cramped]
+  f_i|_{U_{ij}} \&  h_i|_{U_{ij}} \\
+f_j|_{U_{ij}}   \& h_j|_{U_{ij}}
+	\arrow["{\varphi_i}", from=1-1, to=1-2]
+  \arrow["{g_{ij}}"', from=1-1, to=2-1]
+  \arrow["{g'_{ij}}", from=1-2, to=2-2]
+	\arrow["{\varphi_j}", from=2-1, to=2-2]
+\end{tikzcd}
+\text{ commutes}
+  \right\}
+\]
+
+\section{Moduli Space via Sheaf of groupoid}
+\begin{definition}[Action Groupoid]
+Given a group $G$ acting on a set $X$, the \emph{action groupoid} $X \sslash G$ has:
+\begin{itemize}
+    \item Objects: elements of $X$.
+    \item Morphisms: for $x, y \in X$, a morphism $x \to y$ is an element $g \in G$ such that $g \cdot x = y$, i.e. $\Hom_{X \sslash G}(x,y)=\{g\in G \mid g \cdot x=y\}$.
+\end{itemize}
+\end{definition}
+
+Notice that the isomorphic class $\pi_0(X\sslash G)=X/G$.
+
+\begin{example}
+\begin{enumerate}
+  \item $*\sslash G \cong \mathrm{B}G$ 
+  \item $\bR \sslash \bZ$ : $\mathbb{Z}$ acting on $\mathbb{R}$ by translations
+\[
+n \cdot x = x + n, \quad n \in \mathbb{Z}, x \in \mathbb{R}.
+\]
+Objects: points of $\mathbb{R}$.  
+
+Morphisms: $(x \xrightarrow{n} x+n)$ for $n \in \mathbb{Z}$.
+\item $ \bC \sslash \bC^\times$ : $\mathbb{C}^\times$ acting on $\mathbb{C}$ by scaling
+\[
+\lambda \cdot z = \lambda z, \quad \lambda \in \mathbb{C}^\times, z \in \mathbb{C}.
+\]
+Objects: points of $\mathbb{C}$.  
+
+Morphisms: $(z \xrightarrow{\lambda} \lambda z)$ for $\lambda \in \mathbb{C}^\times$.
+\end{enumerate}  
+\end{example}
+
+Now for a set sheaf $X \in \Sh(\cC)$ and a group sheaf $G \in \Sh(\cC, \mathbf{Grp})$ acts on it. We have a presheaf of groupoid $ X\sslash_{pre} G(C) := X(C)\sslash G(C) $, which reflex global symmetry, but it is not a sheaf in general. We can define the action groupoid sheaf as the sheafification $ X\sslash G = L( X\sslash_{pre} G )$, which reflex local symmetry. Similarly, we can define the quotient sheaf $ X/G = L(X/_{pre} G) $ 
+
+\begin{example}
+  Let $\bR,\bZ \in \Sh(\Cart)$
+\end{example}
+
+
 \begin{example}[Moduli Space of Triangles]
   If we classify triangles up to similarity, then we can define a smooth groupoid $\cM_{\Delta}: \Cart^\op \to \mathbf{Grpd}$ as the families of triangles: 
-  \[ \cM_{\Delta}(\bR^n)=\{a,b,c: \bR^n \to \bR \mid a+b+c=2, 0<a,b,c<1\} // S_3
+  \[ \cM_{\Delta}(\bR^n)=\{a,b,c: \bR^n \to \bR \mid a+b+c=2, 0<a,b,c<1\} \sslash S_3
   \]
-  Notice that the triangle have the gauge symmetry group of permutation group $S_3$.
+  Notice that the triangle have the symmetry group of permutation group $S_3$.
+
+  We can extend this to general smooth set $ \cM_{\Delta}(M):= \Hom_{\Sh(\Cart,\mathbf{Grpd})}(M,\cM_\Delta)$. Concretely, for manifold $M$, taking a good covering $\{U_i\}_{i\in I}$ of $M$, by the sheaf condition, we have: 
+  \[
+    \cM_{\Delta}(M)= \mathrm{holim} \cM_\Delta (U_\bullet) =_{\mathrm{Obj}} \left\{ (T_i)\in \prod_{i\in I} \cM_\Delta(U_i) \;\middle|\; T_i|_{U_{ij}}=g_{ij} \cdot T_j|_{U_{ij}}, g_{ij}\in S_3\right\}
+  \]
+\end{example}
+And the morphism is given by isomorphism of bundles.
+
+\begin{example}[Moduli Space of Vector Bundles]
+  Let $\cM_{Vect,k}$ be the moduli space of $k$-dimensional vector space. We can define it as a smooth set (manifold):
+  \[ \cM_{Vect,k}(\bR^m)= \{V:\bR^k \times \bR^m \to \bR^m\} \sslash \GL_k(C^\infty(\bR^m)) = \mathrm{B}\GL_k(C^\infty(\bR^m)) 
+  \]
+  For general manifold $M$, we find this classifies rank $k$ vector bundle groupoid$ E \to M$: taking a good covering $\{U_i\}_{i\in I}$ of $M$,
+ 
+  \begin{align*}
+    \cM_{Vect,k}(M)&=_{\mathrm{Obj}}  \left\{  g_{ij}\in \GL_k(C^\infty(U_{ij}) ), \;\middle|\;g_{ij}|_{U_{ijk}}g_{jk}|_{U_{ijk}}=g_{ik}|_{U_{ijk}}\right\}\\
+                   &=\{E \to M \text{ vector bundle }\mid \mathrm{rk}(E)=k \}
+  \end{align*}
+  And the morphisms are isomorphism of vector bundle.
 
 \end{example}
-
-\begin{example}[Quasi-Coherent Sheaf]
+\begin{example}
   
 \end{example}
-\section{Gauge and Symmetry}
+
+\section{Quasi-Coherent Sheaf and Vector Bundle}
+
+We want to define a category of vector bundle or more general other bundle over a space which is defined by a sheaf $\Sch(\cC)$, the nicer way is to define a category-value sheaf. That is to say, we first define functor $\cC^\op \to \mathrm{Cat}$, then extend it to $\Sch(\cC)\to \mathrm{Cat}$. 
+
+\begin{example}[Vector bundle]
+  We first define the category of vector bundle on Cartesian space: $VB(\bR^n)$, the objects are trivial vector bundles$V_k:= \bR^n \times \bR^k \to \bR^n$, and the morphisms $f:V_k\to V_l$ are smooth map $f:\bR^n \to \mathrm{Mat}(\bR^k,\bR^l)$. This is indeed a functor $VB:\Cart^\op \to \mathrm{Cat}$. For $g:\bR^n \to \bR^m$, we have the pull back functor $g^* : VB(\bR^m)\to VB(\bR^n)$. We can show this is sheaf of category.
+
+  Now this functor can extend to all manifolds $VB: \Sch(\Cart)^\op \to \mathrm{Cat}, X \mapsto \mathrm{Nat}(X,VB) $ 
+\end{example}
+
+\begin{example}[Module and Quasi-Coherent Sheaf]
+  For each ring $A$, we can define the category of $\mathrm{Mod}_A$. For $\varphi: A \to B$, we have the functor $\varphi_*: \mathrm{Mod}_A \to \mathrm{Mod}_B, M \mapsto B \otimes_A M$. We can show this is sheaf of category. Recall that we have the realization functor $\widetilde{(-)}: \mathrm{Mod}_A \xr{\cong} \mathrm{QC}(\Spec A) \subset \Sh(\Spec A) $. 
+
+  Now this functor can extend to all schemes $\mathrm{Mod}_{(-)} \Sch^\op \to \mathrm{Cat}, X \mapsto \mathrm{Nat}(X,\mathrm{Mod}_{(-)}) $. We have also the realization functor $\widetilde{(-)}: \mathrm{Mod}_X \xr{\cong} \mathrm{QC}(X) \subset \Sh(X) $
+\end{example}
+
+
+\section{What is a Field ?}
 $U(1)$ gauge theory.
 % chapter To Infinity and Beyond (end)

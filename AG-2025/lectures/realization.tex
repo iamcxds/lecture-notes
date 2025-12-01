@@ -4,6 +4,39 @@ We have seen how to define a generalized space via sheaf, which is data of testi
 
 On the other hand, sometimes it is also useful to construct functor $I: \Sh(\cC) \to \mathcal{V} $ to a simpler category $\mathcal{V}$ (value), even thought we lose some information. This is called \emph{invariant}.
 
+\section{Relative Topos/Geometric morphism of Topos}
+We have seen a topos $\mathcal{T}$ (category of sheaf) as a collection of generalized spaces. Sometimes we can seen it as generalized spaces relative certain space $X$, in that case $\mathcal{T}_X$ also reflex the geometry of $X$.
+
+\begin{example}
+  For topological spaces $X$, we have seen $\SH(X) \cong \mathrm{Et}/ X$ étale space over $X$. Then for any continuous map $f:X\to Y$, we have the following adjoint functors:
+  \[
+    f^{-1}: \Sh(Y) \leftrightarrows \Sh(X): f_*
+  \]
+  Where for $ U \in \Op(Y)$, we ask $f^{-1}(\yo (U)) := \yo (f^{-1}(U)) $. Then by the property of adjoint functors we have for $\cF\in \Sh(X)$ 
+  \[
+    f_*\cF(U) = \Hom_{\Sh(Y)}(\yo(U),f_*\cF ) \cong \Hom_{\Sh(X)}(f^{-1}(\yo(U)),\cF ) = \cF(f^{-1}(U))
+  \]
+  To define $ f^{-1}\cG$ for general $\cG \in \Sh(Y)$, recall $ \cG \cong \int_{U\in \Op(Y)} \cG(U) \times \yo(U)$, then since $f^{-1}$ preserve colimit, we have
+  \[
+    f^{-1}\cG \cong L\int_{U\in \Op(X)} \cG(U) \times f^{-1}(\yo(U))
+  \]
+
+  \begin{exercise}*
+    Show that the presheaf $\int_{U\in \Op(X)} \cG(U) \times f^{-1}(\yo(U)) \in \PSh(X)$ is given by $ V\in \Op(X) \mapsto \Colim_{f(V) \subset U \in \Op(Y)}\cG(U)$  
+  \end{exercise}
+
+  If we look at some example of continuous map to a point $p:X\to * $.
+
+  Then we consider a point $x\in X$, viewed as a map $x: * \to X$.
+\end{example}
+
+\begin{example}[Slice Category]
+  Let $S\in \Sh(\cC)$, then the slice category $ \Sh(\cC)/S $ ($\cong \Sh(\int_\cC S)$ exercise) consists of morphisms $p :X \to S$. For a morphism $f:S\to T$, we can simply define $f^*(p:X\to S):= f^*p: X\times_S T \to T $. In fact $f^*$ has both left and right adjoint functors $f_\#,f_*$. 
+\end{example} 
+
+point of topos
+
+points and prime ideals.
 \section{Ringed Space}
 
 Recall for $\cD$ cocomplete, if we have a realization functor on test objects $R:\cC \to \cD$, we can extend it to all presheaf $R:\PSh(\cC)\to \cD$ by using category of elements 
@@ -23,21 +56,6 @@ Recall for the simplicial set, smooth set, algebraic set, we can have realizatio
  \end{enumerate} 
 \end{example}
 
-\begin{remark}[Spectral spaces]
-The idea of spectrum is to think the ring $A$ as functor ring on $\Spec A$: for $f \in A$ and point $ \mathfrak{p}\in \Spec A$, we should think $f(\mathfrak{p})= p(f) \in A/\mathfrak{p} $, where $p:A\to A/\mathfrak{p}$ is the quotient. 
-
-Notice that the spectrum of ring form an unusual space, it is only $T_0$. So not all points are closed. It's helpful to think in following ways: It contains closed points, which is usual points; then for each irreducible algebraic curve $C$, we have a corresponding generic point $\xi_C$. Then for every closed point $x$ on that curve, $\xi_C$ is in the neighborhood of $x$, i.e. $x\in \bar{\{\xi_C\}}$; Similarly, for each irreducible surface $S$, we have a generic point $\xi_S$, such that for the curve it contains, we have $\xi_C\in \bar{\{\xi_S\}}$.
-
-\begin{example}
-  \begin{itemize}
-    \item \textbf{Spectrum of $\bC[x]$} 
-    \item \textbf{Spectrum of $\bZ$} 
-    \item \textbf{Spectrum of $\bZ[x]$} 
-  \end{itemize}
-\end{example}
-
-Another interesting fact is the spectrum is a filter limit of finite $T_0$ space: You can consider a finite stratification of space by points, curve, surface, etc., then take the limit by have more and more of them.
-\end{remark}
 
 
 But this is not yet what we want: the realization functor is not fully, that is, for example there are much more continuous morphisms that smooth morphisms for manifold. To solve this problem, we need to update the target category.
@@ -134,16 +152,135 @@ Therefore, we can define smooth manifold (scheme) as a locally ringed space whic
 
 \section{Geometry of Affine Scheme}
 
-\section{Quasi-Coherent Sheaf and Vector Bundle}
+The idea of spectrum is to think the ring $A$ as functor ring on $\Spec A$: for $f \in A$ and point $ \mathfrak{p}\in \Spec A$, we should think $f(\mathfrak{p})= ev(f) \in A/\mathfrak{p} $, where $ev:A\to A/\mathfrak{p}$ is the quotient. 
 
-We want to define a category of vector bundle or more general other bundle over a space which is defined by a sheaf $\Sch(\cC)$, the nicer way is to define a category-value sheaf. That is to say, we first define functor $\cC^\op \to \mathrm{Cat}$, then extend it to $\Sch(\cC)\to \mathrm{Cat}$. 
+Notice that the spectrum of ring form an unusual space, it is only $T_0$. So not all points are closed. It's helpful to think in following ways: It contains closed points, which is usual points; then for each irreducible algebraic curve $C$, we have a corresponding generic point $\xi_C$. Then for every closed point $x$ on that curve, $\xi_C$ is in the neighborhood of $x$, i.e. $x\in \overline{\{\xi_C\}}$, we denote this as $\xi_C \leadsto x $; Similarly, for each irreducible surface $S$, we have a generic point $\xi_S$, such that for the curve it contains, we have $\xi_S \leadsto \xi_C$.
 
-\begin{example}[Vector bundle]
-  We first define the category of vector bundle on Cartesian space: $VB(\bR^n)$, the objects are trivial vector bundles$V_k:= \bR^n \times \bR^k \to \bR^n$, and the morphisms $f:V_k\to V_l$ are smooth map $f:\bR^n \to \mathrm{Mat}(\bR^k,\bR^l)$. This is indeed a functor $VB:\Cart^\op \to \mathrm{Cat}$. For $g:\bR^n \to \bR^m$, we have the pull back functor $g^* : VB(\bR^m)\to VB(\bR^n)$.
-  Now this can extend to a category for all manifold
+
+Another interesting fact is the spectrum is a filter limit of finite $T_0$ space: You can consider a finite stratification of space by points, curve, surface, etc., then take the limit by have more and more of them. This is called \emph{Spectral space}.
+
+
+We have the following diagram of corresponding geometric and algebraic objects.
+\begin{center}
+\begin{tabular}{|l|l|p{5cm}|}
+\hline
+\textbf{Geometry} & \textbf{Algebra} & \textbf{Connection} \\
+\hline
+Locally Ringed Space $(X,\cO_X)$ & Ring $A$ & $X=\Spec A$; $A=\cO_X(X)$. \\
+\hline
+Point $x \in X$ & Prime ideal $\mathfrak{p} \subset A$ &  \\
+\hline
+Closed point $x \in X$ & Maximal ideal $\mathfrak{m} \subset A$ &  \\
+\hline
+Function $f \in \cO_X(X)$, eval $f(x)$&  $ev_\mathfrak{p}:  A \to A/\mathfrak{p}$ & $f(\mathfrak{p}):= ev_\mathfrak{p}(f)\in A/\mathfrak{p} $  \\
+\hline
+Open subset $U \subseteq X$ & Localization $A_f$ & $U=D(f)=\Spec A_f=\{\mathfrak{p} \mid f(\mathfrak{p})\neq0 \Leftrightarrow f \notin\mathfrak{p} \}$. \\
+\hline
+Closed subset $Z \subseteq X$ & Ideal $I \subset A$ & $Z=V(I)=\Spec A/I =\{\mathfrak{p} \mid \forall f\in I, f(\mathfrak{p})=0 \Leftrightarrow I \subseteq \mathfrak{p} \}$; $I(Z)=\{f\in A \mid \forall \mathfrak{p} \in Z, f(\mathfrak{p})=0 \}= \bigcap_{ \mathfrak{p} \in Z } \mathfrak{p} $.  \\
+\hline
+Structure sheaf $\mathcal{O}_X$ &  $\Lim A_f$  & $\cO_{\Spec A}(D(f)) = A_f$ and $\cO_{\Spec A}(U) = \Lim_{D(f)\subseteq U} A_f$. \\
+\hline
+Stalk $\mathcal{O}_{X,x}$ & Local ring $A_{\mathfrak{p}}$ & $\mathcal{O}_{X,x}=A_{\mathfrak{p}}= (A\setminus \mathfrak{p})^{-1}A$. \\
+\hline
+Irreducible closed subset $F$ & Prime ideal $\mathfrak{p}$ & $F=\overline{\{\mathfrak{p}\}}$; generic point of $F$ is $\mathfrak{p}$. \\
+\hline
+Specialization $\xi \leadsto x$ ($x\in \overline{\{\xi\}} $) & $ \mathfrak{p}_{\xi}\subset \mathfrak{p}_x$ &\\
+\hline
+Morphism  $(X,\cO_X) \to (Y,\cO_Y)$ & Ring homomorphism $ B \to A$ &  $\varphi^{-1} : \Spec A \to \Spec B$ corresponds to $\varphi : B \to A$. \\
+\hline
+Fiber product $X\times_Z Y$ & Tensor product $A\otimes_C B$ & $\Spec (A\otimes_C B)= \Spec A \times_{\Spec C} \Spec B $\\
+\hline
+Fiber $f^{-1}(y)$ over $y \in Y$ & Tensor product $A \otimes_B \kappa(y)$ & $ f^{-1}(y)= \Spec( A \otimes_B \kappa(y))$ where residue field $\kappa(y)= \mathrm{Frac}(B/\mathfrak{p}_y)$. \\
+\hline
+Cotangent space $T^*_x X$ & $\kappa( \mathfrak{m})$-Vector space $\mathfrak{m}/\mathfrak{m}^2$&\\
+\hline 
+Quasi-Coherent sheaf $ \cF \in \Sh(X)$ & $A$-module $M$ & $\cF=\widetilde{M}$;$M=\cF(X)$\\
+\hline 
+Vector bundle $ E$ & Locally free module $M$ & $M=\Gamma(X,E)$\\
+\hline 
+Section $ \cF(U)$  & Localization $M_f$ & $\cF(D(f))= M_f=M\otimes_A A_f$ and $\cF(U) = \Lim_{D(f)\subseteq U} M_f$\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{example}
+  \begin{itemize}
+    \item \textbf{Spectrum of $\bC[x]$} 
+Prime ideals:
+\[
+\mathrm{Spec}(\mathbb{C}[x]) = \{ (0) \} \cup \{ (x - a) \mid a \in \mathbb{C} \}.
+\]
+Generic point: $(0)$; closed points: $(x - a)$ for $a \in \mathbb{C}$.
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (generic) [circle, draw] {$(0)$};
+\node (a0) [left=of generic] {$\cdots$};
+\node (a1) [below left=of generic] {$(x-a_1)$};
+\node (a2) [below=of generic] {$(x-a_2)$};
+\node (a3) [below right=of generic] {$(x-a_3)$};
+\node (a4) [right=of generic] {$\cdots$};
+\draw[->,decorate, decoration={snake, amplitude=.7mm, segment length=3mm}] (generic) -- (a1);
+\draw[->,decorate, decoration={snake, amplitude=.7mm, segment length=3mm}] (generic) -- (a2);
+\draw[->,decorate, decoration={snake, amplitude=.7mm, segment length=3mm}] (generic) -- (a3);
+\node[below=2cm of generic] {$\text{Affine line over } \mathbb{C}$};
+\end{tikzpicture}
+\end{center}
+    \item \textbf{Spectrum of $\bZ$} 
+\[
+\mathrm{Spec}(\mathbb{Z}) = \{ (0) \} \cup \{ (p) \mid p \text{ prime} \}.
+\]
+Generic point: $(0)$; closed points: $(p)$ for $p \in \mathbb{N}$ prime.
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (genericZ) [circle, draw] {$(0)$};
+\node (a0) [left=of genericZ] {$\cdots$};
+\node (a4) [right=of genericZ] {$\cdots$};
+\node (p2) [below left=of genericZ] {$(2)$};
+\node (p3) [below=of genericZ] {$(3)$};
+\node (p5) [below right=of genericZ] {$(5)$};
+\draw[->,decorate, decoration={snake, amplitude=.7mm, segment length=3mm}] (genericZ) -- (p2);
+\draw[->,decorate, decoration={snake, amplitude=.7mm, segment length=3mm}] (genericZ) -- (p3);
+\draw[->,decorate, decoration={snake, amplitude=.7mm, segment length=3mm}] (genericZ) -- (p5);
+\node[below=2cm of genericZ] {$\text{Points indexed by primes}$};
+\end{tikzpicture}
+\end{center}
+    \item \textbf{Spectrum of $\bZ[x]$} 
+Prime ideals:
+\[
+\begin{aligned}
+&(0), \\
+&(p), p \text{ prime} \\
+&(f(x)) \text{ irreducible over } \mathbb{Q}, \\
+&(p, f(x)) \text{ irreducible mod } p.
+\end{aligned}
+\]
+  \end{itemize}
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (genericZX) [double, double distance=1mm, circle, draw] {$(0)$};
+\node (p) [right=of genericZX, circle, draw] {$(p)$};
+\node (fx) [below=of genericZX, circle, draw] {$(f(x))$};
+\node (pf) [below=of p] {$(p,f(x))$};
+\node (a0) [left=of genericZX] {$\cdots$};
+\node (a4) [right=of p] {$\cdots$};
+\draw[->,decorate, decoration={snake, amplitude=.7mm, segment length=3mm}] (genericZX) -- (p);
+\draw[->,decorate, decoration={snake, amplitude=.7mm, segment length=3mm}] (genericZX) -- (fx);
+\draw[->,decorate, decoration={snake, amplitude=.7mm, segment length=3mm}] (p) -- (pf);
+\draw[->,decorate, decoration={snake, amplitude=.7mm, segment length=3mm}] (fx) -- (pf);
+\node[below=0.1mm of fx] {$\text{Affine line over } \mathrm{Spec}(\mathbb{Z})$};
+\end{tikzpicture}
+\end{center}
 \end{example}
-
-\begin{example}[Module and Quasi-Coherent Sheaf]
-  For each ring $A$, we can define the category of $\mathrm{Mod}_A$. For $\varphi: A \to B$, we have the functor $\varphi_*: \mathrm{Mod}_A \to \mathrm{Mod}_B, M \mapsto B \otimes_A M$ 
-\end{example}
+For affine scheme, we have an analogue result of Nullstellensatz, which is easier to prove that original one.
+\begin{exercise}[Generalized Nullstellensatz]
+Let $A$ be any ring.
+  \begin{enumerate}
+    \item Show that for non-nilpotent $f\notin \sqrt{(0)}$(i.e. $ \forall n, f^n \neq 0$), $A_f \neq 0$, therefore $\Spec A_f= D(f)\neq \emptyset$. As a consequence, there exist a prime ideal $ \mathfrak{p} \in D(f)$, i.e. $f\notin \mathfrak{p}$.
+    \item Show that $\bigcap_{ \mathfrak{p} \in \Spec A} \mathfrak{p} \subseteq \sqrt{(0)}$.
+    \item Show that for nilpotent $g \in  \sqrt{(0)}$, For all prime ideals $\mathfrak{p}$, $g\in \mathfrak{p} $.
+    \item Show that $\bigcap_{ \mathfrak{p} \in \Spec A} \mathfrak{p} = \sqrt{(0)}$, and thus $I(V(J))=\{f\in A \mid \forall \mathfrak{p} \in V(J), f(\mathfrak{p})=0 \}= \bigcap_{ \mathfrak{p} \supseteq J} \mathfrak{p}  = \sqrt{J}$. (The original Nullstellensatz is $ \bigcap_{ \text{maximal ideal } \mathfrak{m} \supseteq J} \mathfrak{m}  = \sqrt{J} $, which is stronger that this.)
+  \end{enumerate}
+   
+\end{exercise}
 % chapter Realization (end)
