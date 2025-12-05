@@ -5,7 +5,7 @@
     \mathrm{Obj}(\mathrm{holim} \cF(U_{\bullet})) := \left\{ (f_i)\in \prod_{i\in I}\cF(U_{i}),  g_{ij}:f_i|_{U_{ij}} \xr{\cong} f_j|_{U_{ij}}\in \cF(U_{ij}) \,\middle\vert\,g_{ij}g_{jk}|_{U_{ijk}}=g_{ik}|_{U_{ijk}}\right\}
   \] 
   \[
-    \Hom_{ \mathrm{holim} \cF(U_{\bullet})}((f_\bullet),(h_\bullet)):= \left\{ \varphi_i \in \prod_{i\in I}\Hom_{\cF(U_{i})}(f_i,h_i)  \,\middle\vert\,
+    \Hom_{ \mathrm{holim} \cF(U_{\bullet})}((f_\bullet,g_{\bullet\bullet}),(h_\bullet,g'_{\bullet\bullet})):= \left\{ \varphi_i \in \prod_{i\in I}\Hom_{\cF(U_{i})}(f_i,h_i)  \,\middle\vert\,
 \begin{tikzcd}[ampersand replacement=\&,cramped]
   f_i|_{U_{ij}} \&  h_i|_{U_{ij}} \\
 f_j|_{U_{ij}}   \& h_j|_{U_{ij}}
@@ -18,7 +18,9 @@ f_j|_{U_{ij}}   \& h_j|_{U_{ij}}
   \right\}
 \]
 
-\section{Moduli Space via Sheaf of groupoid}
+The sheaf of groupoid is called \emph{stack} $\mathrm{Stk}(\cC)$.
+
+\section{Moduli Space via Stack}
 \begin{definition}[Action Groupoid]
 Given a group $G$ acting on a set $X$, the \emph{action groupoid} $X \sslash G$ has:
 \begin{itemize}
@@ -40,7 +42,7 @@ Objects: points of $\mathbb{R}$.
 
 Morphisms: $(x \xrightarrow{n} x+n)$ for $n \in \mathbb{Z}$.
 
-In fact we have equivalence of category between $\bR//\bZ \cong U(1)$
+In fact, we have equivalence of category between $\bR//\bZ \cong U(1)$
 \item $ \bC \sslash \bC^\times$ : $\mathbb{C}^\times$ acting on $\mathbb{C}$ by scaling
 \[
 \lambda \cdot z = \lambda z, \quad \lambda \in \mathbb{C}^\times, z \in \mathbb{C}.
@@ -51,7 +53,7 @@ Morphisms: $(z \xrightarrow{\lambda} \lambda z)$ for $\lambda \in \mathbb{C}^\ti
 \end{enumerate}  
 \end{example}
 
-Now for a set sheaf $X \in \Sh(\cC)$ and a group sheaf $G \in \Sh(\cC, \mathbf{Grp})$ acts on it. We have a presheaf of groupoid $ X\sslash_{pre} G(C) := X(C)\sslash G(C) $, which reflex global symmetry, but it is not a sheaf in general. We can define the action groupoid sheaf as the sheafification $ X\sslash G = L( X\sslash_{pre} G )$, which reflex local symmetry. Similarly, we can define the quotient sheaf $ X/G = L(X/_{pre} G) $ 
+Now for a set sheaf $X \in \Sh(\cC)$ and a group sheaf $G \in \Sh(\cC, \mathbf{Grp})$ acts on it. We have a presheaf of groupoid $ X\sslash_{pre} G(C) := X(C)\sslash G(C) $, which reflex global symmetry, but it is not a sheaf in general. We can define the action stack as the sheafification $ X\sslash G = L( X\sslash_{pre} G )$, which reflex local symmetry. Similarly, we can define the quotient sheaf $ X/G = L(X/_{pre} G) $ 
 
 \begin{example}
   Let $\bR,\bZ \in \Sh(\mathrm{Mnfd})$, where $\bR(U)=C^\infty(U)$ and $\bZ(\bR^m)=\bZ$. Now the presheaf quotient $\bR/_{pre}\bZ(U):= C^\infty(U)/\bZ$. Now we show that this is not a sheaf: consider $ \bR/_{pre}\bZ(S^1):= C^\infty(S^1)/\bZ $, take the standard covering $U_1,U_2 \subset S^1$ and $U_1\cap U_2=V_1 \sqcup V_2$, we have 
@@ -61,6 +63,7 @@ Now for a set sheaf $X \in \Sh(\cC)$ and a group sheaf $G \in \Sh(\cC, \mathbf{G
   In fact we have $\bR/\bZ(M)= \Map_{sm}(M, U(1))$.
 \end{example}
 
+As we mentioned earlier, we want to give natural space structure for collection of mathematics objects. Now this goal can be achieved by definite a sheaf which characterize the ``families of objects", with additional symmetry, by using action groupoid.
 
 \begin{example}[Moduli Space of Triangles]
   If we classify triangles up to similarity, then we can define a smooth groupoid $\cM_{\Delta}: \Cart^\op \to \mathbf{Grpd}$ as the families of triangles: 
@@ -76,7 +79,7 @@ Now for a set sheaf $X \in \Sh(\cC)$ and a group sheaf $G \in \Sh(\cC, \mathbf{G
 And the morphism is given by isomorphism of bundles.
 
 \begin{example}[Moduli Space of Vector Bundles]
-  Let $\cM_{Vect,k}$ be the moduli space of $k$-dimensional vector space. We can define it as a smooth set (manifold):
+  Let $\cM_{Vect,k}=\mathrm{B}\GL_k$ be the moduli space of $k$-dimensional vector space. We can define it as a smooth set (manifold):
   \[ \cM_{Vect,k}(\bR^m)= \{V:\bR^k \times \bR^m \to \bR^m\} \sslash \GL_k(C^\infty(\bR^m)) = \mathrm{B}\GL_k(C^\infty(\bR^m)) 
   \]
   For general manifold $M$, we find this classifies rank $k$ vector bundle groupoid$ E \to M$: taking a good covering $\{U_i\}_{i\in I}$ of $M$,
@@ -85,14 +88,27 @@ And the morphism is given by isomorphism of bundles.
     \cM_{Vect,k}(M)&=_{\mathrm{Obj}}  \left\{  g_{ij}\in \GL_k(C^\infty(U_{ij}) ), \;\middle|\;g_{ij}|_{U_{ijk}}g_{jk}|_{U_{ijk}}=g_{ik}|_{U_{ijk}}\right\}\\
                    &=\{E \to M \text{ vector bundle }\mid \mathrm{rk}(E)=k \}
   \end{align*}
-  And the morphisms are isomorphism of vector bundle.
+  And the morphisms are isomorphism of vector bundle. In other world the stack $ \mathrm{B}\GL_k$ classify the rank $k$ vector bundle.
 
 \end{example}
-\begin{example}
+
+\begin{example}[Configuation Space of Points/Hilbert Scheme]
+  For a manifold $M$, we can consider the compact configuration space of $d$ unordered points $\mathrm{Conf}^d M$. This can be defined as a smooth stack $M^d \sslash S_d$, which is sheafification of prestack.
+
+  \[
+    \mathrm{Conf}^dM_{pre}(\bR^m):=\{ (f_i) \in \Map_{sm}(\bR^m, M^d)\} \sslash S_d
+  \]
+  We can see  $ \mathrm{Sym}^dM = (M^d \setminus \mathrm{diag} )/S_d\subset \mathrm{Conf}^dM$ as subspace of non-stacky points.
+
+
+  Following this idea, we can define an algebraic version of compact configuration space, \emph{Hilbert space}, which is blow up at the diagonal. For simplicity, we consider Hilbert scheme of $d$ points in affine $\af^n$ space. We first define presheaf $\mathrm{Hilb}^d_{\af^n, pre}:\Ring \to \Set$ as:
+  \[
+    \mathrm{Hilb}^d_{\af^n, pre}(R)=\{I \subset R[x_1,\ldots,x_n] \text{ ideal} \mid R[x_1,\ldots,x_n]/I \cong R^d\}
+  \]
+  We can prove similarly as $\bP^1$, $ \mathrm{Hilb}^d_{\af^n, pre}$ is covered by representable sheaves (affine scheme), thus it $\mathrm{Hilb}^d_{\af^n}:= L\mathrm{Hilb}^d_{\af^n, pre}$ is scheme. 
   
 \end{example}
-
-\section{Quasi-Coherent Sheaf and Vector Bundle}
+\section{Quasi-Coherent Sheaf and Vector Bundle via Stack of Category}
 
 We want to define a category of vector bundle or more general other bundle over a space which is defined by a sheaf $\Sch(\cC)$, the nicer way is to define a category-value sheaf. That is to say, we first define functor $\cC^\op \to \mathrm{Cat}$, then extend it to $\Sch(\cC)\to \mathrm{Cat}$. 
 
@@ -109,6 +125,71 @@ We want to define a category of vector bundle or more general other bundle over 
 \end{example}
 
 
-\section{What is a Field ?}
-$U(1)$ gauge theory.
+\section{What is a Field Theory ?}
+
+Recall for sheaf $\cF,\cG$ we can define the \emph{inner hom} $[\cF,\cG]\in \Sh(\cC)$ to be again a sheaf, where $[\cF,\cG](C):=\Hom_{\PSh(\cC)}(\cF\times \yo(C),\cG)$.
+
+A physics field theory contain following thing: a spacetime manifold $\Sigma$ of dimensional $d$, a smooth sheaf (stack) of fields configuration $\cF$, an action functional $S: [\Sigma,\cF]\to \bR $ or $U(1)$, where $[\Sigma,\cF]$ is the field history. Usually the action is defined from Lagrangian $\mathcal{L}:\cF|_\Sigma \to \Omega^d|_\Sigma \in \Sh(\Sigma)$, and 
+\[
+  S:[\Sigma,\cF]\xr{\mathcal{L}(\Sigma)}\Omega^d(\Sigma)\xr{ \int_{\Sigma} } \bR
+\]
+In particular, for every point $x\in \Sigma$ we have 
+\[\mathcal{L}(x) : \cF_x \xr{ \mathcal{L}_x } \Omega^d_x \xr{ev} \bR\] 
+For example let $\phi_x\in \cF_x$, we can define $ \mathcal{L}(x)(\phi_x)= a_0\phi_x(x)+a_1\partial_i \phi_x(x)+\cdots $
+
+So the core field theory is to study the geometry of field history space $[\Sigma,\cF]$ pair with action functional $ S\in C^\infty([\Sigma,\cF]) $. For example the classic solution space is $\mathrm{Sol}([\Sigma,\cF])=\{dS=0\}$.
+
+\begin{example}[Mechanics and Sigma Model]
+  Let $\Sigma=\bR$, we start the trajectory of a particle in a space $X$. Now the field history space $[\bR,X]$. Let $q \in [\bR,X]$, we define $\mathcal{L}(t)(q):= \mathcal{L}(q, \dot{q},t)$ and $S: [\bR,X] \to \bR, q  \mapsto  \int_\bR \mathcal{L}\mathrm{d}t $.
+
+  Similarly, if we take general $\Sigma$, we got the sigma model.
+\end{example}
+
+\begin{example}[Vector Bundle]
+  Let $E\to \Sigma$ be a rank $k$ vector bundle, we consider the space of section $\Gamma(\Sigma,E)$, let $\{U_i \to \Sigma \}_{i\in I}$ be a covering, and $E$ is given by $\{g_{ij}\in \GL_k(C^\infty(U_{ij}))\}$, Then the section space is the limit:
+  \[
+    \Gamma(\Sigma,E)= \Lim [U_\bullet,\bR^k] = \left\{ \phi_i \in \prod_{i\in I} [U_i,\bR^k]  \,\middle\vert\,
+      g_{ij}\cdot \phi_i|_{U_{ij}}=\phi_j|_{U_{ij}}
+  \right\}
+  \]
+  To define the Lagrangian $\mathcal{L}: \Gamma(-,E) \to C^\infty$, we can define $ \mathcal{L}_i: [U_i,\bR^k] \to C^\infty(U_i)$ such that $ g_{ij}^*\mathcal{L}_j=\mathcal{L}_i$. This is in general difficult to construct, since $g_{ij}^*$ can be very complicate. For example $\partial_\mu: [U_i,\bR^k] \to C^\infty(U_i), \phi \mapsto \partial_\mu \phi$, $g^*\partial_\mu \phi= \partial_\mu (g\phi)= (\mu, g \mathrm{d}\phi)+ (\partial_\mu g)\phi $. The introducing of gauge field can help to define such morphism.
+\end{example}
+
+
+
+\section{Gauge Theory}
+
+The word ``gauge" used in Physics are usually associated with fields defined by an action stack $ X\sslash G $.
+
+We begin with a gauge linear sigma model(GLSM). We can consider sigma model of following target space $\mathbb{CP}^n:=\{(\phi_{\mu}) \in \bC^{n+1} | \sum |\phi_\mu|^2 \}/ U(1) $. This identification can be seen as quotient of manifold, we can also interpret as sheaf, let ${U_i\to \Sigma}_{i\in I}$ be a good covering:
+
+\[
+  \mathbb{CP}^n(\Sigma)=\Lim \mathbb{CP}^n(U_\bullet)=\left\{ (\boldsymbol{\phi}_i)\in \prod_{i\in I} \Map(U_i,\bC^{n+1}) \;\middle|\; \boldsymbol{\phi}_i|_{U_{ij}}=g_{ij} \cdot \boldsymbol{\phi}_j|_{U_{ij}}, g_{ij}\in U(1)(U_{ij})\right\}
+\]
+
+
+Let $G$ be a Lie group, viewed as a smooth group, let $\Omega^1_{\mathfrak{g}}$ be the sheaf of Lie algebra value $1$-form. Then $G$ acts on $ \Omega^1_{\mathfrak{g}}$ by $ g\cdot A = \mathrm{d}g g^{-1}+ \mathrm{ad}_g A$. We define an action stack $\mathrm{B}G_{conn}= \Omega^1_{\mathfrak{g}} \sslash G$, this is fields configuation of \emph{Yang-Mills Theory}. In the following, we just discuss the $U(1)$ case for simplicity, the action is simply $ z\cdot A = \frac{\mathrm{d}z}{z}  +  A = \mathrm{dlog}(z)+A$. $\mathrm{B}U(1)_{conn}= \Omega^1 \sslash U(1)$ is also called differential/Deligne cohomology.
+
+Explicitly, let $\Sigma$ be a manifold, and a good covering $ \{U_i\to \Sigma \}_{i\in I}$, then by definition 
+
+  \[
+    \mathrm{Obj}(\mathrm{B}U(1)_{conn}(\Sigma)) := \left\{ (A_i)\in \prod_{i\in I}\Omega^1(U_{i}),  g_{ij}\in C^\infty(U_{ij}) \,\middle\vert\,g_{ij}g_{jk}|_{U_{ijk}}=g_{ik}|_{U_{ijk}},\frac{\mathrm{d}g_{ij}}{g_{ij}}+ A_i|_{U_{ij}}=  A_j|_{U_{ij}}\right\}
+  \] 
+  \[
+    \Hom_{ \mathrm{B}U(1)_{conn}(\Sigma)}((A_\bullet, g_{\bullet\bullet}),(B_\bullet,g'_{\bullet\bullet})):= \left\{ \varphi_i \in \prod_{i\in I}\Hom_{\cF(U_{i})}(A_i,B_i)  \,\middle\vert\,
+\begin{tikzcd}[ampersand replacement=\&,cramped]
+  A_i|_{U_{ij}} \&  B_i|_{U_{ij}} \\
+A_j|_{U_{ij}}   \& B_j|_{U_{ij}} \\
+\text{ commutes}
+	\arrow["{\varphi_i}", from=1-1, to=1-2]
+  \arrow["{+\mathrm{dlog}(g_{ij})}"', from=1-1, to=2-1]
+  \arrow["{+\mathrm{dlog}(g'_{ij})}", from=1-2, to=2-2]
+	\arrow["{\varphi_j}", from=2-1, to=2-2]
+\end{tikzcd}
+  \right\}
+\]
+
+We can have two morphism of stack $p:\mathrm{B}U(1)_{conn}\to\mathrm{B}U(1)$ which forget the connection $A_i$, and curvatrue $ F: \mathrm{B}U(1)_{conn} \to \Omega^2_{cl} $ by taking $\mathrm{d}A_i$. Moreover, by composing with $U(1)\cong \bR/\bZ \to \mathrm{B}\bZ $, we can get a further morphism Chern class $ \mathbf{c}:\mathrm{B}U(1)_{conn}\to\mathrm{B}U(1)\to \mathrm{B}^2\bZ$. In fact $\pi_0\mathrm{B}^2\bZ(M)=\mathrm{H}^2(M,\bZ)$, thus $ \pi_0\mathbf{c}: \pi_0\mathrm{B}U(1)_{conn}(M)\to \mathrm{H}^2(M,\bZ)$ is the usual Chern class.
+
+To define Lagrangian, we chose a manifold $\Sigma$ of dimension $d$ with metric $g$, and we find that $ \mathcal{L}: \mathrm{B}U(1)_{conn}|_\Sigma \to \Omega^d|_\Sigma$ have to factor though $ \pi_0\mathrm{B}U(1)_{conn}$ since the latter is just a sheaf of set. In practice, we define $ \mathcal{L}: \mathrm{B}U(1)_{conn}|_\Sigma \xr{F} \Omega^2_{cl}|_\Sigma \xr{F\wedge *_g F} \Omega^d|_\Sigma$. This gives us electromagnetic field theory. 
 % chapter To Infinity and Beyond (end)
