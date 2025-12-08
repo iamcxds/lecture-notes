@@ -63,15 +63,15 @@ Now for a set sheaf $X \in \Sh(\cC)$ and a group sheaf $G \in \Sh(\cC, \mathbf{G
   In fact we have $\bR/\bZ(M)= \Map_{sm}(M, U(1))$.
 \end{example}
 
-As we mentioned earlier, we want to give natural space structure for collection of mathematics objects. Now this goal can be achieved by definite a sheaf which characterize the ``families of objects", with additional symmetry, by using action groupoid.
+As we mentioned earlier, we want to give natural space structure for collection of mathematics objects. Now this goal can be achieved by definite a sheaf which characterize the ``families of objects $A$ over $\Sigma$" $\Bun_{A}(\Sigma)$, with additional symmetry by using action groupoid, which should be thought as moduli space $\mathcal{M}_A$ containing $A$, i.e. $\Map(\Sigma,\mathcal{M}_A) :=\Bun_{A}(\Sigma)$ 
 
 \begin{example}[Moduli Space of Triangles]
-  If we classify triangles up to similarity, then we can define a smooth groupoid $\cM_{\Delta}: \Cart^\op \to \mathbf{Grpd}$ as the families of triangles: 
+  If we classify triangles up to similarity, then we can define a smooth stack $\cM_{\Delta}: \Cart^\op \to \mathbf{Grpd}$ as the families of triangles: 
   \[ \cM_{\Delta}(\bR^n)=\{a,b,c: \bR^n \to \bR \mid a+b+c=2, 0<a,b,c<1\} \sslash S_3
   \]
   Notice that the triangle have the symmetry group of permutation group $S_3$.
 
-  We can extend this to general smooth set $ \cM_{\Delta}(M):= \Hom_{\Sh(\Cart,\mathbf{Grpd})}(M,\cM_\Delta)$. Concretely, for manifold $M$, taking a good covering $\{U_i\}_{i\in I}$ of $M$, by the sheaf condition, we have: 
+  We can extend this to general smooth set $ \cM_{\Delta}(M):= \Hom_{\mathrm{Stk}(\Cart)}(M,\cM_\Delta)$. Concretely, for manifold $M$, taking a good covering $\{U_i\}_{i\in I}$ of $M$, by the sheaf condition, we have: 
   \[
     \cM_{\Delta}(M)= \mathrm{holim} \cM_\Delta (U_\bullet) =_{\mathrm{Obj}} \left\{ (T_i)\in \prod_{i\in I} \cM_\Delta(U_i) \;\middle|\; T_i|_{U_{ij}}=g_{ij} \cdot T_j|_{U_{ij}}, g_{ij}\in S_3\right\}
   \]
@@ -82,7 +82,7 @@ And the morphism is given by isomorphism of bundles.
   Let $\cM_{Vect,k}=\mathrm{B}\GL_k$ be the moduli space of $k$-dimensional vector space. We can define it as a smooth set (manifold):
   \[ \cM_{Vect,k}(\bR^m)= \{V:\bR^k \times \bR^m \to \bR^m\} \sslash \GL_k(C^\infty(\bR^m)) = \mathrm{B}\GL_k(C^\infty(\bR^m)) 
   \]
-  For general manifold $M$, we find this classifies rank $k$ vector bundle groupoid$ E \to M$: taking a good covering $\{U_i\}_{i\in I}$ of $M$,
+  For general manifold $M$, we find $ \cM_{Vect,k}(M)= \Hom_{\mathrm{Stk}(\Cart)}(M,\cM_{Vect,k})$ classifies the isomorphic groupoid of rank $k$ vector bundles $ E \to M$: taking a good covering $\{U_i\}_{i\in I}$ of $M$,
  
   \begin{align*}
     \cM_{Vect,k}(M)&=_{\mathrm{Obj}}  \left\{  g_{ij}\in \GL_k(C^\infty(U_{ij}) ), \;\middle|\;g_{ij}|_{U_{ijk}}g_{jk}|_{U_{ijk}}=g_{ik}|_{U_{ijk}}\right\}\\
@@ -93,12 +93,12 @@ And the morphism is given by isomorphism of bundles.
 \end{example}
 
 \begin{example}[Configuation Space of Points/Hilbert Scheme]
-  For a manifold $M$, we can consider the compact configuration space of $d$ unordered points $\mathrm{Conf}^d M$. This can be defined as a smooth stack $M^d \sslash S_d$, which is sheafification of prestack.
+  For a manifold $M$, we can consider the compact configuration space of $d$ unordered points $\mathrm{Conf}^d_M$. This can be defined as a smooth stack $M^d \sslash S_d$, which is sheafification of prestack.
 
   \[
-    \mathrm{Conf}^dM_{pre}(\bR^m):=\{ (f_i) \in \Map_{sm}(\bR^m, M^d)\} \sslash S_d
+    \mathrm{Conf}^d_{M,pre}(\bR^m):=\{ (f_i) \in \Map_{sm}(\bR^m, M^d)\} \sslash S_d
   \]
-  We can see  $ \mathrm{Sym}^dM = (M^d \setminus \mathrm{diag} )/S_d\subset \mathrm{Conf}^dM$ as subspace of non-stacky points.
+  We can see  $ \mathrm{Sym}^d_M = (M^d \setminus \mathrm{diag} )/S_d\subset \mathrm{Conf}^dM$ as subspace of non-stacky points.
 
 
   Following this idea, we can define an algebraic version of compact configuration space, \emph{Hilbert space}, which is blow up at the diagonal. For simplicity, we consider Hilbert scheme of $d$ points in affine $\af^n$ space. We first define presheaf $\mathrm{Hilb}^d_{\af^n, pre}:\Ring \to \Set$ as:
@@ -152,7 +152,19 @@ So the core field theory is to study the geometry of field history space $[\Sigm
       g_{ij}\cdot \phi_i|_{U_{ij}}=\phi_j|_{U_{ij}}
   \right\}
   \]
-  To define the Lagrangian $\mathcal{L}: \Gamma(-,E) \to C^\infty$, we can define $ \mathcal{L}_i: [U_i,\bR^k] \to C^\infty(U_i)$ such that $ g_{ij}^*\mathcal{L}_j=\mathcal{L}_i$. This is in general difficult to construct, since $g_{ij}^*$ can be very complicate. For example $\partial_\mu: [U_i,\bR^k] \to C^\infty(U_i), \phi \mapsto \partial_\mu \phi$, $g^*\partial_\mu \phi= \partial_\mu (g\phi)= (\mu, g \mathrm{d}\phi)+ (\partial_\mu g)\phi $. The introducing of gauge field can help to define such morphism.
+  As we saw earlier, $E$ can be classified by a morphism of stack $ f_E: \Sigma \to \mathrm{B}\GL_k $, and we have universal vector bundle $p_k: \mathcal{U}_k \to \mathrm{B}\GL_k$, such that $E$ is the pullback $ f_E^* \mathcal{U}_k$. That is to say, the setion space can be also seen as collection of commutive diagram:
+  \[
+\Gamma(\Sigma,E)=
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXFNpZ21hIl0sWzEsMCwiXFxtYXRoY2Fse1V9X2siXSxbMSwxLCJcXG1hdGhybXtCfVxcR0xfayJdLFswLDFdLFswLDIsImZfRSIsMl0sWzEsMiwicF9rIl1d
+    \left\{\begin{tikzcd}[ampersand replacement=\&,cramped]
+	\Sigma \& {\mathcal{U}_k} \\
+	\& {\mathrm{B}\GL_k}
+	\arrow[from=1-1, to=1-2]
+	\arrow["{f_E}"', from=1-1, to=2-2]
+	\arrow["{p_k}", from=1-2, to=2-2]
+\end{tikzcd} \right\}
+  \]
+  To define the Lagrangian $\mathcal{L}: \Gamma(-,E) \to \Omega^d$, we can define $ \mathcal{L}_i: [U_i,\bR^k] \to \Omega^d(U_i)$ such that $ g_{ij}^*\mathcal{L}_j=\mathcal{L}_i$. This is in general difficult to construct, since $g_{ij}^*$ can be very complicated. For example $\partial_\mu: [U_i,\bR^k] \to C^\infty(U_i), \phi \mapsto \partial_\mu \phi$, $g^*\partial_\mu \phi= \partial_\mu (g\phi)= (\mu, g \mathrm{d}\phi)+ (\partial_\mu g)\phi $. The introducing of gauge field can help to define such morphism.
 \end{example}
 
 
@@ -161,10 +173,10 @@ So the core field theory is to study the geometry of field history space $[\Sigm
 
 The word ``gauge" used in Physics are usually associated with fields defined by an action stack $ X\sslash G $.
 
-We begin with a gauge linear sigma model(GLSM). We can consider sigma model of following target space $\mathbb{CP}^n:=\{(\phi_{\mu}) \in \bC^{n+1} | \sum |\phi_\mu|^2 \}/ U(1) $. This identification can be seen as quotient of manifold, we can also interpret as sheaf, let ${U_i\to \Sigma}_{i\in I}$ be a good covering:
+We begin with a gauge linear sigma model(GLSM). We can consider sigma model of following target space $\mathbb{CP}^n:=\{(z_{\mu}) \in \bC^{n+1} | \sum_{\mu=0}^n |z_\mu|^2=1 \}/ U(1) $. This identification can be seen as quotient of manifold, we can also interpret as sheaf, let ${U_i\to \Sigma}_{i\in I}$ be a good covering:
 
 \[
-  \mathbb{CP}^n(\Sigma)=\Lim \mathbb{CP}^n(U_\bullet)=\left\{ (\boldsymbol{\phi}_i)\in \prod_{i\in I} \Map(U_i,\bC^{n+1}) \;\middle|\; \boldsymbol{\phi}_i|_{U_{ij}}=g_{ij} \cdot \boldsymbol{\phi}_j|_{U_{ij}}, g_{ij}\in U(1)(U_{ij})\right\}
+\mathbb{CP}^n(\Sigma)=\Lim \mathbb{CP}^n(U_\bullet)=\left\{ (\boldsymbol{\phi}_i)\in \prod_{i\in I} \Map(U_i,\{\sum_{\mu=0}^n |z_\mu|^2=1\}) \;\middle|\; \boldsymbol{\phi}_i|_{U_{ij}}=g_{ij} \cdot \boldsymbol{\phi}_j|_{U_{ij}}, g_{ij}\in U(1)(U_{ij})\right\}
 \]
 
 
