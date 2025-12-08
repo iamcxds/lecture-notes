@@ -279,6 +279,31 @@ So if we impose some continuous condition, we can get subcategory of continuous 
   Show that for $B\in\cC$, $\yo(B)$ are continuous, i.e. $ \yo(B)(\Colim_{j\in J} C_j)\cong \Lim_{j\in J} \yo(B)(C_j)$. In others words if $\cC$ is cocomplete, $\yo(B)$ is a sheaf. 
 \end{exercise}
 
+\begin{remark}[Presheaf as LEGO set]
+ There is an analogy between presheaf and LEGO set:  
+  
+  \begin{center}
+    \begin{tabular}[c]{|l|l|}
+      \hline
+      \multicolumn{1}{|c|}{\textbf{Presheaf}} & 
+      \multicolumn{1}{c|}{\textbf{LEGO}} \\
+      \hline
+      Category $\cC$ & Types of bricks  \\
+      Morphism $f: C\to D$ & Way of bricks connected \\
+      Presheaf $ \cF: \cC \to \Set $ & LEGO set \\
+      $ \cF(C)$ & Instances of bricks of certain type in set\\  
+      $ \mathrm{Obj}(\cF): \mathrm{Obj}(\cC) \to \mathrm{Obj}(\Set) $ & Catalog of bricks in set \\
+      $ \cF(f): \cF(C)\to \cF(D) $ & Bricks connected in certain way in set \\
+      Category of elements $\int_\cC \mathcal{F}$ & Instruction book of set \\
+      Colimit $ \Colim_{\int_\cC \mathcal{F}} $ & Build the set following the instruction\\
+      \hline
+    \end{tabular}
+  \end{center}
+
+ Notice that there are some bricks can be also built from combination of smaller bricks. And the sheaf we will discuss later is we identify the bricks and those combinations.  
+ 
+\end{remark}
+
 \section{Sheaf and Coverage}
 
 If we ask to presheaf be continuous for all colimit we will get nothing more that representable ones (this is an analogue to the Riesz representation theorem), instead we can restrict which kinds of colimit that it preserve. 

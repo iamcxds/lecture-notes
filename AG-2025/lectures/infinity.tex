@@ -127,12 +127,19 @@ We want to define a category of vector bundle or more general other bundle over 
 
 \section{What is a Field Theory ?}
 
-Recall for sheaf $\cF,\cG$ we can define the \emph{inner hom} $[\cF,\cG]\in \Sh(\cC)$ to be again a sheaf, where $[\cF,\cG](C):=\Hom_{\PSh(\cC)}(\cF\times \yo(C),\cG)$.
+Recall for sheaf $\cF,\cG \in \Sh(\cC)$ we can define the \emph{inner hom} $[\cF,\cG]\in \Sh(\cC)$ to be again a sheaf, where $[\cF,\cG](C):=\Hom_{\PSh(\cC)}(\cF\times \yo(C),\cG)$.
 
-A physics field theory contain following thing: a spacetime manifold $\Sigma$ of dimensional $d$, a smooth sheaf (stack) of fields configuration $\cF$, an action functional $S: [\Sigma,\cF]\to \bR $ or $U(1)$, where $[\Sigma,\cF]$ is the field history. Usually the action is defined from Lagrangian $\mathcal{L}:\cF|_\Sigma \to \Omega^d|_\Sigma \in \Sh(\Sigma)$, and 
+A physics field theory contain following thing: 
+\begin{enumerate}
+  \item a spacetime manifold $\Sigma$ of dimensional $d$,
+  \item a smooth sheaf (stack) of fields configuration $\cF$,
+  \item an action functional $S: [\Sigma,\cF]\to \bR $ or $U(1)$, where $[\Sigma,\cF]$ is the field history,
+  \item[(4.)] 
+   usually the action is defined from Lagrangian $\mathcal{L}:\cF|_\Sigma \to \Omega^d|_\Sigma \in \Sh(\Sigma)$, and 
 \[
-  S:[\Sigma,\cF]\xr{\mathcal{L}(\Sigma)}\Omega^d(\Sigma)\xr{ \int_{\Sigma} } \bR
+  S:[\Sigma,\cF]\xr{\mathcal{L}(\Sigma)}\Omega^d(\Sigma)\xr{ \int_{\Sigma} } \bR.
 \]
+\end{enumerate}
 In particular, for every point $x\in \Sigma$ we have 
 \[\mathcal{L}(x) : \cF_x \xr{ \mathcal{L}_x } \Omega^d_x \xr{ev} \bR\] 
 For example let $\phi_x\in \cF_x$, we can define $ \mathcal{L}(x)(\phi_x)= a_0\phi_x(x)+a_1\partial_i \phi_x(x)+\cdots $
@@ -185,7 +192,7 @@ Let $G$ be a Lie group, viewed as a smooth group, let $\Omega^1_{\mathfrak{g}}$ 
 Explicitly, let $\Sigma$ be a manifold, and a good covering $ \{U_i\to \Sigma \}_{i\in I}$, then by definition 
 
   \[
-    \mathrm{Obj}(\mathrm{B}U(1)_{conn}(\Sigma)) := \left\{ (A_i)\in \prod_{i\in I}\Omega^1(U_{i}),  g_{ij}\in C^\infty(U_{ij}) \,\middle\vert\,g_{ij}g_{jk}|_{U_{ijk}}=g_{ik}|_{U_{ijk}},\frac{\mathrm{d}g_{ij}}{g_{ij}}+ A_i|_{U_{ij}}=  A_j|_{U_{ij}}\right\}
+    \mathrm{Obj}(\mathrm{B}U(1)_{conn}(\Sigma)) := \left\{ (A_i)\in \prod_{i\in I}\Omega^1(U_{i}),  g_{ij}\in C^\infty(U_{ij}, U(1)) \,\middle\vert\,g_{ij}g_{jk}|_{U_{ijk}}=g_{ik}|_{U_{ijk}},\frac{\mathrm{d}g_{ij}}{g_{ij}}+ A_i|_{U_{ij}}=  A_j|_{U_{ij}}\right\}
   \] 
   \[
     \Hom_{ \mathrm{B}U(1)_{conn}(\Sigma)}((A_\bullet, g_{\bullet\bullet}),(B_\bullet,g'_{\bullet\bullet})):= \left\{ \varphi_i \in \prod_{i\in I}\Hom_{\cF(U_{i})}(A_i,B_i)  \,\middle\vert\,
@@ -201,7 +208,21 @@ A_j|_{U_{ij}}   \& B_j|_{U_{ij}} \\
   \right\}
 \]
 
-We can have two morphism of stack $p:\mathrm{B}U(1)_{conn}\to\mathrm{B}U(1)$ which forget the connection $A_i$, and curvatrue $ F: \mathrm{B}U(1)_{conn} \to \Omega^2_{cl} $ by taking $\mathrm{d}A_i$. Moreover, by composing with $U(1)\cong \bR/\bZ \to \mathrm{B}\bZ $, we can get a further morphism Chern class $ \mathbf{c}:\mathrm{B}U(1)_{conn}\to\mathrm{B}U(1)\to \mathrm{B}^2\bZ$. In fact $\pi_0\mathrm{B}^2\bZ(M)=\mathrm{H}^2(M,\bZ)$, thus $ \pi_0\mathbf{c}: \pi_0\mathrm{B}U(1)_{conn}(M)\to \mathrm{H}^2(M,\bZ)$ is the usual Chern class.
+We can have two morphism of stack $p:\mathrm{B}U(1)_{conn}\to\mathrm{B}U(1)$ which forget the connection $A_i$, and curvature $ F: \mathrm{B}U(1)_{conn} \to \Omega^2_{cl} $ by taking $\mathrm{d}A_i$. Moreover, by composing with $U(1)\cong \bR/\bZ \to \mathrm{B}\bZ $, we can get a further morphism Chern class $ \mathbf{c}:\mathrm{B}U(1)_{conn}\to\mathrm{B}U(1)\to \mathrm{B}^2\bZ$. In fact $\pi_0\mathrm{B}^2\bZ(M)=\mathrm{H}^2(M,\bZ)$, thus $ \pi_0\mathbf{c}: \pi_0\mathrm{B}U(1)_{conn}(M)\to \mathrm{H}^2(M,\bZ)$ is the usual Chern class.
+
+In fact $ \mathrm{B}U(1)_{conn}$ have both geometric and topological information: the $F$ extract the geometric data, gives the curvature form and $\mathbf{c}$ gives the topological twist of the bundle. We can link those two by the ${\mathrm{B}^2\bR_{disc}}$ which classify real coefficient cohomology group $ \mathrm{H}^2(M,\bR)$:
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXG1hdGhybXtCfVUoMSlfe2Nvbm59Il0sWzEsMCwiXFxPbWVnYV4yX3tjbH0iXSxbMiwxLCJcXG1hdGhybXtCfV4yXFxiUl97ZGlzY30iXSxbMSwyLCJcXG1hdGhybXtCfV4yXFxiWiJdLFswLDEsIkYiXSxbMSwyLCJcXHRleHR7RGUgUmhhbX0iXSxbMCwzLCJcXG1hdGhiZntjfSIsMl0sWzMsMl0sWzAsMiwiIiwxLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV1d
+\[\begin{tikzcd}[ampersand replacement=\&,cramped]
+	\& {\Omega^2_{cl}} \\
+	{\mathrm{B}U(1)_{conn}} \&\& {\mathrm{B}^2\bR_{disc}} \\
+	\& {\mathrm{B}^2\bZ}
+	\arrow["{\text{De Rham}}", from=1-2, to=2-3]
+	\arrow["F", from=2-1, to=1-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=45}, draw=none, from=2-1, to=2-3]
+	\arrow["{\mathbf{c}}"', from=2-1, to=3-2]
+	\arrow[from=3-2, to=2-3]
+\end{tikzcd}\]
+We even get a pullback diagram, which means $ \mathrm{B}U(1)_{conn}$ is gluing of geometric data $ \Omega^2_{cl}$ and topological data $\mathrm{B}^2\bZ $. That is why it is also called \emph{differential cohomology}.
 
 To define Lagrangian, we chose a manifold $\Sigma$ of dimension $d$ with metric $g$, and we find that $ \mathcal{L}: \mathrm{B}U(1)_{conn}|_\Sigma \to \Omega^d|_\Sigma$ have to factor though $ \pi_0\mathrm{B}U(1)_{conn}$ since the latter is just a sheaf of set. In practice, we define $ \mathcal{L}: \mathrm{B}U(1)_{conn}|_\Sigma \xr{F} \Omega^2_{cl}|_\Sigma \xr{F\wedge *_g F} \Omega^d|_\Sigma$. This gives us electromagnetic field theory. 
 % chapter To Infinity and Beyond (end)
