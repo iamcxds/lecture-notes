@@ -142,7 +142,23 @@ Give an object $X$ in a category, we can also consider the category of relative 
 Dually, the \emph{coslice category} $X/\mathcal{C}$ has objects morphisms $f : X \to A$ and morphisms $h : A \to B$ satisfying $h \circ f = g$.
 \end{definition}
 \begin{exercise}
-  Let $X\in \Set$, then $\Set/X$ is isomorphic to the category of $X$ indexed sets: objects are families of set $\{S_x\}_{x\in X}$, morphisms are families of maps $ \{f: S_x \to T_x\}_{x\in X}$.
+  \begin{enumerate}
+    \item Assume $\mathcal{C}$ has fiber products. For $f: A \to X$ and $g: B \to X$ in $\mathcal{C}/X$, show that the product in $\mathcal{C}/X$ is the canonical morphism
+    \[
+        f \times_X g : A \times_X B \longrightarrow X.
+    \]
+    
+    \item Let $A,S$ be sets and let $f:A\to S$ be a map of sets. Show that
+    \[
+        f^{-1}: S \longrightarrow \mathbf{Set}, \quad s \mapsto f^{-1}(s)
+    \]
+    defines a functor (where $S$ is viewed as a discrete category). Then prove the equivalence of categories:
+    \[
+        \mathbf{Set}/S \cong \mathrm{Fun}(S,\mathbf{Set}).
+    \]
+
+  In other words, $\Set/S$ is isomorphic to the category of $X$ indexed sets: objects are families of set $\{S_x\}_{x\in X}$, morphisms are families of maps $ \{\varphi_x: S_x \to T_x\}_{x\in X}$.
+  \end{enumerate}
 \end{exercise}
 \section{Functor}
 

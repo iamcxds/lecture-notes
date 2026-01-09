@@ -225,4 +225,44 @@ In fact $ \mathrm{B}U(1)_{conn}$ have both geometric and topological information
 We even get a pullback diagram, which means $ \mathrm{B}U(1)_{conn}$ is gluing of geometric data $ \Omega^2_{cl}$ and topological data $\mathrm{B}^2\bZ $. That is why it is also called \emph{differential cohomology}.
 
 To define Lagrangian, we chose a manifold $\Sigma$ of dimension $d$ with metric $g$, and we find that $ \mathcal{L}: \mathrm{B}U(1)_{conn}|_\Sigma \to \Omega^d|_\Sigma$ have to factor though $ \pi_0\mathrm{B}U(1)_{conn}$ since the latter is just a sheaf of set. In practice, we define $ \mathcal{L}: \mathrm{B}U(1)_{conn}|_\Sigma \xr{F} \Omega^2_{cl}|_\Sigma \xr{F\wedge *_g F} \Omega^d|_\Sigma$. This gives us electromagnetic field theory. 
+
+\begin{exercise}
+  
+Let $\mathcal{G},\mathcal{H}\in \Sh(\mathcal{C}, \mathbf{Grp})$ be sheaves of groups such that for all $C \in \mathcal{C}$, $\mathcal{H}(C) \trianglelefteq \mathcal{G}(C)$ is a normal subgroup. Define the \textit{quotient sheaf} to be the sheafification:
+\[
+    \mathcal{G}/\mathcal{H} := L(\mathcal{G}/_{\mathrm{pre}}\mathcal{H}), \quad \text{where } \mathcal{G}/_{\mathrm{pre}}\mathcal{H}(C):= \mathcal{G}(C)/\mathcal{H}(C).
+\]
+
+\begin{enumerate}
+    \item Show that any Lie group $G$ defines a sheaf of groups $\underline{G}\in \Sh(\mathrm{Mnfd}, \mathbf{Grp})$ by:
+    \[
+        \underline{G}(M):=\{f:M \to G \mid f \text{ is smooth}\},
+    \]
+    where $\mathrm{Mnfd}$ is the category of smooth manifolds with the coverage given by usual open covering.
+    
+    \item Let $\Omega^1_{\mathrm{cl}} \in \Sh(\mathrm{Mnfd}, \mathbf{Grp})$ be the sheaf of closed differential $1$-forms. Show that $\Omega^1_{\mathrm{cl}}$ is not concrete, i.e., there does not exist a Lie group $G$ such that $\underline{G} \cong \Omega^1_{\mathrm{cl}}$.
+      (Hint: Compare $\underline{G}(\bR^0) $ and $ \Omega^1_{\mathrm{cl}}(\bR^0)$)
+    \item Show that $\mathrm{d}: \underline{\mathbb{R}}\to\Omega^1_{\mathrm{cl}}$ is a morphism of sheaves in $\Sh(\mathrm{Mnfd}, \mathbf{Grp})$.
+    
+    \item Let $\mathbb{R}_{\mathrm{disc}}$ be the underlying discrete group of $\bR$ viewed as a discrete Lie group. Show that over Cartesian spaces $\mathbb{R}^i\in \Cart$ we have natural isomorphisms:
+    \[
+      \mathrm{d}: \underline{\mathbb{R}}/_{\mathrm{pre}}\underline{\mathbb{R}_{\mathrm{disc}}}(\mathbb{R}^i)\cong \Omega^1_{\mathrm{cl}}(\mathbb{R}^i),
+    \]
+    which induces the isomorphism of presheaf in $ \mathrm{PSh}(\Cart, \mathbf{Grp})$:
+    \[
+      (\underline{\mathbb{R}}/_{\mathrm{pre}}\underline{\mathbb{R}_{\mathrm{disc}}})|_{\Cart}\cong \Omega^1_{\mathrm{cl}}|_{\Cart}.
+    \]
+    (Hint: Use the Poincar\'e lemma.)
+    
+    \item Deduce that we have the isomorphism of sheaves in $\Sh(\mathrm{Mnfd}, \mathbf{Grp})$:
+    \[
+        \underline{\mathbb{R}}/\underline{\mathbb{R}_{\mathrm{disc}}}\cong \Omega^1_{\mathrm{cl}}.
+    \]
+  (Hint: Use that every open covering of a manifold can be refined to a good covering by Cartesian spaces.)
+\end{enumerate}
+This shows DeRham theorem of degree $1$: 
+\[
+  \mathrm{Coker}(C^{\infty}(M)\to \Omega^1_{\mathrm{cl}}(M))= \mathrm{Coker}( \underline{\mathbb{R}}\to \Omega^1_{\mathrm{cl}})(M)\cong \pi_0 \mathrm{B}\mathbb{R}_{\mathrm{disc}}(M)=\mathrm{H}^1_{\mathrm{Cech}}(M,\bR)
+\]
+\end{exercise}
 % chapter To Infinity and Beyond (end)

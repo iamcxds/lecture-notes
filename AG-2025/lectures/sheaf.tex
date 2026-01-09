@@ -640,3 +640,45 @@ As we mentioned earlier, we want to give natrual space structure for collection 
   We can prove similarly as $\bP^1$, $ \mathrm{Hilb}^d_{\af^n, pre}$ is covered by representable sheaves (affine scheme), thus it $\mathrm{Hilb}^d_{\af^n}:= L\mathrm{Hilb}^d_{\af^n, pre}$ is scheme. 
   
 \end{example}
+
+\begin{exercise}
+  \begin{enumerate}
+    
+    \item View $S$ as a discrete topological space. Show that
+      \[
+        \Gamma: \Set/S   \longrightarrow \Sh(S),\quad (p:E\to S) \mapsto \big( U\subset S \mapsto \Gamma_E(U):=\{s:U\to E \mid p\circ s =\mathrm{id}_U \} \big)
+      \]
+   and
+    \[
+        \mathrm{tot}:\Sh(S)\longrightarrow \mathbf{Set}/S, \quad \mathcal{F} \mapsto \big(\mathrm{tot}(\mathcal{F}):\bigsqcup_{s\in S}\mathcal{F}_s \to S\big)
+    \]
+    define two functors and induce an equivalence:
+    \[
+       \mathbf{Set}/S \cong \Sh(S).
+    \]
+    
+    \item Let $\varphi:S \to T$ be a map of sets. Define the functors:
+    \[
+        \varphi^*: \mathbf{Set}/T \to \mathbf{Set}/S, \quad (g:B\to T) \mapsto (g\times_T S: B \times_T S \to S),
+    \]
+    and
+    \[
+        \varphi_\#: \mathbf{Set}/S \to \mathbf{Set}/T, \quad (f:A\to S) \mapsto (\varphi \circ f: A \to T).
+    \]
+    Show that for any $f\in \mathbf{Set}/S$ and $g \in \mathbf{Set}/T$ we have a bijection:
+    \[
+        \mathrm{Hom}_{\mathbf{Set}/T}(\varphi_\#(f),g) \cong \mathrm{Hom}_{\mathbf{Set}/S}(f,\varphi^*(g)).
+    \]
+    
+    \item Prove the \textit{projection formula}:
+    \[
+        \varphi_\#(f \times_S \varphi^*(g)) \cong \varphi_\#(f) \times_T g.
+    \]
+    
+    \item Let $\varphi_*:\Sh(S)\to \Sh(T)$ be the push-forward of sheaves, which induces a functor $\varphi_*: \mathbf{Set}/S \to \mathbf{Set}/T$. Show that for any $f\in \mathbf{Set}/S$ and $g \in \mathbf{Set}/T$ we have a bijection:
+    \[
+        \mathrm{Hom}_{\mathbf{Set}/S}(\varphi^*(g),f) \cong \mathrm{Hom}_{\mathbf{Set}/T}(g,\varphi_*(f)).
+    \]
+\end{enumerate}
+\end{exercise}
+
